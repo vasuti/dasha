@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dasha Vasuti — Senior Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Merriweather:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --bg:            #f7f7f7;
+  --ink:           #232323;
+  --ink-2:         #1c1c23;
+  --ink-nav:       #232431;
+  --muted:         #acacac;
+
+  --card-bg:       #ffffff;
+  --card-ink:      #1c1c23;
+  --card-meta:     rgba(28,28,35,.5);
+  --tag-bg:        rgba(230,230,232,.5);
+  --tag-border:    transparent;
+  --tag-ink:       #1c1c23;
+  --tag-nda:       #b6b1f9;
+  --overlay-bg:    rgba(73,71,78,.88);
+  --overlay-light: rgba(45,49,92,.38);
+
+  --nav-bg:        linear-gradient(135deg, rgba(255,255,255,.92) 0%, rgba(241,241,244,.75) 100%);
+  --nav-shadow:    14px 18px 36px rgba(28,28,35,.12),
+                   -10px -10px 24px rgba(255,255,255,.85),
+                   inset 0 1px 0 rgba(255,255,255,.9);
+  --nav-active-bg: linear-gradient(135deg, #f4f4f6 0%, #e3e3e9 100%);
+  --nav-active-shadow: inset 1px 1px 2px rgba(255,255,255,.9),
+                       inset -2px -2px 6px rgba(28,28,35,.06),
+                       5px 7px 14px rgba(28,28,35,.10);
+
+  --toggle-track:  #d9d9d9;
+  --toggle-knob:   #f7f7f7;
+  --arrow-bg:      #ffffff;
+  --arrow-ink:     #1c1c23;
+  --line:          rgba(28,28,35,.14);
+
+  --card-hover-shadow: 0 18px 40px rgba(28,28,35,.14);
+
+  --font-ui:   'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-head: 'Merriweather', serif;
+
+  --card-w: 440px;
+  --card-h: 630px;
+  --card-r: 24px;
+  --card-gap: 24px;
+
+  --alfa-logo: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFMAAAB+CAYAAABYgC3oAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAABNJJREFUeAHtnY1100gUha/3bAGhA28Fm+1AVLDbwYoKgAqogQowFUAqQFSQdBB3QDp4zOAZjhNiS6N352mM3neOjklCHOfmfvoZjeQNGkNErsJDH5a/w9KF5SotmX1avoZl2Gw2A5zHhBCvw/JFyrkPSw/nQAjjnej5kFq9XlIILG5XG6hwGvmUT1gb4ZfupR5vsAAbLET4he/DwxZ1eAjLX2FL/wBD/sAChCDfoV6QkbjeNG/nIs2s3MqMeTvNmymHfcIt6mPeTvNmGrUycxea+Q+MMG1mCPIadkFG4lFVByOsNX8Ne/6DEaaaGyueeQiqv4ABZs1Mum1hz5WV6paa/4/lMFHdTPPQjm94PC5piYnqJs0MQcZmLDmaY6K6leZLKp6prnp1zeUwvvgNOl6G5Qt0VFfdopnaRuTzPAN0VFfdIkyt4h/T41foMduBpxOasBU92/Rc16JHu7o5S+1mdtARFd/Hf4THOxxO8WqoqnrtMLXH4h9HPp7D5akuRMWPnrMTPdVUr9nMHjp+Kp5JW3XtyHk11WuGydqKT/18CZejunC2vNsTz92s6rWaqd3w3DxVPNOy6rXC7KDj88jX16E6ScMrg59BV71GM7UbnpsJ57rjDnxzqtcIU6vPmOJIYd9AD1V1aphymGCgHQQeDTMxQA91nJXdzH+hY4rimRh6U6rTwpTDfmF1xTMp9DvoobWT2cwOeiaHmaCsN4U025gZpvYvvJsxY20HPTHIaxCghJkU76CjuGUp/AF6KKqzmtlBRzzZVap4phnVWWFqj8XnBhnZQQ9FdXWYSXHtC5ndrpZUZzTzDXRoFM9QzlxqVWeEqd1R1wYZ2UGPWnVVmMKZJqjegKSxzz30qFTXNlO7nmEonqGMcWpU14bZQQcryMgAPbQd+CJIA7QdiMQBX9Eze4KYpplaxfcVLrxnqB5PBs5SXROmenYb+DBWGzFIu/NDwrkit0MFZEHV5zZTu29ZQ/HMYqr/iUKEMwgcR7g/oA5b6Mmq70q+qXgathzO89QKoiXiXKeXJd8wR/MWJvtbUKx6UZjCGQS+FIq36qXN7LAuiiwsWmeGZt5iicOt5Si6m8LkZgpnEPjSKFK9RHPtIPClMln1yZrLMteKt8Bk1Sc1U5a7VrwF8l0TR5mq+Vr2LU8x6fB5kuYrVvyYF2OqjzZz5Yof04/9hymar13xzKjqo5rLsreDaI2zqp9tpnBmAr/fLEx4DW/BoT/3xTHNtYPAkR2WZwcO8/IQzoWk92gEmXdz6Oc4aeq5ZnbQwziFwIIx9TDSoxTSX3KLRhCOaZGyk22kH3yLxpDKqp/SvIOelhTPMKYeRvrnPnkqTMatGZnziFgM4DBtqy4cxbU3dKqGHN6+gcEvqj/XTMYgcIuKZ6pt1Z8Lk7GjPqBdWKuf8zkJZ5pgs4pnhDMfKfJI9afNZIwQtax4hvUa++MPnobZQc+A9qmruqxE8YxUUP24mWtRPEPfqh+HyZgtO+By2IHDT9V/zM9MVdUOoMbLUPa4HO7C8gqO4ziO4ziO4ziO4ziO4ziO4ziO4zgXx0YM30z9dyeGKXAoWL4l92+Ph0nEwyTiYRLxMIl4mEQ8TCIeJhEPk4iHScTDJOJhEvEwiXiYRDxMIvE6oD0cCt8BhqduLcYWIiIAAAAASUVORK5CYII=');
+}
+html[data-theme="dark"]{
+  --bg:            #0b0c0f;
+  --ink:           #ecedf2;
+  --ink-nav:       #d6d7e0;
+  --muted:         #5c5d68;
+
+  --card-bg:       #15161c;
+  --card-ink:      #f2f2f8;
+  --card-meta:     rgba(240,240,252,.5);
+  /* Теги в тёмной теме — контурные: прозрачные с обводкой, белый текст */
+  --tag-bg:        transparent;
+  --tag-border:    rgba(230,230,250,.24);
+  --tag-ink:       #ffffff;
+  --tag-nda:       #a99bff;
+  --overlay-bg:    rgba(12,10,24,.90);
+  --overlay-light: rgba(63,67,132,.38);
+
+  --nav-bg:        linear-gradient(135deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.02) 100%);
+  --nav-shadow:    14px 18px 36px rgba(0,0,0,.55),
+                   inset 0 1px 0 rgba(255,255,255,.08),
+                   inset 0 0 0 1px rgba(255,255,255,.04);
+  --nav-active-bg: linear-gradient(135deg, rgba(255,255,255,.14) 0%, rgba(255,255,255,.06) 100%);
+  --nav-active-shadow: inset 0 1px 0 rgba(255,255,255,.12),
+                       5px 7px 14px rgba(0,0,0,.4);
+
+  --toggle-track:  #26272f;
+  --toggle-knob:   #0b0c0f;
+  --arrow-bg:      #f2f2f4;
+  --arrow-ink:     #15161c;
+  --line:          rgba(244,244,255,.12);
+
+  /* Тень карточек при ховере в тёмной теме */
+  --card-hover-shadow: 0 24px 60px rgba(0,0,0,.7);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none !important;animation:none !important;}
+  .rv{opacity:1 !important; transform:none !important;}
+}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-ui);
+  transition:background .4s ease, color .4s ease;
+  overflow:hidden;
+}
+a{color:inherit;text-decoration:none;}
+img{display:block;}
+button{font-family:inherit;background:none;border:none;cursor:pointer;color:inherit;}
+
+/* ============================================================
+   ПОСТРАНИЧНЫЙ СКРОЛЛ
+   ============================================================ */
+.snap{
+  height:100vh; height:100svh;
+  overflow-y:auto;
+  scrollbar-width:none;
+}
+.snap::-webkit-scrollbar{display:none;}
+.snap > section{
+  height:100vh; height:100svh;
+  position:relative;
+  display:flex; flex-direction:column; justify-content:center;
+  overflow:hidden;
+}
+/* Тач: нативный снап; секции могут быть выше экрана (мобильный макет),
+   поэтому proximity, высота auto — страница встаёт ровно и ничего
+   не вылезает за вьюпорт */
+@media (hover:none), (pointer:coarse){
+  /* Поэкранный снап по секциям; proximity — чтобы высокий список
+     карточек можно было прокрутить целиком, а короткие секции залипали */
+  .snap{scroll-snap-type:y proximity; scroll-behavior:smooth;}
+  .snap > section{
+    height:auto; min-height:100svh;
+    scroll-snap-align:start;
+    overflow:visible;
+  }
+}
+
+/* ============================================================
+   REVEAL
+   ============================================================ */
+.rv{
+  opacity:0;
+  transform:translateY(30px) scale(.92);
+  transform-origin:center bottom;
+  transition:opacity 1s cubic-bezier(.22,1,.36,1), transform 1s cubic-bezier(.22,1,.36,1);
+  transition-delay:var(--d, 0s);
+  will-change:opacity, transform;
+}
+section.in .rv, .rv.in{opacity:1; transform:translateY(0) scale(1);}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{
+  position:fixed; inset:0 0 auto 0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:40px 50px 0;
+  pointer-events:none;
+}
+.header > *{pointer-events:auto;}
+.brand{
+  display:flex; align-items:center; gap:16px;
+  font-weight:600; font-size:32px; letter-spacing:.01em; color:var(--ink);
+  white-space:nowrap;
+}
+.brand .dot{
+  width:8px; height:8px; border-radius:2px; background:var(--ink);
+  opacity:0; transform:scale(.4);
+  transition:opacity .35s ease, transform .35s ease;
+}
+.brand .section-label{
+  text-transform:uppercase;
+  opacity:0; transform:translateX(-8px);
+  transition:opacity .35s ease, transform .35s ease;
+}
+.brand.has-label .dot{opacity:1; transform:scale(1);}
+.brand.has-label .section-label{opacity:1; transform:translateX(0);}
+
+.header-right{display:flex; align-items:center; gap:24px;}
+
+.theme-toggle{
+  position:relative; width:56px; height:30px;
+  border-radius:60px; background:var(--toggle-track);
+  transition:background .4s ease;
+}
+.theme-toggle .knob{
+  position:absolute; top:1px; left:1px;
+  width:28px; height:28px; border-radius:50%;
+  background:var(--toggle-knob);
+  display:flex; align-items:center; justify-content:center;
+  transition:transform .35s cubic-bezier(.5,1.4,.5,1), background .4s ease;
+}
+html[data-theme="dark"] .theme-toggle .knob{transform:translateX(26px);}
+.theme-toggle svg{width:16px; height:16px; stroke:var(--ink); fill:none; stroke-width:1.6;}
+.theme-toggle .moon{display:none;}
+html[data-theme="dark"] .theme-toggle .sun{display:none;}
+html[data-theme="dark"] .theme-toggle .moon{display:block;}
+
+/* Мобильное меню-иконка: сетка 3×3 точек, как в макете */
+.burger{
+  display:none;
+  width:36px; height:36px;
+  grid-template-columns:repeat(3, 8px);
+  grid-template-rows:repeat(3, 8px);
+  gap:6px;
+  align-content:center; justify-content:center;
+}
+.burger span{
+  width:8px; height:8px; background:var(--ink);
+  transition:transform .3s ease, opacity .3s ease, border-radius .3s ease;
+}
+.burger.open span{border-radius:50%;}
+.burger.open span:nth-child(2n){opacity:.35; transform:scale(.6);}
+
+/* ============================================================
+   BOTTOM NAV
+   ============================================================ */
+.bottom-nav{
+  position:fixed; left:50%; bottom:40px; z-index:100;
+  transform:translateX(-50%);
+  display:flex; padding:4px;
+  border-radius:82px;
+  background:var(--nav-bg);
+  box-shadow:var(--nav-shadow);
+  backdrop-filter:blur(16px) saturate(1.2);
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);
+  transition:background .4s ease, box-shadow .4s ease;
+}
+.bottom-nav .indicator{
+  position:absolute; top:4px; left:4px;
+  height:52px; border-radius:82px;
+  background:var(--nav-active-bg);
+  box-shadow:var(--nav-active-shadow);
+  transition:transform .4s cubic-bezier(.6,.05,.25,1), width .4s cubic-bezier(.6,.05,.25,1), background .4s ease, box-shadow .4s ease;
+  will-change:transform,width;
+}
+.bottom-nav a{
+  position:relative; z-index:1;
+  display:flex; align-items:center; justify-content:center;
+  height:52px; padding:0 28px;
+  border-radius:82px;
+  font-weight:500; font-size:15px; letter-spacing:-.3px; line-height:16px;
+  text-transform:uppercase; color:var(--ink-nav);
+  transition:opacity .25s;
+}
+.bottom-nav a:not(.active):hover{opacity:.6;}
+.bottom-nav a:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero-text{padding-left:210px; max-width:1290px;}
+.hero-text .hi{font-weight:500; font-size:40px; line-height:1.01; margin-bottom:14px;}
+.hero-text .lead{font-weight:500; font-size:44px; line-height:1.4;}
+.mobile-note{display:none;}
+
+.cv-sticker{
+  position:absolute; right:50px; bottom:40px;
+  width:110px; height:98px;
+  transition:transform .3s ease, filter .3s ease;
+}
+.cv-sticker img{width:100%; height:100%; object-fit:contain;}
+/* Светлая тема — чёрная папка, тёмная — голубая */
+.cv-sticker .cv-blue{display:none;}
+html[data-theme="dark"] .cv-sticker .cv-black{display:none;}
+html[data-theme="dark"] .cv-sticker .cv-blue{display:block;}
+@media (hover:hover){
+  .cv-sticker:hover{transform:translateY(-4px) rotate(-2deg); filter:drop-shadow(0 14px 20px rgba(0,0,0,.22));}
+}
+
+/* ============================================================
+   WORKS — карточки (десктоп: вертикальные 440×630)
+   ============================================================ */
+.works-strip{position:relative;}
+@keyframes cardsIn{from{opacity:0; transform:translateY(28px);} to{opacity:1; transform:none;}}
+.cards.cin{animation:cardsIn .9s cubic-bezier(.22,1,.36,1) both;}
+.cards{
+  display:flex; gap:var(--card-gap);
+  padding:40px 50px 80px;
+  margin-bottom:-40px;
+  overflow-x:hidden;
+}
+.card{
+  flex:0 0 var(--card-w); width:var(--card-w); height:var(--card-h);
+  display:flex; flex-direction:column;
+  background:var(--card-bg);
+  border-radius:var(--card-r);
+  padding:0 0 24px;
+  color:var(--card-ink);
+  overflow:hidden;
+  transition:box-shadow .35s ease, background .4s ease, color .4s ease, opacity .35s ease;
+  will-change:transform, opacity;
+}
+.card:focus-visible{outline:2px solid var(--ink); outline-offset:4px;}
+
+.card .cover{
+  position:relative;
+  height:242px; flex:0 0 242px;
+  border-radius:var(--card-r) var(--card-r) 0 0;
+  overflow:hidden;
+  background:#1c1c23;
+}
+.card .cover .fill{
+  position:absolute; inset:0;
+  transition:opacity .35s ease;
+}
+.card .cover .fill::after{
+  content:""; position:absolute;
+  left:50%; top:50%; transform:translate(-50%,-50%);
+  width:83px; height:126px;
+  background:var(--alfa-logo) center/contain no-repeat;
+}
+.card .cover .fill.no-logo::after{content:none;}
+.card .cover .fill.cover-img{background-size:cover; background-position:center; background-repeat:no-repeat;}
+.card .cover .fill.cover-img::after{content:none;}
+.fill.c-blue{background:rgba(185,207,231,.8);}
+.fill.c-pink{background:rgba(238,195,201,.8);}
+.fill.c-purple{background:rgba(198,195,238,.8);}
+.fill.c-green{background:rgba(217,235,208,.8);}
+.card .cover .overlay{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--overlay-bg);
+  opacity:0; transition:opacity .35s ease, background .4s ease;
+}
+.card .cover .overlay span{
+  font-weight:700; font-size:24px; line-height:31px;
+  color:#f3f3ff; text-align:center;
+}
+
+.card.live .cover .overlay span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 22px;
+  border-radius:999px;
+  background:rgba(188,184,255,.82);
+  color:#ffffff;
+  font-size:18px;
+  line-height:24px;
+  font-weight:600;
+  letter-spacing:.01em;
+  box-shadow:0 14px 34px rgba(84,78,160,.24);
+}
+@media (hover:hover){
+  .card:hover{box-shadow:var(--card-hover-shadow);}
+  .card:not(.no-overlay):hover .cover .fill{opacity:.57;}
+  .card.live:hover .cover .fill{opacity:1;}
+  .card.live .cover .overlay{background:var(--overlay-light); backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px);}
+  .card.live .cover .overlay span{text-shadow:0 2px 14px rgba(0,0,0,.55);}
+  .card:hover .cover .overlay{opacity:1;}
+}
+
+.card .card-body{
+  flex:1; display:flex; flex-direction:column;
+  padding:24px 32px 0;
+  min-height:0;
+}
+.card .meta{
+  order:1;
+  font-weight:400; font-size:14px; line-height:24px;
+  color:var(--card-meta); margin-bottom:8px;
+}
+.card h3{
+  order:2;
+  font-weight:500; font-size:18px; line-height:31.2px;
+  margin-bottom:8px;
+}
+.card .desc{
+  order:3;
+  font-weight:400; font-size:14px; line-height:24px;
+}
+.card .tags{
+  order:4;
+  margin-top:auto;
+  display:flex; flex-wrap:wrap; gap:4px;
+  align-items:flex-end;
+  padding-top:24px;
+}
+.card .tag{
+  font-weight:500; font-size:14px; line-height:19.6px;
+  padding:8px 16px; border-radius:56px;
+  background:var(--tag-bg); color:var(--tag-ink);
+  border:1px solid var(--tag-border);
+  transition:background .4s ease, color .4s ease, border-color .4s ease;
+}
+.card .tag.nda{background:var(--tag-nda); border-color:transparent; color:#fff;}
+
+.strip-arrow{
+  position:absolute; top:50%; z-index:5;
+  width:60px; height:60px; margin-top:-30px;
+  border-radius:100px;
+  background:var(--arrow-bg); color:var(--arrow-ink);
+  box-shadow:0 10px 30px rgba(28,28,35,.18);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; visibility:hidden;
+  transition:opacity .3s ease, visibility .3s, transform .25s ease, background .4s ease;
+}
+html[data-theme="dark"] .strip-arrow{box-shadow:0 10px 30px rgba(0,0,0,.55);}
+.strip-arrow svg{width:24px; height:24px; stroke:currentColor; stroke-width:2; fill:none;}
+.strip-arrow.prev{left:26px;}
+.strip-arrow.next{right:26px;}
+@media (hover:hover){
+  .works-strip:hover .strip-arrow{opacity:1; visibility:visible;}
+  .strip-arrow:hover{transform:scale(1.08);}
+}
+.strip-arrow:focus-visible{opacity:1; visibility:visible;}
+
+/* ============================================================
+   ABOUT — job history с аккордеоном
+   ============================================================ */
+#about{justify-content:flex-start;}
+.about-inner{
+  display:grid;
+  grid-template-columns:1fr minmax(0, 46%);
+  gap:60px;
+  padding:150px 120px 0 210px;
+  width:100%;
+  align-items:start;
+}
+/* Как на dashavasuti.com: Montserrat Light, воздушно */
+.about-left h2{
+  font-weight:300; font-size:64px; line-height:1.1;
+}
+
+.acc-scroll{
+  max-height:calc(100svh - 230px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-width:none;
+}
+.acc-scroll::-webkit-scrollbar{display:none;}
+
+.acc{border-top:1px solid var(--line);}
+.acc-item{border-bottom:1px solid var(--line);}
+.acc-head{
+  width:100%;
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+  padding:30px 4px;
+  font-weight:300; font-size:28px; letter-spacing:.01em;
+  color:var(--ink);
+  opacity:.7;
+  transition:opacity .25s ease;
+  text-align:left;
+}
+.acc-head:hover, .acc-item.open .acc-head{opacity:1;}
+.acc-head .plus{
+  position:relative; flex:0 0 20px; width:20px; height:20px;
+}
+.acc-head .plus::before, .acc-head .plus::after{
+  content:""; position:absolute; background:currentColor;
+  transition:transform .35s ease;
+}
+.acc-head .plus::before{left:0; right:0; top:9.25px; height:1.5px;}
+.acc-head .plus::after{top:0; bottom:0; left:9.25px; width:1.5px;}
+.acc-item.open .plus::after{transform:rotate(90deg);}
+.acc-item.open .plus::before{transform:rotate(180deg);}
+.acc-panel{
+  max-height:0; overflow:hidden;
+  transition:max-height .5s cubic-bezier(.22,1,.36,1);
+}
+.acc-content{padding:24px 4px 64px;}
+.acc-content .role{
+  font-weight:300; font-size:22px; line-height:32px;
+  color:var(--ink); margin-bottom:6px;
+}
+.acc-content .dates{
+  font-weight:300; font-size:15px; line-height:24px;
+  color:var(--card-meta); margin-bottom:48px;
+}
+html[data-theme="dark"] .acc-content .dates{color:rgba(242,242,244,.5);}
+.acc-content h4{
+  font-weight:300; font-size:21px; line-height:30px;
+  color:var(--ink); margin:56px 0 6px;
+}
+.acc-content h4:first-child{margin-top:0;}
+.acc-content .platforms{
+  font-weight:300; font-size:15px; line-height:24px;
+  color:var(--card-meta); margin-bottom:28px;
+}
+html[data-theme="dark"] .acc-content .platforms{color:rgba(242,242,244,.5);}
+.acc-content p, .acc-content li{
+  font-weight:300; font-size:17px; line-height:28px;
+  color:var(--ink);
+}
+.acc-content > p{margin-bottom:16px;}
+/* Без маркеров — сплошные абзацные строки, как на сайте */
+.acc-content ul{list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:16px;}
+.acc-content li{padding:0;}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-inner{padding:0 50px 0 210px;}
+.contact p{font-weight:500; font-size:32px; line-height:1.5; max-width:900px;}
+.contact a.mail{
+  display:inline-block; margin-top:32px;
+  font-weight:500; font-size:40px;
+  border-bottom:2px solid currentColor; padding-bottom:6px;
+  transition:opacity .25s;
+}
+.contact a.mail:hover{opacity:.55;}
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+.mobile-menu{
+  position:fixed; inset:0; z-index:90;
+  background:var(--bg);
+  display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+  padding:0 50px; gap:28px;
+  opacity:0; visibility:hidden; transition:opacity .35s ease, visibility .35s;
+}
+.mobile-menu.open{opacity:1; visibility:visible;}
+.mobile-menu a{font-weight:500; font-size:34px; text-transform:uppercase; letter-spacing:-.3px; color:var(--ink-nav);}
+.mobile-menu a.active{opacity:.4;}
+
+/* ============================================================
+   BREAKPOINT 1500: горизонтальные карточки из макета 1300
+   ============================================================ */
+@media (max-width:1500px) and (min-width:961px){
+  .hero-text{padding-left:143px;}
+  .hero-text .hi{font-size:40px;}
+  .hero-text .lead{font-size:28px; line-height:1.4; max-width:662px;}
+
+  :root{--card-w:min(1084px, calc(100vw - 200px)); --card-h:475px;}
+  .cards{padding:40px 32px 80px;}
+  /* Стрелки — в желобах между краем экрана и активной карточкой */
+  .strip-arrow.prev{left:calc(((100vw - var(--card-w)) / 2 - 60px) / 2);}
+  .strip-arrow.next{right:calc(((100vw - var(--card-w)) / 2 - 60px) / 2);}
+  .card{
+    flex-direction:row-reverse;
+    align-items:center;
+    justify-content:space-between;
+    gap:32px;
+    padding:32px 24px 32px 40px;
+    border-radius:36px;
+  }
+  .card .cover{
+    flex:0 0 min(410px, 34vw);
+    width:min(410px, 34vw);
+    height:min(410px, calc(var(--card-h) - 64px));
+    border-radius:24px;
+    align-self:center;
+  }
+  .card .card-body{
+    flex:1; height:100%;
+    padding:0;
+    min-width:0;
+  }
+  .card .meta{font-family:var(--font-body); font-size:16px; line-height:24px; margin-bottom:24px;}
+  .card h3{
+    font-family:var(--font-head); font-weight:400;
+    font-size:36px; line-height:43.2px;
+    margin-bottom:24px;
+  }
+  .card .tags{order:3; margin:0 0 24px; padding:0;}
+  .card .desc{
+    order:4;
+    font-family:var(--font-body); font-size:18px; line-height:27px;
+  }
+}
+@media (max-height:800px) and (min-width:961px){
+  :root{--card-h:min(560px, calc(100svh - 210px));}
+}
+@media (max-height:800px) and (min-width:1501px){
+  .card .cover{height:200px; flex-basis:200px;}
+}
+
+/* ============================================================
+   BREAKPOINT 960: мобильный макет — вертикальный список карточек
+   ============================================================ */
+@media (max-width:960px){
+  .header{padding:26px 24px 0;}
+  .brand{position:absolute; left:50%; transform:translateX(-50%); font-size:24px;}
+  .brand .dot,.brand .section-label{display:none;}
+  .burger{display:grid;}
+  .bottom-nav{display:none;}
+
+  .hero-text{padding:0 24px;}
+  .hero-text .hi{font-size:40px;}
+  .hero-text .lead{font-size:28px; line-height:1.4;}
+  .cv-sticker{position:static; margin:44px 24px 0; width:110px; height:96px;}
+
+  /* Градиентная подпись из макета */
+  .mobile-note{
+    display:block; position:fixed; bottom:20px; left:0; right:0; z-index:80;
+    text-align:center;
+    font-weight:300; font-size:20px; line-height:1.4;
+    background:linear-gradient(90deg, #8a38f5 0%, #29cec8 100%);
+    -webkit-background-clip:text; background-clip:text;
+    color:transparent;
+    pointer-events:none;
+  }
+
+  /* Карточки: вертикальный список, поэкранный скролл вниз */
+  #works{justify-content:flex-start; padding:96px 0 90px; height:auto; min-height:100svh;}
+  .works-strip{width:100%;}
+  .cards{
+    flex-direction:column; align-items:stretch;
+    gap:20px;
+    padding:0 24px;
+    margin-bottom:0;
+    overflow:visible;
+    scroll-snap-type:none;
+    touch-action:auto;
+  }
+  .cards::-webkit-scrollbar{display:none;}
+  :root{--card-w:100%;}
+  .card{
+    flex:0 0 auto; width:100%; height:auto; min-height:0;
+    scroll-snap-align:start;
+    scroll-margin-top:80px;
+  }
+  .card .cover{height:230px; flex:0 0 230px;}
+  /* Клоны бесконечной карусели на мобилке полностью исключаем из потока */
+  .card[aria-hidden="true"]{display:none !important;}
+  .card{transform:none !important; opacity:1 !important;}
+  .strip-arrow{display:none;}
+
+  .about-inner{
+    grid-template-columns:1fr;
+    gap:32px;
+    padding:100px 24px 90px;
+  }
+  .about-left h2{font-size:36px;}
+  .acc-scroll{max-height:none; overflow:visible;}
+  .acc-head{font-size:18px; padding:22px 2px;}
+
+  .contact-inner{padding:0 24px;}
+  .contact p{font-size:24px;}
+  .contact a.mail{font-size:28px;}
+}
+@media (max-width:520px){
+  .hero-text .hi{font-size:32px;}
+  .hero-text .lead{font-size:22px;}
+  .brand{font-size:20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </button>
+  <a href="#home" class="brand" id="brand">
+    DASHA VASUTI
+    <span class="dot" aria-hidden="true"></span>
+    <span class="section-label" id="sectionLabel"></span>
+  </a>
+  <div class="header-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="knob">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+      </span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= MOBILE MENU ================= -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+  <a href="#home">Home</a>
+  <a href="#works">works</a>
+  <a href="#about">about</a>
+  <a href="#contact">contact</a>
+</nav>
+
+<!-- ================= BOTTOM NAV ================= -->
+<nav class="bottom-nav" id="bottomNav" aria-label="Main navigation">
+  <span class="indicator" aria-hidden="true"></span>
+  <a href="#home" class="active">Home</a>
+  <a href="#works">works</a>
+  <a href="#about">about</a>
+  <a href="#contact">contact</a>
+</nav>
+
+<!-- ================= СКРОЛЛ-КОНТЕЙНЕР ================= -->
+<main class="snap" id="snap">
+
+<section id="home">
+  <div class="hero-text">
+    <p class="hi rv">hi, I’m Dasha</p>
+    <p class="lead rv" style="--d:.15s">— Senior Product Designer &amp; Design Leader with 9+ years of experience, including 6+ years in fintech across B2B and B2C products</p>
+  </div>
+  <a class="cv-sticker rv" style="--d:.35s" href="https://docs.google.com/document/d/1B1mU5_iIXcYVdVTMILaF_BNzHZLlmFhtOhLFsUVPnJg/edit?usp=sharing" target="_blank" rel="noopener" aria-label="Open CV" title="CV">
+    <img class="cv-black" src="data:image/webp;base64,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" alt="CV folder">
+    <img class="cv-blue" src="data:image/webp;base64,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" alt="CV folder">
+  </a>
+</section>
+
+<section id="works">
+  <div class="works-strip">
+    <button class="strip-arrow prev" id="stripPrev" aria-label="Previous cases">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+    </button>
+    <button class="strip-arrow next" id="stripNext" aria-label="Next cases">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+
+    <div class="cards cin" id="cards">
+
+      <a class="card" href="#">
+        <div class="cover">
+          <div class="fill cover-img" style="background-image:url('assets/cases/ai-workflows.webp')"></div>
+          <div class="overlay"><span>Case study<br>coming soon</span></div>
+        </div>
+        <div class="card-body">
+          <p class="meta">Alfa-bank B2B&nbsp; | &nbsp;2026</p>
+          <h3>Operations Feed: AI Workflows</h3>
+          <p class="desc">Led AI discovery for Alfa Bank B2B Operations Feed, generating 40+ AI product hypotheses from user pain points and operational bottlenecks. Designed and validated 10 AI-powered concepts, all approved for the product roadmap</p>
+          <div class="tags">
+            <span class="tag">B2B</span><span class="tag">Web</span><span class="tag">Homepage</span><span class="tag">Metrics analysis</span><span class="tag">UX-Research</span><span class="tag nda">NDA</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card live" href="bulk-payment-registries.html">
+        <div class="cover">
+          <div class="fill cover-img" style="background-image:url('assets/cases/bulk-payment-registries.webp')"></div>
+          <div class="overlay"><span>Read more</span></div>
+        </div>
+        <div class="card-body">
+          <p class="meta">Alfa-bank B2B&nbsp; | &nbsp;2024</p>
+          <h3>Bulk Payment Registries</h3>
+          <p class="desc">Scaled payment registry capacity from 10 to 15,000 payments, increasing product adoption by 70% through simplified high-volume workflows and reduced operational complexity</p>
+          <div class="tags">
+            <span class="tag">B2B</span><span class="tag">Web</span><span class="tag">Mobile_App</span><span class="tag">Mobile_Web</span><span class="tag">Metrics analysis</span><span class="tag">A/B testing</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="#">
+        <div class="cover">
+          <div class="fill cover-img" style="background-image:url('assets/cases/personalisation.webp')"></div>
+          <div class="overlay"><span>Case study<br>coming soon</span></div>
+        </div>
+        <div class="card-body">
+          <p class="meta">Alfa-bank B2B&nbsp; | &nbsp;2026</p>
+          <h3>Operations Feed: Personalisation</h3>
+          <p class="desc">Designed role-based table/list views for Alfa Bank B2B, allowing users to switch between 3 workspace layouts tailored to small businesses, corporate clients, sole proprietors, and Alfa-Boss executive users</p>
+          <div class="tags">
+            <span class="tag">B2B</span><span class="tag">Web</span><span class="tag">Metrics analysis</span><span class="tag">A/B testing</span><span class="tag">Homepage</span><span class="tag">Complex Workflows</span><span class="tag nda">NDA</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="#">
+        <div class="cover">
+          <div class="fill cover-img" style="background-image:url('assets/cases/multibanking.webp')"></div>
+          <div class="overlay"><span>Case study<br>coming soon</span></div>
+        </div>
+        <div class="card-body">
+          <p class="meta">Alfa-bank B2B&nbsp; | &nbsp;2025</p>
+          <h3>Operations Feed: Multibanking</h3>
+          <p class="desc">Multibanking enabling users to manage operations from external bank accounts without leaving Alfa Bank’s interface. This helps retain and attract clients by turning Alfa Bank into a unified workspace for cross-bank financial operations. Rolled out to 70% of users to date</p>
+          <div class="tags">
+            <span class="tag">B2B</span><span class="tag">Web</span><span class="tag">Homepage</span><span class="tag">Metrics analysis</span><span class="tag">UX-Research</span><span class="tag nda">NDA</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="#">
+        <div class="cover">
+          <div class="fill cover-img" style="background-image:url('assets/cases/holding-mode.webp')"></div>
+          <div class="overlay"><span>Case study<br>coming soon</span></div>
+        </div>
+        <div class="card-body">
+          <p class="meta">Alfa-bank B2B&nbsp; | &nbsp;2025</p>
+          <h3>Operations Feed: Holding Mode</h3>
+          <p class="desc">Designed Holding Mode for Alfa Bank B2B, enabling business clients to manage payments, transactions, bank messages and daily financial operations across up to 70+ legal entities within a single consistent workspace</p>
+          <div class="tags">
+            <span class="tag">B2B</span><span class="tag">Web</span><span class="tag">Dashboard</span><span class="tag">UX-Research</span><span class="tag">Complex Workflows</span><span class="tag nda">NDA</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="#">
+        <div class="cover">
+          <div class="fill cover-img" style="background-image:url('assets/cases/digital-currency.webp')"></div>
+          <div class="overlay"><span>Case study<br>coming soon</span></div>
+        </div>
+        <div class="card-body">
+          <p class="meta">Alfa-bank B2B&nbsp; | &nbsp;2024</p>
+          <h3>Operations Feed: Digital Currency</h3>
+          <p class="desc">Designed Alfa Bank’s Digital Russian Currency MVP from scratch, translating Bank of Russia regulatory requirements into clear mobile flows. Delivered 200+ screens and 25+ scenarios across iOS and Android in 3 months</p>
+          <div class="tags">
+            <span class="tag">B2B</span><span class="tag">Homepage</span><span class="tag">Complex Workflows</span><span class="tag">iOS</span><span class="tag">Android</span><span class="tag">MVP</span><span class="tag nda">NDA</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="#">
+        <div class="cover">
+          <div class="fill cover-img" style="background-image:url('assets/cases/credit-line-overdraft.webp')"></div>
+          <div class="overlay"><span>Case study<br>coming soon</span></div>
+        </div>
+        <div class="card-body">
+          <p class="meta">PSB-Bank B2B&nbsp; | &nbsp;2022</p>
+          <h3>Credit Line &amp; Overdraft</h3>
+          <p class="desc">Designed Alfa Bank B2B’s digital lending experience across web and mobile — from landing pages and applications to a full product for drawing funds, tracking debt, repayments, and credit line status. Reduced approval time from ~16 days to same-day and access to funds from ~29 days to 1 day</p>
+          <div class="tags">
+            <span class="tag">B2B</span><span class="tag">iOS</span><span class="tag">Android</span><span class="tag">MVP</span><span class="tag">Complex Workflows</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="about-inner">
+    <div class="about-left rv">
+      <h2>job history</h2>
+    </div>
+    <div class="acc-scroll rv" style="--d:.15s">
+      <div class="acc" id="acc">
+
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">Alfa Bank B2B <span class="plus" aria-hidden="true"></span></button>
+          <div class="acc-panel">
+            <div class="acc-content">
+              <p class="role">Senior Product Designer</p>
+              <p class="dates">Mar 2023 – Present | Remote</p>
+              <p>One of the largest private banks in Russia serving millions of retail customers and businesses. Led product design across core B2B banking products while managing a team of three designers. Partnered with Product, Engineering, Analytics, Research and senior stakeholders to define product strategy, improve complex financial workflows and scale reusable product patterns across the ecosystem.</p>
+              <ul>
+                <li>Led and mentored a team of 3 Product Designers through discovery, design reviews, prioritisation and career development</li>
+                <li>Defined product strategy and presented design direction to Product Leadership, CFO-level stakeholders and cross-functional decision makers</li>
+                <li>Introduced reusable product patterns adopted across multiple B2B banking teams, improving design consistency and scalability</li>
+              </ul>
+
+              <h4>AI + Dashboard + Operations Feed</h4>
+              <p class="platforms">[web]</p>
+              <p>Redesigned one of Alfa Bank’s core operational products used by business clients to manage payments, transactions, communications and daily financial operations.</p>
+              <ul>
+                <li>Redesigned the Operations Feed into a unified operational workspace combining transactions, payment registries, scheduled payments, fees and bank communications, reaching 70% of business clients</li>
+                <li>Generated 40+ AI product hypotheses by identifying operational bottlenecks and unmet user needs together with the Product Owner</li>
+                <li>Designed and validated 10 AI-powered concepts, all of which were approved for the product roadmap following a bank-wide Pitch Day</li>
+                <li>Adapted the product for Holding Mode, enabling businesses to manage operations across up to 70 legal entities through a consistent workflow</li>
+                <li>Designed multibanking experiences integrating external bank accounts, personalised dashboards and role-specific table views for SMB, corporate and executive customers</li>
+                <li>Helped position Alfa Bank as one of the first banks in Russia to introduce advanced multibanking capabilities within its B2B platform</li>
+              </ul>
+
+              <h4>Product: Bulk Payment Registries</h4>
+              <p class="platforms">[web, mobile-web, mobile]</p>
+              <p>Joined the product during the MVP stage and led product design through launch and large-scale expansion into one of Alfa Bank’s core B2B payment services.</p>
+              <ul>
+                <li>Designed end-to-end payment workflows across desktop, mobile web and mobile applications</li>
+                <li>Built a scalable product architecture supporting small businesses, mid-market companies and enterprise clients within a single experience</li>
+                <li>Scaled payment registry capacity from 10 to 15,000 payments, increasing product adoption by 70% through simplified high-volume workflows and reduced operational complexity</li>
+                <li>Led product discovery through interviews, A/B testing, surveys and metrics analysis, translating customer insights into roadmap decisions</li>
+                <li>Established the design architecture that supported future product scaling, resulting in the formation of two additional cross-functional teams</li>
+              </ul>
+
+              <h4>Product: Digital Ruble / Central Bank Digital Currency</h4>
+              <p class="platforms">[mobile]</p>
+              <p>Owned product design from zero to MVP for Alfa Bank’s Digital Ruble initiative as one of the first three banks selected by the Central Bank to launch the national digital currency.</p>
+              <ul>
+                <li>Designed 200+ mobile screens and 25+ complex user scenarios across iOS and Android within three months</li>
+                <li>Translated complex regulatory requirements into intuitive customer journeys while ensuring full compliance with Central Bank regulations</li>
+                <li>Collaborated with Product, Legal, Compliance and Engineering teams in a fast-changing environment with evolving requirements</li>
+                <li>Established reusable interaction patterns and scalable UX foundations for future Digital Ruble product development</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">DuoSapience <span class="plus" aria-hidden="true"></span></button>
+          <div class="acc-panel">
+            <div class="acc-content">
+              <p class="role">Design Mentor &amp; Speaker</p>
+              <p class="dates">Jan 2026 – Present | Remote</p>
+              <p>Career mentoring platform helping UX/UI and Product Designers grow into mid-level and senior roles. Mentored aspiring, junior and mid-level Product Designers, helping them strengthen product thinking, UX skills and interview performance.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">PSB Bank B2B <span class="plus" aria-hidden="true"></span></button>
+          <div class="acc-panel">
+            <div class="acc-content">
+              <p class="role">Senior Product Designer</p>
+              <p class="dates">Nov 2021 – Mar 2023 | Moscow, Russia</p>
+              <p>Top-10 Russian commercial bank providing retail and corporate banking services to millions of customers. Led product design for digital lending products and financial planning tools, partnering with Product, Risk, Legal and Engineering teams to transform complex banking services into fully digital customer experiences.</p>
+
+              <h4>Product: Online Credit Line &amp; Overdraft</h4>
+              <p class="platforms">[web, mobile]</p>
+              <p>Designed end-to-end digital lending experiences, transforming traditional offline banking processes into fully online customer journeys.</p>
+              <ul>
+                <li>Designed revolving credit line and overdraft products from discovery through MVP to production across desktop and mobile</li>
+                <li>Reduced Time-to-Yes from approximately 16 days to 0 days and Time-to-Money from 29 days to 1 day by redesigning the end-to-end lending experience (from offline to online)</li>
+                <li>Built complete customer journeys covering onboarding, applications, document signing, credit activation, repayments and status tracking</li>
+                <li>Integrated lending workflows with internal payment services and government digital services, enabling customers to complete the entire process online</li>
+                <li>Conducted user research and collaborated with Product, Risk, Legal, Analytics and Engineering to deliver compliant financial products</li>
+              </ul>
+
+              <h4>Product: Action Calendar</h4>
+              <p class="platforms">[web, mobile]</p>
+              <p>Designed a financial planning tool helping businesses manage critical financial events, loan payments, taxes and recurring operational tasks.</p>
+              <ul>
+                <li>Designed a cross-functional Action Calendar integrated into the online banking platform</li>
+                <li>Created flexible calendar views, filters, event categories and personalised reminder settings</li>
+                <li>Enabled businesses to manage custom reminders for invoices, rent, taxes and recurring payments, reducing the risk of missed financial obligations</li>
+                <li>Delivered a high-priority strategic initiative while business requirements were still evolving</li>
+              </ul>
+
+              <h4>Design System contribution</h4>
+              <p class="platforms">[web, mobile]</p>
+              <p>Contributed to the bank-wide Design System supporting both B2B and B2C banking products.</p>
+              <ul>
+                <li>Dedicated 20% of my time to the Design System team while working on product delivery</li>
+                <li>Designed reusable components, interaction patterns and documentation adopted across multiple banking products</li>
+                <li>Balanced product-specific requirements with system consistency, improving scalability and reducing duplicated design effort</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">ToDevelop <span class="plus" aria-hidden="true"></span></button>
+          <div class="acc-panel">
+            <div class="acc-content">
+              <p class="role">UX/UI Designer &amp; UX Researcher</p>
+              <p class="dates">Aug 2019 – Sep 2021 | Moscow, Russia</p>
+              <p>Designed end-to-end digital products from discovery to launch, partnering directly with founders, investors and cross-functional teams to shape product strategy and user experience.</p>
+              <ul>
+                <li>Designed zachestnyibiznes.ru from scratch across desktop and mobile, building workflows for company search, business profiles, risk indicators, legal and financial data discovery, comparison and saved checks</li>
+                <li>Helped scale zachestnyibiznes.ru into one of Russia’s leading business verification platforms by improving information architecture, usability and customer experience</li>
+                <li>Conducted 25+ user interviews with entrepreneurs, analysts and finance professionals, translating research insights into product flows and roadmap improvements</li>
+                <li>Presented product concepts, UX logic and research findings during 10+ investor meetings and product demonstrations</li>
+                <li>Redesigned Rusbase’s mobile app, improving content navigation, article discovery, reading experience and mobile usability for a business news and startup audience</li>
+                <li>Collaborated directly with founders, developers, analysts, product and content stakeholders in a fast-moving studio environment</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">Eatness — meal delivery service <span class="plus" aria-hidden="true"></span></button>
+          <div class="acc-panel">
+            <div class="acc-content">
+              <p class="role">Founder &amp; Managing Director</p>
+              <p class="dates">Feb 2016 – Nov 2022 | Tver, Russia</p>
+              <p>Direct-to-consumer healthy meal delivery startup serving individual customers and corporate partners. Founded and scaled a healthy food delivery company from idea to a sustainable seven-year business, owning product, operations, branding, customer experience and growth.</p>
+              <ul>
+                <li>Built and scaled the business from scratch to more than 200 recurring customers</li>
+                <li>Designed the complete customer experience across ordering, delivery, packaging, retention and customer communication</li>
+                <li>Built and managed end-to-end operations including kitchen processes, logistics, hiring, branding and service standards</li>
+                <li>Established partnerships with fitness centres and local businesses, expanding customer acquisition channels and brand awareness</li>
+                <li>Successfully adapted business operations during COVID-19 by redesigning logistics, packaging and customer communication</li>
+                <li>Sold the business after relocating abroad</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">skills &amp; education <span class="plus" aria-hidden="true"></span></button>
+          <div class="acc-panel">
+            <div class="acc-content">
+              <h4>Core Skills</h4>
+              <p>Product Strategy, Product Discovery, Product Thinking, UX/UI Design, Interaction Design, Design Systems, User Research, Usability Testing, Metrics, A/B Testing, Roadmapping, Prototyping, Figma, Photoshop, AI-assisted Design, Leadership, Stakeholder Management, Scrum</p>
+
+              <h4>Languages</h4>
+              <p>English (C1), Russian (Native)</p>
+
+              <h4>Education</h4>
+              <ul>
+                <li>Certificate of AI Creator: Images &amp; Video (2025) — Qute School of AI</li>
+                <li>Bachelor’s Degree in Architecture (2013 – 2018) — Moscow Architecture Institute</li>
+                <li>Exchange Program in San Diego, California — NewSchool of Architecture and Design (2015 – 2016)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="contact-inner">
+    <p class="rv">Let’s talk —</p>
+    <a class="mail rv" style="--d:.18s" href="mailto:dashavasuti@gmail.com">dashavasuti@gmail.com</a>
+  </div>
+</section>
+
+</main>
+
+<p class="mobile-note">use web for better experience</p>
+
+<script>
+/* ================= THEME ================= */
+const root = document.documentElement;
+document.getElementById('themeToggle').addEventListener('click', () => {
+  root.setAttribute('data-theme', root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+
+/* ================= BOTTOM NAV ================= */
+const nav = document.getElementById('bottomNav');
+const indicator = nav.querySelector('.indicator');
+const navLinks = [...nav.querySelectorAll('a')];
+
+function moveIndicator(link, animate = true){
+  if (!link) return;
+  if (!animate) indicator.style.transition = 'none';
+  indicator.style.width = link.offsetWidth + 'px';
+  indicator.style.transform = `translateX(${link.offsetLeft - 4}px)`;
+  if (!animate) requestAnimationFrame(() => indicator.style.transition = '');
+}
+function setActive(id){
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+  document.querySelectorAll('.mobile-menu a').forEach(a =>
+    a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+  moveIndicator(nav.querySelector('a.active'));
+  const brand = document.getElementById('brand');
+  const label = document.getElementById('sectionLabel');
+  if (id === 'home') { brand.classList.remove('has-label'); }
+  else { label.textContent = id; brand.classList.add('has-label'); }
+}
+window.addEventListener('load', () => moveIndicator(navLinks[0], false));
+
+/* ================= ПОСТРАНИЧНЫЙ СКРОЛЛ ================= */
+const snap = document.getElementById('snap');
+const sections = [...snap.querySelectorAll('section[id]')];
+const isDesktop = () => window.matchMedia('(hover:hover) and (pointer:fine)').matches && window.innerWidth > 960;
+
+let pageIndex = 0;
+let pageAnimating = false;
+
+const easeInOutQuart = t => t < .5 ? 8*t*t*t*t : 1 - Math.pow(-2*t + 2, 4)/2;
+
+function animateScrollTop(el, to, dur, done){
+  const from = el.scrollTop, delta = to - from, t0 = performance.now();
+  function frame(now){
+    const p = Math.min(1, (now - t0)/dur);
+    el.scrollTop = from + delta * easeInOutQuart(p);
+    if (p < 1) requestAnimationFrame(frame); else done && done();
+  }
+  requestAnimationFrame(frame);
+}
+function goToPage(i, instant = false){
+  i = Math.max(0, Math.min(sections.length - 1, i));
+  pageIndex = i;
+  const top = sections[i].offsetTop;
+  setActive(sections[i].id);
+  if (instant) { snap.scrollTop = top; return; }
+  if (!isDesktop()) { snap.scrollTo({ top, behavior:'smooth' }); return; }
+  pageAnimating = true;
+  animateScrollTop(snap, top, 1200, () => {
+    setTimeout(() => pageAnimating = false, 140);
+  });
+}
+/* Внутри аккордеона колесо никогда не листает страницы:
+   пока есть куда скроллить — скроллим, на краях просто останавливаемся */
+function insideAccScroll(e){
+  let el = e.target;
+  while (el && el !== snap) {
+    if (el.classList && el.classList.contains('acc-scroll')) return el;
+    el = el.parentElement;
+  }
+  return null;
+}
+let wheelLock = false;
+snap.addEventListener('wheel', e => {
+  if (!isDesktop()) return;
+  const acc = insideAccScroll(e);
+  if (acc) {
+    const canDown = acc.scrollTop + acc.clientHeight < acc.scrollHeight - 1;
+    const canUp = acc.scrollTop > 0;
+    if ((e.deltaY > 0 && canDown) || (e.deltaY < 0 && canUp)) return; /* нативный скролл */
+    e.preventDefault(); /* на краю — глушим, страницу не листаем */
+    return;
+  }
+  e.preventDefault();
+  if (pageAnimating || wheelLock) return;
+  if (Math.abs(e.deltaY) < 24) return;
+  wheelLock = true;
+  setTimeout(() => wheelLock = false, 300);
+  goToPage(pageIndex + (e.deltaY > 0 ? 1 : -1));
+}, { passive:false });
+
+window.addEventListener('keydown', e => {
+  if (!isDesktop() || pageAnimating) return;
+  if (e.target.closest('.acc')) return;
+  if (['ArrowDown','PageDown',' '].includes(e.key)) { e.preventDefault(); goToPage(pageIndex + 1); }
+  if (['ArrowUp','PageUp'].includes(e.key))          { e.preventDefault(); goToPage(pageIndex - 1); }
+});
+
+let lastW = window.innerWidth;
+window.addEventListener('resize', () => {
+  if (isDesktop()) {
+    snap.scrollTop = sections[pageIndex].offsetTop;
+    moveIndicator(nav.querySelector('a.active'), false);
+  }
+  if (window.innerWidth !== lastW) { lastW = window.innerWidth; centerLoop(); }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    goToPage(sections.indexOf(target));
+  });
+});
+
+/* ================= SCROLLSPY + REVEAL ================= */
+/* Активный пункт меню: секция, пересекающая середину экрана
+   (работает и для секций выше вьюпорта) */
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      if (!pageAnimating) {
+        setActive(e.target.id);
+        pageIndex = sections.indexOf(e.target);
+      }
+    } else {
+      e.target.classList.remove('in');
+    }
+  });
+}, { root: snap, rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+sections.forEach(s => spy.observe(s));
+
+/* Reveal по каждому элементу: не зависит от высоты секции */
+const rvSpy = new IntersectionObserver(entries => {
+  entries.forEach(e => e.target.classList.toggle('in', e.isIntersecting));
+}, { root: snap, threshold: 0.12 });
+document.querySelectorAll('.rv').forEach(el => rvSpy.observe(el));
+
+/* ================= MOBILE MENU ================= */
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded','false');
+}));
+
+/* ================= АККОРДЕОН ================= */
+document.querySelectorAll('.acc-item').forEach(item => {
+  const head = item.querySelector('.acc-head');
+  const panel = item.querySelector('.acc-panel');
+  head.addEventListener('click', () => {
+    const open = item.classList.toggle('open');
+    head.setAttribute('aria-expanded', open);
+    panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0px';
+  });
+});
+
+/* ================= БЕСКОНЕЧНАЯ КАРУСЕЛЬ (десктоп/1300) ================= */
+const cards = document.getElementById('cards');
+const prevBtn = document.getElementById('stripPrev');
+const nextBtn = document.getElementById('stripNext');
+
+const originals = [...cards.children];
+const N = originals.length;
+(function makeClones(){
+  const before = document.createDocumentFragment();
+  const after = document.createDocumentFragment();
+  originals.forEach(c => {
+    const a = c.cloneNode(true), b = c.cloneNode(true);
+    [a, b].forEach(x => { x.setAttribute('aria-hidden','true'); x.setAttribute('tabindex','-1'); });
+    before.appendChild(a); after.appendChild(b);
+  });
+  cards.insertBefore(before, cards.firstChild);
+  cards.appendChild(after);
+})();
+
+const stripActive = () => window.innerWidth > 960;
+const stepW = () => {
+  const card = cards.querySelector('.card:not([aria-hidden])');
+  const gap = parseFloat(getComputedStyle(cards).gap) || 24;
+  return (card ? card.offsetWidth : 440) + gap;
+};
+const setW = () => stepW() * N;
+
+function centerLoop(){
+  if (!stripActive()) { cards.scrollLeft = 0; return; }
+  const card = cards.querySelector('.card:not([aria-hidden])');
+  if (!card) return;
+  const w = card.offsetWidth;
+  const P = parseFloat(getComputedStyle(cards).paddingLeft) || 50;
+  const S = setW();
+  const big = window.matchMedia('(max-width:1500px)').matches;
+  /* big: активная карточка по центру, соседи выглядывают с двух сторон;
+     desktop: слева всегда торчит хвост предыдущей карточки (~66px) */
+  cards.scrollLeft = big
+    ? P + S - (cards.clientWidth - w) / 2
+    : P + S - 90;
+}
+window.addEventListener('load', centerLoop);
+
+let stripAnimating = false;
+function normalize(){
+  if (!stripActive()) return;
+  const S = setW();
+  if (cards.scrollLeft < S * 0.5)      cards.scrollLeft += S;
+  else if (cards.scrollLeft > S * 1.5) cards.scrollLeft -= S;
+}
+cards.addEventListener('scroll', () => { if (!stripAnimating) normalize(); }, { passive:true });
+
+/* Мягкий изинг (expo-подобный) для «дорогого» плавного хода */
+const easeInOutExpo = t =>
+  t === 0 ? 0 : t === 1 ? 1 :
+  t < .5 ? Math.pow(2, 20*t - 10)/2 : (2 - Math.pow(2, -20*t + 10))/2;
+
+function animateScrollLeft(el, to, dur, done){
+  const from = el.scrollLeft, delta = to - from, t0 = performance.now();
+  function frame(now){
+    const p = Math.min(1, (now - t0)/dur);
+    el.scrollLeft = from + delta * easeInOutExpo(p);
+    stripParallax();
+    if (p < 1) requestAnimationFrame(frame); else done && done();
+  }
+  requestAnimationFrame(frame);
+}
+
+/* Rich-эффект: карточки ближе к центру — крупнее и ярче, по краям — мельче */
+function stripParallax(){
+  if (!stripActive()) return;
+  const mid = cards.scrollLeft + cards.clientWidth / 2;
+  const span = cards.clientWidth * 0.6;
+  cards.querySelectorAll('.card').forEach(c => {
+    const cc = c.offsetLeft + c.offsetWidth / 2;
+    const d = Math.min(1, Math.abs(cc - mid) / span);
+    const scale = 1 - d * 0.06;
+    const op = 1 - d * 0.35;
+    c.style.transform = `scale(${scale.toFixed(3)})`;
+    c.style.opacity = op.toFixed(3);
+  });
+}
+
+function stripGo(dir){
+  if (stripAnimating || !stripActive()) return;
+  stripAnimating = true;
+  animateScrollLeft(cards, cards.scrollLeft + dir * stepW(), 820, () => {
+    normalize();
+    stripParallax();
+    stripAnimating = false;
+  });
+}
+prevBtn.addEventListener('click', () => stripGo(-1));
+nextBtn.addEventListener('click', () => stripGo(1));
+/* Параллакс пересчитываем и при ручном скролле/ресайзе */
+cards.addEventListener('scroll', () => { if (stripActive()) stripParallax(); }, { passive:true });
+window.addEventListener('load', () => { if (stripActive()) stripParallax(); });
+
+/* Каскадные задержки появления карточек */
+document.querySelectorAll('#cards .card').forEach((c, i) => {
+  c.style.setProperty('--d', ((i % N) * 0.09 + 0.05).toFixed(2) + 's');
+});
+
+/* ================= ЗАЩИТА ОТ СЛУЧАЙНОГО ТАПА ПРИ СКРОЛЛЕ ================= */
+/* Если во время касания карточки палец сдвинулся заметно — это скролл,
+   а не тап: отменяем переход по ссылке */
+document.querySelectorAll('#cards .card').forEach(card => {
+  let sx = 0, sy = 0, moved = false;
+  card.addEventListener('pointerdown', e => { sx = e.clientX; sy = e.clientY; moved = false; }, { passive:true });
+  card.addEventListener('pointermove', e => {
+    if (Math.abs(e.clientX - sx) > 8 || Math.abs(e.clientY - sy) > 8) moved = true;
+  }, { passive:true });
+  card.addEventListener('click', e => { if (moved) { e.preventDefault(); } });
+});
+
+/* ================= ТИПОГРАФ: без висячих предлогов и союзов ================= */
+(function(){
+  const SHORT = /(^|\s)(a|an|the|and|or|of|to|in|on|for|with|from|by|at|as|is|are|was|i|it|its|my|we|our|not|no|so|up|new|all)(\s)/gi;
+  function fix(text){
+    let prev;
+    do { prev = text; text = text.replace(SHORT, (m, p1, w, p3) => p1 + w + '\u00a0'); } while (text !== prev);
+    return text;
+  }
+  document.querySelectorAll('.card .desc, .card h3, .card .meta, .hero-text .lead').forEach(el => {
+    el.childNodes.forEach(node => {
+      if (node.nodeType === 3) node.textContent = fix(node.textContent);
+    });
+  });
+})();
+</script>
+</body>
+</html>
