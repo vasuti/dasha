@@ -327,7 +327,12 @@ html[data-theme="dark"] .cookie-consent__accept{
 </head>
 <body class="has-dv-sidebar">
 
-<aside class="dv-sidebar">
+<button class="dv-burger" id="dvBurger" aria-label="Toggle menu" aria-expanded="false" aria-controls="dvSidebar" type="button">
+  <span class="bar"></span>
+</button>
+<div class="dv-backdrop" id="dvBackdrop"></div>
+
+<aside class="dv-sidebar" id="dvSidebar">
   <div class="dv-top">
     <a href="index.html" class="dv-brand">Dasha Vasuti</a>
     <button class="dv-theme" aria-label="Toggle theme" type="button">
@@ -349,11 +354,10 @@ html[data-theme="dark"] .cookie-consent__accept{
       <a class="dv-social" href="https://www.linkedin.com/in/dariya-kudlay/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/social/linkedin.png" alt=""></a>
       <a class="dv-social" href="https://t.me/dariya_kudlai" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><img src="assets/social/telegram.png" alt=""></a>
     </div>
-    <a class="dv-cv" href="https://docs.google.com/document/d/1B1mU5_iIXcYVdVTMILaF_BNzHZLlmFhtOhLFsUVPnJg/edit?usp=sharing" target="_blank" rel="noopener">
+    <a class="dv-cta" href="https://docs.google.com/document/d/1B1mU5_iIXcYVdVTMILaF_BNzHZLlmFhtOhLFsUVPnJg/edit?usp=sharing" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
       Open CV
     </a>
-    <a class="dv-cta" href="mailto:dashavasuti@gmail.com">Reach me</a>
   </div>
 </aside>
 
