@@ -120,10 +120,12 @@ button{font-family:inherit;background:none;border:none;cursor:pointer;color:inhe
 }
 
 /* ================= CASE LIST ================= */
-.cases{display:flex; flex-direction:column; gap:48px; padding-bottom:80px;}
+.cases{display:flex; flex-direction:column; align-items:center; gap:40px; padding-top:8px; padding-bottom:80px;}
 .case-card{
-  display:block;
-  border-radius:28px;
+  display:flex; flex-direction:column;
+  width:min(100%, 620px);
+  min-height:min(78vh, 780px);
+  border-radius:32px;
   background:var(--card-bg);
   overflow:hidden;
   transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease;
@@ -133,7 +135,8 @@ html[data-theme="dark"] a.case-card:hover{box-shadow:0 30px 70px rgba(0,0,0,.55)
 
 .case-cover{
   position:relative;
-  aspect-ratio:16/9.2;
+  flex:1 1 auto;
+  min-height:0;
   background:#e8e8ea;
   overflow:hidden;
 }
@@ -167,7 +170,7 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
   background:transparent; color:var(--muted); padding:0; font-weight:500;
 }
 
-.case-body{padding:28px 32px 32px;}
+.case-body{flex:0 0 auto; padding:28px 32px 32px;}
 .case-meta{
   font-family:var(--font-ui); font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
   color:var(--muted); margin-bottom:10px;
@@ -189,8 +192,9 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
 
 @media (max-width:960px){
   .dv-main{padding:0 24px;}
-  .cases{gap:36px; padding-top:32px; padding-bottom:56px;}
-  .case-card{border-radius:20px;}
+  .cases{gap:32px; padding-top:32px; padding-bottom:56px;}
+  .case-card{width:100%; min-height:0; border-radius:20px;}
+  .case-cover{flex:none; aspect-ratio:4/5;}
   .case-body{padding:22px 20px 26px;}
 }
 
