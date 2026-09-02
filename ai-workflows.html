@@ -68,11 +68,15 @@ html[data-theme="dark"]{
   --dark-ink:#202126;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;background:var(--bg)}
+html{scroll-behavior:auto;background:var(--bg)}
 body{font-family:var(--font);background:var(--bg);color:var(--ink);font-weight:300}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit}
-.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);transition-delay:var(--d,0s)}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none !important;animation:none !important;}
+  .rv{opacity:1 !important; transform:none !important;}
+}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);transition-delay:var(--d,0s);will-change:opacity,transform}
 .rv.in{opacity:1;transform:none}
 .wrap{width:100%;max-width:1180px;margin:0;padding:0 50px}
 
@@ -115,7 +119,7 @@ h1{font-weight:300;font-size:clamp(44px,5.2vw,72px);line-height:1.06;letter-spac
 .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:48px;border-top:1px solid var(--line);padding-top:34px}
 .meta-item .label{font-size:13px;line-height:1;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-bottom:14px}
 .meta-item p{font-size:16px;line-height:1.45;color:var(--ink);max-width:230px}
-.section{padding:116px 0;border-top:1px solid var(--line)}
+.section{padding-top:116px;padding-bottom:116px;border-top:1px solid var(--line)}
 .split{display:grid;grid-template-columns:minmax(260px,.9fr) minmax(0,1.35fr);gap:96px;align-items:start}
 .kicker{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
 .kicker::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent)}
@@ -137,7 +141,7 @@ h2{font-weight:300;font-size:clamp(42px,5.1vw,82px);line-height:1.02;letter-spac
 .dark .kicker{color:rgba(245,245,250,.62)}
 .dark h2{max-width:1120px;color:var(--dark-ink)}
 .dark p{margin-top:36px;max-width:780px;font-size:24px;line-height:1.45;letter-spacing:-.035em;color:rgba(245,245,250,.62)}
-.outcome{padding:126px 0 140px}
+.outcome{padding-top:126px;padding-bottom:140px}
 .outcome-grid{display:grid;grid-template-columns:minmax(300px,.9fr) minmax(0,1.5fr);gap:96px;align-items:start}
 .outcome-list{border-top:1px solid var(--line)}
 .row{display:grid;grid-template-columns:160px 1fr;gap:36px;border-bottom:1px solid var(--line);padding:30px 0}
@@ -147,7 +151,8 @@ h2{font-weight:300;font-size:clamp(42px,5.1vw,82px);line-height:1.02;letter-spac
 @media(max-width:1100px){
   .wrap{width:min(100% - 64px, 1280px)}
   .topbar{padding-left:32px;padding-right:32px}
-  .split,.outcome-grid{gap:64px}
+  .split,.outcome-grid{grid-template-columns:1fr;gap:32px}
+  .row{grid-template-columns:1fr;gap:10px}
   .metric{padding-right:22px}
 }
 @media(max-width:860px){
@@ -164,7 +169,7 @@ h2{font-weight:300;font-size:clamp(42px,5.1vw,82px);line-height:1.02;letter-spac
   .lead{font-size:22px;line-height:1.42;max-width:100%;margin-bottom:54px}
   .meta-grid{grid-template-columns:1fr 1fr;gap:28px 22px;padding-top:28px}
   .meta-item p{font-size:15px;line-height:1.45}
-  .section{padding:74px 0}
+  .section{padding-top:74px;padding-bottom:74px}
   .split,.outcome-grid{grid-template-columns:1fr;gap:32px}
   h2{font-size:44px;line-height:1.05;max-width:100%}
   .text-block{font-size:22px;line-height:1.42;max-width:100%}
@@ -175,7 +180,7 @@ h2{font-weight:300;font-size:clamp(42px,5.1vw,82px);line-height:1.02;letter-spac
   .step:last-child{border-bottom:0}
   .step .num{font-size:38px;margin-bottom:0}.step p{max-width:100%}
   .dark{padding:82px 0;margin-top:12px}.dark p{font-size:20px;line-height:1.45;margin-top:24px}
-  .outcome{padding:78px 0 96px}.row{grid-template-columns:1fr;gap:10px;padding:26px 0}.row h3{font-size:24px;line-height:31px}
+  .outcome{padding-top:78px;padding-bottom:96px}.row{grid-template-columns:1fr;gap:10px;padding:26px 0}.row h3{font-size:24px;line-height:31px}
 }
 @media(max-width:520px){
   .wrap{padding-left:20px;padding-right:20px}
@@ -456,7 +461,28 @@ html[data-theme="dark"] .cookie-consent__accept{
   </section>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="assets/sidebar.js"></script>
+<script>
+/* ================= ПЛАВНАЯ ПРОКРУТКА (Lenis) ================= */
+(function(){
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || typeof Lenis === 'undefined') return;
+
+  const lenis = new Lenis({
+    duration: 1.05,
+    easing: t => 1 - Math.pow(1 - t, 3),
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    touchMultiplier: 1.1,
+  });
+  function raf(time){
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+})();
+</script>
 
 <div class="cookie-consent" id="cookieConsent" role="dialog" aria-live="polite" aria-label="Cookie consent">
   <div class="cookie-consent__main">

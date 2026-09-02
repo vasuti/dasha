@@ -97,7 +97,7 @@ html[data-theme="dark"]{
   *,*::before,*::after{transition:none !important;animation:none !important;}
   .rv{opacity:1 !important; transform:none !important;}
 }
-html{scroll-behavior:smooth;}
+html{scroll-behavior:auto;}
 body{
   background:var(--bg); color:var(--ink);
   font-family:var(--font);
@@ -111,9 +111,10 @@ button{font-family:inherit;background:none;border:none;cursor:pointer;color:inhe
    ============================================================ */
 .rv{
   opacity:0;
-  transform:translateY(34px) scale(.96);
+  transform:translateY(28px);
   transition:opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
   transition-delay:var(--d, 0s);
+  will-change:opacity, transform;
 }
 .rv.in{opacity:1; transform:none;}
 
@@ -213,8 +214,6 @@ html[data-theme="dark"] .problem .icon{background:rgba(255,255,255,.10);}
 .mock-real img{width:100%; height:auto; display:block;}
 html[data-theme="dark"] .mock-real{box-shadow:0 20px 50px rgba(0,0,0,.5);}
 html[data-theme="dark"] .mock-real img{filter:brightness(.92);}
-
-html[data-theme="dark"] 
 
 .legend{display:flex; flex-direction:column; gap:22px;}
 .legend .li{display:flex; gap:16px;}
@@ -883,20 +882,34 @@ html[data-theme="dark"] .cookie-consent__accept{
   </a>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="assets/sidebar.js"></script>
 <script>
+/* ================= ПЛАВНАЯ ПРОКРУТКА (Lenis) ================= */
+(function(){
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || typeof Lenis === 'undefined') return;
+
+  const lenis = new Lenis({
+    duration: 1.05,
+    easing: t => 1 - Math.pow(1 - t, 3),
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    touchMultiplier: 1.1,
+  });
+  function raf(time){
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+})();
+
 /* BACK: если пришли с главной — назад в историю */
 document.querySelectorAll('.back, .brand').forEach(a => a.addEventListener('click', e => {
   if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) {
     e.preventDefault(); history.back();
   }
 }));
-
-/* REVEAL */
-const rvSpy = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rvSpy.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.rv').forEach(el => rvSpy.observe(el));
 
 /* ТИПОГРАФ */
 (function(){
