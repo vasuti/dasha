@@ -125,7 +125,9 @@ button{font-family:inherit;background:none;border:none;cursor:pointer;color:inhe
   overflow:hidden;
   transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease;
 }
-a.case-card:hover{transform:translateY(-4px); box-shadow:0 30px 60px rgba(28,28,35,.14);}
+a.case-card:hover{box-shadow:0 30px 60px rgba(28,28,35,.14);}
+a.case-card.tilt-l:hover{transform:translateY(-4px) rotate(-1.4deg);}
+a.case-card.tilt-r:hover{transform:translateY(-4px) rotate(1.4deg);}
 
 .cases-divider{
   width:100%;
@@ -152,7 +154,6 @@ html[data-theme="dark"] .case-cover{background:#1b1c22;}
   background-size:cover; background-position:center top; background-repeat:no-repeat;
   transition:transform .6s cubic-bezier(.22,1,.36,1);
 }
-a.case-card:hover .case-cover-img{transform:scale(1.03);}
 .case-cover.placeholder .case-cover-img{background:none;}
 .case-cover.placeholder::after{
   content:"image coming soon";
@@ -182,7 +183,7 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
   color:var(--muted); margin-bottom:10px;
 }
 .case-body h3{
-  font-family:var(--font-head); font-weight:400; font-size:clamp(24px,2.6vw,32px); line-height:1.2;
+  font-family:var(--font-ui); font-weight:600; font-size:clamp(22px,2.4vw,29px); line-height:1.22;
   letter-spacing:-.01em; margin-bottom:14px; max-width:640px;
 }
 .case-desc{
@@ -297,7 +298,7 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
 
   <section class="cases" id="works">
 
-    <a class="case-card live rv" href="bulk-payment-registries.html">
+    <a class="case-card live tilt-l rv" href="bulk-payment-registries.html">
       <div class="case-cover">
         <div class="case-cover-img" style="background-image:url('assets/cases/bulk-payment-registries.webp')"></div>
         <span class="case-badge">Read case →</span>
@@ -312,7 +313,7 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
       </div>
     </a>
 
-    <a class="case-card live rv" href="https://www.behance.net/gallery/215357123/Services-for-PSB-bank" target="_blank" rel="noopener noreferrer">
+    <a class="case-card live tilt-r rv" href="https://www.behance.net/gallery/215357123/Services-for-PSB-bank" target="_blank" rel="noopener noreferrer">
       <div class="case-cover">
         <div class="case-cover-img" style="background-image:url('assets/cases/credit-line-overdraft.webp')"></div>
         <span class="case-badge">Open in Behance ↗</span>
@@ -327,7 +328,7 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
       </div>
     </a>
 
-    <a class="case-card live rv" href="https://www.behance.net/gallery/155471453/zachestnyjbiznes-portal-o-kompanijah-v-rf" target="_blank" rel="noopener noreferrer">
+    <a class="case-card live tilt-l rv" href="https://www.behance.net/gallery/155471453/zachestnyjbiznes-portal-o-kompanijah-v-rf" target="_blank" rel="noopener noreferrer">
       <div class="case-cover placeholder">
         <div class="case-cover-img" style="background-image:url('assets/cases/counterparty-verification.webp')"></div>
         <span class="case-badge">Open in Behance ↗</span>
@@ -600,6 +601,41 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
 
 <script src="assets/sidebar.js"></script>
 <script>
+/* ================= ПЛАВНАЯ ПРОКРУТКА ================= */
+(function(){
+  const isDesktop = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!isDesktop || reduced) return;
+
+  let target = window.scrollY;
+  let current = target;
+  let ticking = false;
+  const ease = 0.11;
+
+  function maxScroll(){
+    return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+  }
+  function loop(){
+    current += (target - current) * ease;
+    if (Math.abs(target - current) < 0.4) current = target;
+    window.scrollTo(0, current);
+    if (current !== target) requestAnimationFrame(loop);
+    else ticking = false;
+  }
+  window.addEventListener('wheel', e => {
+    if (e.ctrlKey) return;
+    const path = e.composedPath ? e.composedPath() : [];
+    if (path.some(el => el.classList && el.classList.contains('dv-sidebar'))) return;
+    e.preventDefault();
+    target = Math.min(Math.max(target + e.deltaY, 0), maxScroll());
+    if (!ticking) { ticking = true; requestAnimationFrame(loop); }
+  }, { passive: false });
+  window.addEventListener('scroll', () => {
+    if (!ticking) { target = window.scrollY; current = target; }
+  }, { passive: true });
+  window.addEventListener('resize', () => { target = Math.min(target, maxScroll()); });
+})();
+
 /* ================= АККОРДЕОН ================= */
 document.querySelectorAll('.exp-item').forEach(item => {
   const head = item.querySelector('.exp-head');
