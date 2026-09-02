@@ -39,7 +39,8 @@
 <meta name="twitter:description" content="Dasha Vasuti’s personal website.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Merriweather:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/sidebar.css">
 <style>
 /* ============================================================
    TOKENS
@@ -117,37 +118,9 @@ button{font-family:inherit;background:none;border:none;cursor:pointer;color:inhe
 .rv.in{opacity:1; transform:none;}
 
 /* ============================================================
-   HEADER
-   ============================================================ */
-.header{
-  position:fixed; inset:0 0 auto 0; z-index:100;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:32px 50px 16px;
-  background:linear-gradient(var(--bg) 62%, transparent);
-}
-.brand{font-weight:600; font-size:26px; letter-spacing:.01em;}
-.theme-toggle{
-  position:relative; width:56px; height:30px;
-  border-radius:60px; background:var(--toggle-track);
-  transition:background .4s ease;
-}
-.theme-toggle .knob{
-  position:absolute; top:1px; left:1px;
-  width:28px; height:28px; border-radius:50%;
-  background:var(--toggle-knob);
-  display:flex; align-items:center; justify-content:center;
-  transition:transform .35s cubic-bezier(.5,1.4,.5,1), background .4s ease;
-}
-html[data-theme="dark"] .theme-toggle .knob{transform:translateX(26px);}
-.theme-toggle svg{width:16px; height:16px; stroke:var(--ink); fill:none; stroke-width:1.6;}
-.theme-toggle .moon{display:none;}
-html[data-theme="dark"] .theme-toggle .sun{display:none;}
-html[data-theme="dark"] .theme-toggle .moon{display:block;}
-
-/* ============================================================
    LAYOUT
    ============================================================ */
-.wrap{max-width:1200px; margin:0 auto; padding:0 50px;}
+.wrap{max-width:1200px; margin:0; padding:0 50px;}
 section{padding:72px 0;}
 
 .kicker{
@@ -163,7 +136,7 @@ h2{font-weight:300; font-size:44px; line-height:1.15; margin-bottom:20px;}
 /* ============================================================
    HERO
    ============================================================ */
-.hero{padding-top:150px; padding-bottom:40px;}
+.hero{padding-top:88px; padding-bottom:40px;}
 .back{
   display:inline-flex; align-items:center; gap:12px;
   font-weight:400; font-size:15px; color:var(--meta);
@@ -423,10 +396,8 @@ html[data-theme="dark"] .nda-card .lock{background:rgba(255,255,255,.14);}
 }
 @media (max-width:700px){
   .wrap{padding:0 18px; width:100%; max-width:100%; overflow:hidden;}
-  .header{padding:24px 18px 12px;}
-  .brand{font-size:20px;}
   section{padding:52px 0;}
-  .hero{padding-top:116px; padding-bottom:30px;}
+  .hero{padding-top:36px; padding-bottom:30px;}
   .hero-top{flex-wrap:wrap;}
   h2{font-size:30px;}
   .lead, .sub, .quote, .prose p{overflow-wrap:anywhere;}
@@ -442,7 +413,6 @@ html[data-theme="dark"] .nda-card .lock{background:rgba(255,255,255,.14);}
 }
 @media (max-width:420px){
   .wrap{padding:0 14px;}
-  .header{padding-left:14px; padding-right:14px;}
   .facts{grid-template-columns:1fr;}
   .step, .problem, .cmp, .ba .col{padding-left:20px; padding-right:20px;}
   h2{font-size:28px;}
@@ -453,7 +423,7 @@ html[data-theme="dark"] .nda-card .lock{background:rgba(255,255,255,.14);}
    ============================================================ */
 .cookie-consent{
   position:fixed;
-  left:48px;
+  left:calc(var(--dv-sbw, 0px) + 24px);
   right:48px;
   bottom:22px;
   z-index:999;
@@ -544,6 +514,9 @@ html[data-theme="dark"] .cookie-consent__accept{
   background:#fff;
   color:#15161c;
 }
+@media (max-width:960px){
+  .cookie-consent{left:24px;}
+}
 @media (max-width:760px){
   .cookie-consent{
     left:14px;
@@ -588,17 +561,37 @@ html[data-theme="dark"] .cookie-consent__accept{
 
 </style>
 </head>
-<body>
+<body class="has-dv-sidebar">
 
-<header class="header">
-  <a class="brand" href="./">DASHA VASUTI</a>
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    <span class="knob">
-      <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
-      <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
-    </span>
-  </button>
-</header>
+<aside class="dv-sidebar">
+  <div class="dv-top">
+    <a href="index.html" class="dv-brand">Dasha Vasuti</a>
+    <button class="dv-theme" id="themeToggle" aria-label="Toggle theme" type="button">
+      <span class="knob">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+      </span>
+    </button>
+  </div>
+  <p class="dv-role">Senior Product Designer &amp; Design Leader</p>
+  <div class="dv-bio">
+    <p>I create human-centered interfaces with refined UI — seeking harmony between function, aesthetics and business goals.</p>
+  </div>
+  <div class="dv-spacer"></div>
+  <div class="dv-contact">
+    <a class="dv-mail" href="mailto:dashavasuti@gmail.com">dashavasuti@gmail.com</a>
+    <div class="dv-socials" aria-label="Social links">
+      <a class="dv-social" href="https://www.instagram.com/dariya_kudlai" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="assets/social/instagram.png" alt=""></a>
+      <a class="dv-social" href="https://www.linkedin.com/in/dariya-kudlay/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/social/linkedin.png" alt=""></a>
+      <a class="dv-social" href="https://t.me/dariya_kudlai" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><img src="assets/social/telegram.png" alt=""></a>
+    </div>
+    <a class="dv-cv" href="https://docs.google.com/document/d/1B1mU5_iIXcYVdVTMILaF_BNzHZLlmFhtOhLFsUVPnJg/edit?usp=sharing" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      Open CV
+    </a>
+    <a class="dv-cta" href="mailto:dashavasuti@gmail.com">Reach me</a>
+  </div>
+</aside>
 
 <!-- ================= HERO ================= -->
 <div class="wrap hero">
@@ -885,13 +878,8 @@ html[data-theme="dark"] .cookie-consent__accept{
   </a>
 </div>
 
+<script src="assets/sidebar.js"></script>
 <script>
-/* THEME */
-const root = document.documentElement;
-document.getElementById('themeToggle').addEventListener('click', () => {
-  root.setAttribute('data-theme', root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-});
-
 /* BACK: если пришли с главной — назад в историю */
 document.querySelectorAll('.back, .brand').forEach(a => a.addEventListener('click', e => {
   if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) {

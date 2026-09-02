@@ -39,7 +39,8 @@
 <meta name="twitter:description" content="Dasha Vasuti’s personal website.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Merriweather:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/sidebar.css">
 <style>
 :root{
   --bg:#f7f7f7;
@@ -73,32 +74,33 @@ a{text-decoration:none;color:inherit}
 button{font-family:inherit}
 .rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);transition-delay:var(--d,0s)}
 .rv.in{opacity:1;transform:none}
-.wrap{width:min(100% - 100px, 1280px);margin:0 auto}
+.wrap{width:100%;max-width:1180px;margin:0}
 
-.site-header{
-  position:fixed;z-index:60;top:0;left:0;right:0;
-  height:96px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 50px;
-  background:linear-gradient(180deg, rgba(247,247,247,.96) 0%, rgba(247,247,247,.84) 68%, rgba(247,247,247,0) 100%);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-}
-.brand{font-size:24px;line-height:1;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--ink)}
-.theme-toggle{width:48px;height:26px;border:0;border-radius:999px;background:#d8d8da;display:flex;align-items:center;padding:2px;cursor:pointer;color:var(--ink)}
-.theme-toggle .knob{width:22px;height:22px;border-radius:50%;background:#f7f7f7;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.12)}
-.theme-toggle svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.4}
-html[data-theme="dark"] .site-header{
-  background:linear-gradient(180deg, rgba(11,12,15,.96) 0%, rgba(11,12,15,.84) 68%, rgba(11,12,15,0) 100%);
-}
-html[data-theme="dark"] .theme-toggle{background:#26272f;}
-html[data-theme="dark"] .theme-toggle .knob{background:#0b0c0f;transform:translateX(22px);color:#f1f2f6;}
 html[data-theme="dark"] .tag{background:rgba(255,255,255,.08);color:var(--ink);}
 html[data-theme="dark"] .dark{background:#f7f7f7;color:#202126;}
 html[data-theme="dark"] .dark h2{color:#202126;}
 html[data-theme="dark"] .dark p{color:rgba(32,33,38,.62);}
 html[data-theme="dark"] .dark .kicker{color:rgba(32,33,38,.56);}
-.case-hero{min-height:820px;padding-top:178px;padding-bottom:92px;display:flex;align-items:center}
+
+/* Заглушки для мест, где пока нет своих скриншотов */
+.ph{
+  background:rgba(32,33,38,.06);
+  border-radius:22px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);
+  font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  text-align:center;
+}
+html[data-theme="dark"] .ph{background:rgba(241,242,246,.06);}
+.ph-hero{aspect-ratio:4/3;}
+.ph-wide{aspect-ratio:16/8;margin-top:64px;}
+.ph-pair{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:64px;}
+.ph-pair .ph{aspect-ratio:3/4;}
+.ph-dark{aspect-ratio:4/3;background:rgba(255,255,255,.08);color:rgba(245,245,250,.5);}
+html[data-theme="dark"] .ph-dark{background:rgba(32,33,38,.08);color:rgba(32,33,38,.45);}
+
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);gap:64px;align-items:center;}
+.case-hero{min-height:0;padding-top:96px;padding-bottom:92px;display:flex;align-items:center}
 .case-hero-inner{width:100%}
 .back{display:inline-flex;align-items:center;gap:14px;color:var(--muted);font-size:15px;line-height:1;margin-bottom:70px;transition:.25s}
 .back:hover{color:var(--ink);transform:translateX(-4px)}
@@ -148,10 +150,9 @@ h2{font-weight:300;font-size:clamp(42px,5.1vw,82px);line-height:1.02;letter-spac
 }
 @media(max-width:860px){
   .wrap{width:100%;padding-left:24px;padding-right:24px}
-  .site-header{height:78px;padding:0 24px;background:rgba(247,247,247,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(32,33,38,.08)}
-  .brand{font-size:20px}
-  .theme-toggle{width:44px;height:24px}.theme-toggle .knob{width:20px;height:20px}
-  .case-hero{min-height:auto;padding-top:118px;padding-bottom:70px;align-items:flex-start}
+  .hero-grid{grid-template-columns:1fr;gap:32px;}
+  .ph-hero{aspect-ratio:16/10;order:-1;}
+  .case-hero{min-height:auto;padding-top:40px;padding-bottom:70px;align-items:flex-start}
   .back{font-size:15px;margin-bottom:54px}.back svg{width:28px}
   .title-row{display:block;margin-bottom:18px}
   h1{font-size:clamp(40px,12.8vw,60px);line-height:1.04;margin-bottom:18px;max-width:100%}
@@ -176,14 +177,9 @@ h2{font-weight:300;font-size:clamp(42px,5.1vw,82px);line-height:1.02;letter-spac
 }
 @media(max-width:520px){
   .wrap{padding-left:20px;padding-right:20px}
-  .site-header{padding:0 20px}
-  .case-hero{padding-top:112px}
+  .case-hero{padding-top:28px}
   h1{font-size:42px}.lead{font-size:20px}.text-block{font-size:20px}h2{font-size:38px}
   .meta-grid{grid-template-columns:1fr;gap:24px}
-}
-
-@media(max-width:860px){
-  html[data-theme="dark"] .site-header{background:rgba(11,12,15,.78);border-bottom:1px solid rgba(241,242,246,.10)}
 }
 
 /* ============================================================
@@ -191,7 +187,7 @@ h2{font-weight:300;font-size:clamp(42px,5.1vw,82px);line-height:1.02;letter-spac
    ============================================================ */
 .cookie-consent{
   position:fixed;
-  left:48px;
+  left:calc(var(--dv-sbw, 0px) + 24px);
   right:48px;
   bottom:22px;
   z-index:999;
@@ -282,6 +278,9 @@ html[data-theme="dark"] .cookie-consent__accept{
   background:#fff;
   color:#15161c;
 }
+@media (max-width:960px){
+  .cookie-consent{left:24px;}
+}
 @media (max-width:760px){
   .cookie-consent{
     left:14px;
@@ -326,35 +325,66 @@ html[data-theme="dark"] .cookie-consent__accept{
 
 </style>
 </head>
-<body>
-<header class="site-header">
-  <a class="brand" href="dashavasuti.html#home">DASHA VASUTI</a>
-  <button class="theme-toggle" aria-label="Theme toggle" type="button"><span class="knob"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span></button>
-</header>
+<body class="has-dv-sidebar">
+
+<aside class="dv-sidebar">
+  <div class="dv-top">
+    <a href="index.html" class="dv-brand">Dasha Vasuti</a>
+    <button class="dv-theme" aria-label="Toggle theme" type="button">
+      <span class="knob">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+      </span>
+    </button>
+  </div>
+  <p class="dv-role">Senior Product Designer &amp; Design Leader</p>
+  <div class="dv-bio">
+    <p>I create human-centered interfaces with refined UI — seeking harmony between function, aesthetics and business goals.</p>
+  </div>
+  <div class="dv-spacer"></div>
+  <div class="dv-contact">
+    <a class="dv-mail" href="mailto:dashavasuti@gmail.com">dashavasuti@gmail.com</a>
+    <div class="dv-socials" aria-label="Social links">
+      <a class="dv-social" href="https://www.instagram.com/dariya_kudlai" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="assets/social/instagram.png" alt=""></a>
+      <a class="dv-social" href="https://www.linkedin.com/in/dariya-kudlay/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/social/linkedin.png" alt=""></a>
+      <a class="dv-social" href="https://t.me/dariya_kudlai" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><img src="assets/social/telegram.png" alt=""></a>
+    </div>
+    <a class="dv-cv" href="https://docs.google.com/document/d/1B1mU5_iIXcYVdVTMILaF_BNzHZLlmFhtOhLFsUVPnJg/edit?usp=sharing" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      Open CV
+    </a>
+    <a class="dv-cta" href="mailto:dashavasuti@gmail.com">Reach me</a>
+  </div>
+</aside>
 
 <main>
   <section class="case-hero wrap">
     <div class="case-hero-inner">
-      <a class="back rv" href="dashavasuti.html#works" aria-label="Back to works"><svg viewBox="0 0 44 16"><path d="M43 8H3M10 1 3 8l7 7"/></svg><span>back</span></a>
-      <div class="title-row rv" style="--d:.05s">
-        <h1>AI Workflows for Operations Feed</h1>
-        <div class="year">2024 → 2025</div>
-      </div>
-      <div class="tags rv" style="--d:.1s">
-        <span class="tag">B2B</span>
-        <span class="tag">Web</span>
-        <span class="tag">AI / ML</span>
-        <span class="tag">Product Design</span>
-        <span class="tag">UX Research</span>
-        <span class="tag">Prototyping</span>
-        <span class="tag">Strategy</span>
-      </div>
-      <p class="lead rv" style="--d:.15s">Led AI discovery with the Product Owner to identify unresolved workflow pain points that were costly or time-consuming to solve through traditional backend development.</p>
-      <div class="meta-grid rv" style="--d:.2s">
-        <div class="meta-item"><div class="label">Role</div><p>Senior Product Designer — Leading AI discovery</p></div>
-        <div class="meta-item"><div class="label">Focus</div><p>40+ hypotheses and 10 AI-powered concepts</p></div>
-        <div class="meta-item"><div class="label">Platforms</div><p>Desktop online bank, internal operations platform</p></div>
-        <div class="meta-item"><div class="label">Outcome</div><p>10 validated scenarios moved to product backlog</p></div>
+      <a class="back rv" href="index.html#works" aria-label="Back to works"><svg viewBox="0 0 44 16"><path d="M43 8H3M10 1 3 8l7 7"/></svg><span>back</span></a>
+      <div class="hero-grid">
+        <div>
+          <div class="title-row rv" style="--d:.05s">
+            <h1>AI Workflows for Operations Feed</h1>
+            <div class="year">2024 → 2025</div>
+          </div>
+          <div class="tags rv" style="--d:.1s">
+            <span class="tag">B2B</span>
+            <span class="tag">Web</span>
+            <span class="tag">AI / ML</span>
+            <span class="tag">Product Design</span>
+            <span class="tag">UX Research</span>
+            <span class="tag">Prototyping</span>
+            <span class="tag">Strategy</span>
+          </div>
+          <p class="lead rv" style="--d:.15s">Led AI discovery with the Product Owner to identify unresolved workflow pain points that were costly or time-consuming to solve through traditional backend development.</p>
+          <div class="meta-grid rv" style="--d:.2s">
+            <div class="meta-item"><div class="label">Role</div><p>Senior Product Designer — Leading AI discovery</p></div>
+            <div class="meta-item"><div class="label">Focus</div><p>40+ hypotheses and 10 AI-powered concepts</p></div>
+            <div class="meta-item"><div class="label">Platforms</div><p>Desktop online bank, internal operations platform</p></div>
+            <div class="meta-item"><div class="label">Outcome</div><p>10 validated scenarios moved to product backlog</p></div>
+          </div>
+        </div>
+        <div class="ph ph-hero rv" style="--d:.1s">Product screen<br>coming soon</div>
       </div>
     </div>
   </section>
@@ -370,6 +400,10 @@ html[data-theme="dark"] .cookie-consent__accept{
         <p>The focus was practical: find where AI could reduce manual effort faster than classic backend-heavy development.</p>
       </div>
     </div>
+    <div class="ph-pair">
+      <div class="ph rv">Pain-point map<br>coming soon</div>
+      <div class="ph rv" style="--d:.06s">Hypothesis board<br>coming soon</div>
+    </div>
   </section>
 
   <section class="process wrap">
@@ -384,13 +418,17 @@ html[data-theme="dark"] .cookie-consent__accept{
       <div class="step rv" style="--d:.15s"><div class="num">04</div><div><h3>Pitch & validate</h3><p>Presented at a bank-level Pitch Day.</p></div></div>
       <div class="step rv" style="--d:.2s"><div class="num">05</div><div><h3>Move to backlog</h3><p>All 10 validated scenarios moved into the roadmap.</p></div></div>
     </div>
+    <div class="ph ph-wide rv">10 concept screens — coming soon</div>
   </section>
 
   <section class="dark">
-    <div class="wrap">
-      <div class="kicker rv">Design direction</div>
-      <h2 class="rv" style="--d:.08s">AI as a workflow layer, not a separate destination.</h2>
-      <p class="rv" style="--d:.16s">The concepts were designed to support existing Operations Feed tasks — close to the decision, easy to review, and clear enough for critical financial workflows.</p>
+    <div class="wrap split">
+      <div>
+        <div class="kicker rv">Design direction</div>
+        <h2 class="rv" style="--d:.08s">AI as a workflow layer, not a separate destination.</h2>
+        <p class="rv" style="--d:.16s">The concepts were designed to support existing Operations Feed tasks — close to the decision, easy to review, and clear enough for critical financial workflows.</p>
+      </div>
+      <div class="ph ph-dark rv" style="--d:.1s">AI concept screen<br>coming soon</div>
     </div>
   </section>
 
@@ -407,34 +445,11 @@ html[data-theme="dark"] .cookie-consent__accept{
         <div class="row"><div class="label">Backlog</div><div><h3>10 scenarios moved forward</h3><p>All validated scenarios were added to the upcoming year backlog.</p></div></div>
       </div>
     </div>
+    <div class="ph ph-wide rv" style="--d:.06s">Backlog board — coming soon</div>
   </section>
 </main>
 
-<script>
-const root=document.documentElement;
-const themeBtn=document.querySelector('.theme-toggle');
-const savedTheme=localStorage.getItem('theme') || 'light';
-root.setAttribute('data-theme', savedTheme);
-function updateThemeIcon(){
-  const isDark=root.getAttribute('data-theme')==='dark';
-  themeBtn?.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
-  const svg=themeBtn?.querySelector('svg');
-  if(svg){
-    svg.innerHTML=isDark
-      ? '<path d="M21 12.8A8.4 8.4 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z"/>'
-      : '<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>';
-  }
-}
-updateThemeIcon();
-themeBtn?.addEventListener('click',()=>{
-  const next=root.getAttribute('data-theme')==='dark'?'light':'dark';
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
-  updateThemeIcon();
-});
-const rvSpy=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rvSpy.unobserve(e.target);}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
-document.querySelectorAll('.rv').forEach(el=>rvSpy.observe(el));
-</script>
+<script src="assets/sidebar.js"></script>
 
 <div class="cookie-consent" id="cookieConsent" role="dialog" aria-live="polite" aria-label="Cookie consent">
   <div class="cookie-consent__main">
