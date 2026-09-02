@@ -42,7 +42,7 @@ body.dv-noscroll{overflow:hidden;}
   }
 }
 
-.dv-top{display:flex; align-items:flex-start; justify-content:space-between; gap:16px;}
+.dv-top{display:block;}
 .dv-brand{
   display:block;
   font-weight:600; font-size:21px; line-height:1.2; letter-spacing:.02em;
@@ -53,28 +53,6 @@ body.dv-noscroll{overflow:hidden;}
   font-family:var(--font-body, 'Inter', sans-serif);
   font-size:14px; line-height:1.4; color:var(--dv-muted);
 }
-
-.dv-theme{
-  box-sizing:border-box;
-  position:relative; width:50px; height:28px; flex:0 0 50px;
-  padding:0; border-radius:60px; background:#d9d9d9;
-  transition:background .4s ease;
-}
-html[data-theme="dark"] .dv-theme{background:#33343d;}
-.dv-theme .knob{
-  position:absolute; top:2px; left:2px;
-  width:24px; height:24px; border-radius:50%;
-  background:#ffffff;
-  box-shadow:0 1px 3px rgba(0,0,0,.25);
-  display:flex; align-items:center; justify-content:center;
-  transition:transform .35s cubic-bezier(.5,1.4,.5,1), background .4s ease;
-}
-html[data-theme="dark"] .dv-theme .knob{transform:translateX(22px); background:#0b0c0f;}
-.dv-theme svg{width:14px; height:14px; stroke:var(--dv-ink); fill:none; stroke-width:1.6;}
-html[data-theme="dark"] .dv-theme svg{stroke:#f2f2f8;}
-.dv-theme .moon{display:none;}
-html[data-theme="dark"] .dv-theme .sun{display:none;}
-html[data-theme="dark"] .dv-theme .moon{display:block;}
 
 .dv-bio{
   margin-top:28px;
@@ -87,10 +65,39 @@ html[data-theme="dark"] .dv-theme .moon{display:block;}
 
 .dv-spacer{flex:1 1 auto; min-height:24px;}
 
+/* ================= CONTACT BLOCK (CV + theme, mail + socials) ================= */
 .dv-contact{
   padding-top:24px; border-top:1px solid var(--dv-line);
-  display:flex; flex-direction:column; gap:14px;
+  display:flex; flex-direction:column; align-items:center; gap:16px;
+  text-align:center;
 }
+.dv-cta-row{width:100%; display:flex; align-items:stretch; gap:10px;}
+.dv-cta{
+  flex:1 1 auto;
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  height:48px; padding:0 20px;
+  border-radius:999px; background:var(--dv-ink); color:var(--dv-bg);
+  font-family:var(--dv-font-ui); font-weight:600; font-size:14.5px; letter-spacing:.01em;
+  transition:transform .25s ease, opacity .25s ease;
+}
+.dv-cta:hover{transform:translateY(-2px); opacity:.92;}
+.dv-cta svg{width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:1.8; flex:0 0 auto;}
+
+.dv-theme{
+  box-sizing:border-box;
+  position:relative; width:48px; height:48px; flex:0 0 48px;
+  padding:0; border-radius:999px;
+  background:var(--dv-bg); border:1px solid var(--dv-line);
+  display:flex; align-items:center; justify-content:center;
+  transition:background .4s ease, border-color .4s ease, transform .25s ease;
+}
+.dv-theme:hover{transform:translateY(-2px);}
+html[data-theme="dark"] .dv-theme{background:#1a1b21;}
+.dv-theme svg{width:19px; height:19px; stroke:var(--dv-ink); fill:none; stroke-width:1.6;}
+.dv-theme .moon{display:none;}
+html[data-theme="dark"] .dv-theme .sun{display:none;}
+html[data-theme="dark"] .dv-theme .moon{display:block;}
+
 .dv-mail{
   font-family:var(--font-body, 'Inter', sans-serif);
   font-size:14.5px; font-weight:500; color:var(--dv-ink);
@@ -98,7 +105,7 @@ html[data-theme="dark"] .dv-theme .moon{display:block;}
   transition:opacity .25s ease;
 }
 .dv-mail:hover{opacity:.62;}
-.dv-socials{display:flex; align-items:center; gap:10px;}
+.dv-socials{display:flex; align-items:center; justify-content:center; gap:10px;}
 .dv-social{
   width:34px; height:34px; border-radius:9px;
   display:inline-flex; align-items:center; justify-content:center;
@@ -107,16 +114,6 @@ html[data-theme="dark"] .dv-theme .moon{display:block;}
 }
 .dv-social img{width:100%; height:100%; object-fit:cover; display:block;}
 .dv-social:hover{opacity:.8; transform:translateY(-2px);}
-
-.dv-cta{
-  display:inline-flex; align-items:center; justify-content:center; gap:9px;
-  height:48px; padding:0 24px; margin-top:4px;
-  border-radius:999px; background:var(--dv-ink); color:var(--dv-bg);
-  font-family:var(--dv-font-ui); font-weight:600; font-size:14.5px; letter-spacing:.01em;
-  transition:transform .25s ease, opacity .25s ease;
-}
-.dv-cta:hover{transform:translateY(-2px); opacity:.92;}
-.dv-cta svg{width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:1.8; flex:0 0 auto;}
 
 /* ================= BURGER (mobile only) ================= */
 .dv-burger{
@@ -179,10 +176,6 @@ html[data-theme="dark"] .dv-burger{box-shadow:0 10px 26px rgba(0,0,0,.5);}
   .dv-brand{font-size:18px;}
   .dv-bio{max-width:100%; font-size:15px;}
   .dv-spacer{display:block;}
-  .dv-contact{
-    flex-direction:column; align-items:flex-start; gap:14px;
-  }
-  .dv-cta{margin-top:4px; width:100%;}
 }
 @media (max-width:520px){
   .dv-sidebar{width:min(88vw, 320px); padding:88px 24px 24px;}

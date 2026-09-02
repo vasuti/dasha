@@ -117,6 +117,8 @@ h1{font-weight:300;font-size:clamp(44px,5.2vw,72px);line-height:1.06;letter-spac
 .meta-item p{font-size:16px;line-height:1.45;color:var(--ink);max-width:230px}
 .section{padding:116px 0;border-top:1px solid var(--line)}
 .split{display:grid;grid-template-columns:minmax(260px,.9fr) minmax(0,1.35fr);gap:96px;align-items:start}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.kicker::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent)}
 h2{font-weight:300;font-size:clamp(42px,5.1vw,82px);line-height:1.02;letter-spacing:-.065em;max-width:720px}
 .text-block{font-size:clamp(21px,2vw,30px);line-height:1.45;letter-spacing:-.035em;color:var(--ink);max-width:760px}
 .text-block p + p{margin-top:28px}
@@ -335,29 +337,30 @@ html[data-theme="dark"] .cookie-consent__accept{
 <aside class="dv-sidebar" id="dvSidebar">
   <div class="dv-top">
     <a href="index.html" class="dv-brand">Dasha Vasuti</a>
-    <button class="dv-theme" aria-label="Toggle theme" type="button">
-      <span class="knob">
-        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
-        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
-      </span>
-    </button>
   </div>
   <p class="dv-role">Senior Product Designer &amp; Design Leader</p>
   <div class="dv-bio">
-    <p>I create human-centered interfaces with refined UI — seeking harmony between function, aesthetics and business goals.</p>
+    <p>9+ years of experience, including 6+ years in fintech across B2B and B2C products.</p>
+    <p>I lead design across core banking products and mentor a team of designers.</p>
   </div>
   <div class="dv-spacer"></div>
   <div class="dv-contact">
+    <div class="dv-cta-row">
+      <a class="dv-cta" href="https://docs.google.com/document/d/1B1mU5_iIXcYVdVTMILaF_BNzHZLlmFhtOhLFsUVPnJg/edit?usp=sharing" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Open CV
+      </a>
+      <button class="dv-theme" aria-label="Toggle theme" type="button">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+      </button>
+    </div>
     <a class="dv-mail" href="mailto:dashavasuti@gmail.com">dashavasuti@gmail.com</a>
     <div class="dv-socials" aria-label="Social links">
       <a class="dv-social" href="https://www.instagram.com/dariya_kudlai" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="assets/social/instagram.png" alt=""></a>
       <a class="dv-social" href="https://www.linkedin.com/in/dariya-kudlay/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/social/linkedin.png" alt=""></a>
       <a class="dv-social" href="https://t.me/dariya_kudlai" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><img src="assets/social/telegram.png" alt=""></a>
     </div>
-    <a class="dv-cta" href="https://docs.google.com/document/d/1B1mU5_iIXcYVdVTMILaF_BNzHZLlmFhtOhLFsUVPnJg/edit?usp=sharing" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-      Open CV
-    </a>
   </div>
 </aside>
 

@@ -54,10 +54,10 @@
   --card-bg:   #ffffff;
   --line:      rgba(28,28,35,.12);
 
-  --pastel-blue:   rgba(185,207,231,.8);
-  --pastel-pink:   rgba(238,195,201,.8);
-  --pastel-purple: rgba(198,195,238,.8);
-  --pastel-green:  rgba(217,235,208,.8);
+  --pastel-blue:   rgba(28,28,35,.04);
+  --pastel-pink:   rgba(28,28,35,.04);
+  --pastel-purple: rgba(28,28,35,.04);
+  --pastel-green:  rgba(28,28,35,.04);
   --lilac:         #8b7ff0;
   --lilac-soft:    #b6b1f9;
 
@@ -81,10 +81,10 @@ html[data-theme="dark"]{
   --toggle-knob:  #0b0c0f;
 
   /* Стеклянные вставки — холодный электрик-фиолет в духе awwwards */
-  --pastel-blue:   rgba(96,132,255,.16);
-  --pastel-pink:   rgba(210,130,255,.16);
-  --pastel-purple: rgba(150,120,255,.22);
-  --pastel-green:  rgba(90,215,190,.15);
+  --pastel-blue:   rgba(244,244,255,.05);
+  --pastel-pink:   rgba(244,244,255,.05);
+  --pastel-purple: rgba(244,244,255,.05);
+  --pastel-green:  rgba(244,244,255,.05);
   --lilac:         #9a8cff;
   --lilac-soft:    #b3aaff;
 
@@ -130,7 +130,7 @@ section{padding:72px 0;}
 }
 .kicker::before{content:""; width:8px; height:8px; border-radius:2px; background:var(--lilac);}
 
-h2{font-weight:300; font-size:44px; line-height:1.15; margin-bottom:20px;}
+h2{font-weight:300; font-size:44px; line-height:1.15; letter-spacing:-.03em; margin-bottom:20px;}
 .sub{font-weight:300; font-size:18px; line-height:30px; color:var(--meta); max-width:620px;}
 
 /* ============================================================
@@ -146,7 +146,7 @@ h2{font-weight:300; font-size:44px; line-height:1.15; margin-bottom:20px;}
 .back:hover{color:var(--ink); transform:translateX(-4px);}
 .hero-top{display:flex; justify-content:space-between; align-items:flex-start; gap:40px;}
 .hero .year{font-weight:500; font-size:26px; color:var(--meta); white-space:nowrap;}
-h1{font-weight:500; font-size:clamp(40px, 5vw, 64px); line-height:1.1; margin-bottom:24px;}
+h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-spacing:-.05em; margin-bottom:24px;}
 .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:48px;}
 .tag{
   font-weight:500; font-size:14px; line-height:19.6px;
@@ -154,7 +154,7 @@ h1{font-weight:500; font-size:clamp(40px, 5vw, 64px); line-height:1.1; margin-bo
   background:rgba(230,230,232,.5); color:#1c1c23;
 }
 html[data-theme="dark"] .tag{background:transparent; border:1px solid rgba(228,228,247,.28); color:#fff;}
-.lead{font-weight:300; font-size:clamp(22px, 2.4vw, 30px); line-height:1.5; max-width:920px;}
+.lead{font-weight:300; font-size:clamp(22px, 2.4vw, 30px); line-height:1.5; letter-spacing:-.03em; max-width:920px;}
 .lead b{font-weight:500;}
 
 .facts{
@@ -168,8 +168,8 @@ html[data-theme="dark"] .tag{background:transparent; border:1px solid rgba(228,2
    БОЛЬШИЕ ЦИФРЫ
    ============================================================ */
 .stats{display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;}
-.stat{border-radius:24px; padding:32px 28px; display:flex; flex-direction:column; gap:8px;}
-.stat .n{font-weight:300; font-size:clamp(38px, 3.6vw, 52px); line-height:1.05; letter-spacing:-.02em;}
+.stat{border-radius:24px; padding:32px 28px; display:flex; flex-direction:column; gap:8px; border:1px solid var(--line);}
+.stat .n{font-weight:300; font-size:clamp(38px, 3.6vw, 52px); line-height:1.05; letter-spacing:-.03em;}
 .stat .t{font-weight:400; font-size:14px; line-height:22px; opacity:.78;}
 .bg-blue{background:var(--pastel-blue);}
 .bg-pink{background:var(--pastel-pink);}
@@ -193,10 +193,10 @@ html[data-theme="dark"] .tag{background:transparent; border:1px solid rgba(228,2
    PROBLEM CARDS (складный текст)
    ============================================================ */
 .problems{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;}
-.problem{border-radius:24px; padding:32px; display:flex; flex-direction:column; min-height:280px;}
+.problem{border-radius:24px; padding:32px; display:flex; flex-direction:column; min-height:280px; border:1px solid var(--line);}
 .problem .top{display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;}
 .problem .icon{
-  width:48px; height:48px; border-radius:14px; background:rgba(255,255,255,.6);
+  width:48px; height:48px; border-radius:14px; background:var(--tag-bg, rgba(28,28,35,.05));
   display:flex; align-items:center; justify-content:center;
 }
 html[data-theme="dark"] .problem .icon{background:rgba(255,255,255,.10);}
@@ -299,7 +299,7 @@ html[data-theme="dark"] .tl-lane.urgent .lane-label .dot{background:#d89ae0;}
 
 /* discovery */
 .disco{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-top:48px;}
-.disco .d{border-radius:24px; padding:32px; min-height:240px; display:flex; flex-direction:column; gap:14px;}
+.disco .d{border-radius:24px; padding:32px; min-height:240px; display:flex; flex-direction:column; gap:14px; border:1px solid var(--line);}
 .disco .d .icon{width:48px; height:48px; border-radius:14px; background:rgba(255,255,255,.6); display:flex; align-items:center; justify-content:center;}
 html[data-theme="dark"] .disco .d .icon{background:rgba(255,255,255,.10);}
 .disco .d .icon svg{width:22px; height:22px; stroke:var(--ink); stroke-width:1.7; fill:none;}
@@ -571,29 +571,30 @@ html[data-theme="dark"] .cookie-consent__accept{
 <aside class="dv-sidebar" id="dvSidebar">
   <div class="dv-top">
     <a href="index.html" class="dv-brand">Dasha Vasuti</a>
-    <button class="dv-theme" id="themeToggle" aria-label="Toggle theme" type="button">
-      <span class="knob">
-        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
-        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
-      </span>
-    </button>
   </div>
   <p class="dv-role">Senior Product Designer &amp; Design Leader</p>
   <div class="dv-bio">
-    <p>I create human-centered interfaces with refined UI — seeking harmony between function, aesthetics and business goals.</p>
+    <p>9+ years of experience, including 6+ years in fintech across B2B and B2C products.</p>
+    <p>I lead design across core banking products and mentor a team of designers.</p>
   </div>
   <div class="dv-spacer"></div>
   <div class="dv-contact">
+    <div class="dv-cta-row">
+      <a class="dv-cta" href="https://docs.google.com/document/d/1B1mU5_iIXcYVdVTMILaF_BNzHZLlmFhtOhLFsUVPnJg/edit?usp=sharing" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Open CV
+      </a>
+      <button class="dv-theme" id="themeToggle" aria-label="Toggle theme" type="button">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+      </button>
+    </div>
     <a class="dv-mail" href="mailto:dashavasuti@gmail.com">dashavasuti@gmail.com</a>
     <div class="dv-socials" aria-label="Social links">
       <a class="dv-social" href="https://www.instagram.com/dariya_kudlai" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="assets/social/instagram.png" alt=""></a>
       <a class="dv-social" href="https://www.linkedin.com/in/dariya-kudlay/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/social/linkedin.png" alt=""></a>
       <a class="dv-social" href="https://t.me/dariya_kudlai" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><img src="assets/social/telegram.png" alt=""></a>
     </div>
-    <a class="dv-cta" href="https://docs.google.com/document/d/1B1mU5_iIXcYVdVTMILaF_BNzHZLlmFhtOhLFsUVPnJg/edit?usp=sharing" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-      Open CV
-    </a>
   </div>
 </aside>
 

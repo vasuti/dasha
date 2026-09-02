@@ -120,24 +120,31 @@ button{font-family:inherit;background:none;border:none;cursor:pointer;color:inhe
 }
 
 /* ================= CASE LIST ================= */
-.cases{display:flex; flex-direction:column; gap:64px; padding-bottom:80px;}
+.cases{display:flex; flex-direction:column; gap:40px; padding-bottom:80px;}
 .case-card{
   display:block;
   border-radius:28px;
   background:var(--card-bg);
-  overflow:hidden;
+  padding:48px 40px 40px;
+  text-align:center;
   transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease;
 }
 a.case-card:hover{transform:translateY(-4px); box-shadow:0 30px 60px rgba(28,28,35,.14);}
 html[data-theme="dark"] a.case-card:hover{box-shadow:0 30px 70px rgba(0,0,0,.55);}
 
+.case-head{max-width:620px; margin:0 auto;}
+
 .case-cover{
   position:relative;
-  aspect-ratio:16/9.2;
+  width:min(100%, 300px);
+  aspect-ratio:3/4;
+  margin:32px auto 0;
+  border-radius:20px;
   background:#e8e8ea;
   overflow:hidden;
+  box-shadow:0 24px 50px rgba(28,28,35,.16);
 }
-html[data-theme="dark"] .case-cover{background:#1b1c22;}
+html[data-theme="dark"] .case-cover{background:#1b1c22; box-shadow:0 24px 50px rgba(0,0,0,.5);}
 .case-cover-img{
   position:absolute; inset:0;
   background-size:cover; background-position:center top; background-repeat:no-repeat;
@@ -153,34 +160,34 @@ a.case-card:hover .case-cover-img{transform:scale(1.03);}
   color:var(--muted);
 }
 .case-badge{
-  position:absolute; right:20px; bottom:20px;
+  position:absolute; left:50%; bottom:16px; transform:translate(-50%,6px);
   display:inline-flex; align-items:center; gap:8px;
   padding:11px 20px; border-radius:999px;
   background:var(--overlay-bg); color:#f3f3ff;
   font-family:var(--font-ui); font-weight:600; font-size:14.5px;
-  opacity:0; transform:translateY(6px);
+  opacity:0; white-space:nowrap;
   transition:opacity .3s ease, transform .3s ease;
 }
-a.case-card:hover .case-badge{opacity:1; transform:none;}
+a.case-card:hover .case-badge{opacity:1; transform:translate(-50%,0);}
 .case-card:not(a) .case-badge{
-  opacity:1; transform:none; position:static; margin-top:16px;
+  opacity:1; position:static; transform:none; margin:16px auto 0;
   background:transparent; color:var(--muted); padding:0; font-weight:500;
 }
 
-.case-body{padding:30px 8px 0;}
+.case-body{padding-top:32px; max-width:560px; margin:0 auto;}
 .case-meta{
   font-family:var(--font-ui); font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
   color:var(--muted); margin-bottom:10px;
 }
-.case-body h3{
+.case-head h3{
   font-family:var(--font-head); font-weight:400; font-size:clamp(24px,2.6vw,32px); line-height:1.2;
-  letter-spacing:-.01em; margin-bottom:14px; max-width:640px;
+  letter-spacing:-.01em;
 }
 .case-desc{
   font-family:var(--font-body); font-size:16px; line-height:1.6; color:var(--ink);
-  opacity:.78; max-width:680px; margin-bottom:18px;
+  opacity:.78; margin-bottom:18px;
 }
-.case-tags{display:flex; flex-wrap:wrap; gap:8px;}
+.case-tags{display:flex; flex-wrap:wrap; justify-content:center; gap:8px;}
 .case-tags span{
   display:inline-flex; align-items:center; padding:7px 14px; border-radius:999px;
   background:var(--tag-bg); color:var(--tag-ink); font-size:12.5px; font-weight:500;
@@ -189,9 +196,10 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
 
 @media (max-width:960px){
   .dv-main{padding:0 24px;}
-  .cases{gap:44px; padding-top:32px; padding-bottom:56px;}
-  .case-card{border-radius:20px;}
-  .case-body{padding:22px 4px 0;}
+  .cases{gap:32px; padding-top:32px; padding-bottom:56px;}
+  .case-card{border-radius:20px; padding:36px 24px 32px;}
+  .case-cover{margin-top:24px;}
+  .case-body{padding-top:24px;}
 }
 
 /* ================= ABOUT ME ================= */
@@ -242,13 +250,6 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
 .exp-content li{margin-bottom:8px;}
 .exp-content li::marker{color:var(--muted);}
 
-.exp-foot{
-  display:flex; flex-wrap:wrap; align-items:center; gap:24px;
-  margin-top:56px; padding-top:32px; border-top:1px solid var(--line);
-  font-family:var(--font-body); font-size:14px; color:var(--muted);
-}
-.exp-foot a{text-decoration:underline; text-underline-offset:3px; color:var(--ink);}
-
 @media (max-width:960px){
   .about-me{padding-top:48px; padding-bottom:56px;}
   .exp-head{padding:18px 2px;}
@@ -269,30 +270,30 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
 <aside class="dv-sidebar" id="dvSidebar">
   <div class="dv-top">
     <a href="index.html#home" class="dv-brand" id="brand">Dasha Vasuti</a>
-    <button class="dv-theme" id="themeToggle" aria-label="Toggle theme" type="button">
-      <span class="knob">
-        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
-        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
-      </span>
-    </button>
   </div>
   <p class="dv-role">Senior Product Designer &amp; Design Leader</p>
   <div class="dv-bio">
-    <p>I create human-centered interfaces with refined UI — seeking harmony between function, aesthetics and business goals.</p>
     <p>9+ years of experience, including 6+ years in fintech across B2B and B2C products.</p>
+    <p>I lead design across core banking products and mentor a team of designers.</p>
   </div>
   <div class="dv-spacer"></div>
   <div class="dv-contact">
+    <div class="dv-cta-row">
+      <a class="dv-cta" href="https://docs.google.com/document/d/1B1mU5_iIXcYVdVTMILaF_BNzHZLlmFhtOhLFsUVPnJg/edit?usp=sharing" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Open CV
+      </a>
+      <button class="dv-theme" id="themeToggle" aria-label="Toggle theme" type="button">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+      </button>
+    </div>
     <a class="dv-mail" href="mailto:dashavasuti@gmail.com">dashavasuti@gmail.com</a>
     <div class="dv-socials" aria-label="Social links">
       <a class="dv-social" href="https://www.instagram.com/dariya_kudlai" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="assets/social/instagram.png" alt=""></a>
       <a class="dv-social" href="https://www.linkedin.com/in/dariya-kudlay/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/social/linkedin.png" alt=""></a>
       <a class="dv-social" href="https://t.me/dariya_kudlai" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><img src="assets/social/telegram.png" alt=""></a>
     </div>
-    <a class="dv-cta" href="https://docs.google.com/document/d/1B1mU5_iIXcYVdVTMILaF_BNzHZLlmFhtOhLFsUVPnJg/edit?usp=sharing" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-      Open CV
-    </a>
   </div>
 </aside>
 
@@ -302,13 +303,15 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
   <section class="cases" id="works">
 
     <a class="case-card live rv" href="ai-workflows.html">
+      <div class="case-head">
+        <p class="case-meta">Alfa-Bank B2B&nbsp;·&nbsp;2026</p>
+        <h3>Operations Feed: AI Workflows</h3>
+      </div>
       <div class="case-cover">
         <div class="case-cover-img" style="background-image:url('assets/cases/ai-workflows.webp')"></div>
         <span class="case-badge">Read case →</span>
       </div>
       <div class="case-body">
-        <p class="case-meta">Alfa-Bank B2B&nbsp;·&nbsp;2026</p>
-        <h3>Operations Feed: AI Workflows</h3>
         <p class="case-desc">Led AI discovery for Alfa Bank B2B Operations Feed, generating 40+ AI product hypotheses from user pain points and operational bottlenecks. Designed and validated 10 AI-powered concepts, all approved for the product roadmap.</p>
         <div class="case-tags">
           <span>B2B</span><span>Web</span><span>Homepage</span><span>Metrics analysis</span><span>UX-Research</span><span class="nda">NDA</span>
@@ -317,13 +320,15 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
     </a>
 
     <a class="case-card live rv" href="bulk-payment-registries.html">
+      <div class="case-head">
+        <p class="case-meta">Alfa-Bank B2B&nbsp;·&nbsp;2024</p>
+        <h3>Bulk Payment Registries</h3>
+      </div>
       <div class="case-cover">
         <div class="case-cover-img" style="background-image:url('assets/cases/bulk-payment-registries.webp')"></div>
         <span class="case-badge">Read case →</span>
       </div>
       <div class="case-body">
-        <p class="case-meta">Alfa-Bank B2B&nbsp;·&nbsp;2024</p>
-        <h3>Bulk Payment Registries</h3>
         <p class="case-desc">Scaled payment registry capacity from 10 to 15,000 payments, increasing product adoption by 70% through simplified high-volume workflows and reduced operational complexity.</p>
         <div class="case-tags">
           <span>B2B</span><span>Web</span><span>Mobile App</span><span>Mobile Web</span><span>Metrics analysis</span><span>A/B testing</span>
@@ -332,12 +337,14 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
     </a>
 
     <div class="case-card rv">
+      <div class="case-head">
+        <p class="case-meta">Alfa-Bank B2B&nbsp;·&nbsp;2026</p>
+        <h3>Operations Feed: Personalisation</h3>
+      </div>
       <div class="case-cover">
         <div class="case-cover-img" style="background-image:url('assets/cases/personalisation.webp')"></div>
       </div>
       <div class="case-body">
-        <p class="case-meta">Alfa-Bank B2B&nbsp;·&nbsp;2026</p>
-        <h3>Operations Feed: Personalisation</h3>
         <p class="case-desc">Designed role-based table/list views for Alfa Bank B2B, allowing users to switch between 3 workspace layouts tailored to small businesses, corporate clients, sole proprietors, and Alfa-Boss executive users.</p>
         <div class="case-tags">
           <span>B2B</span><span>Web</span><span>Metrics analysis</span><span>A/B testing</span><span>Homepage</span><span>Complex Workflows</span><span class="nda">NDA</span>
@@ -347,12 +354,14 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
     </div>
 
     <div class="case-card rv">
+      <div class="case-head">
+        <p class="case-meta">Alfa-Bank B2B&nbsp;·&nbsp;2025</p>
+        <h3>Operations Feed: Multibanking</h3>
+      </div>
       <div class="case-cover">
         <div class="case-cover-img" style="background-image:url('assets/cases/multibanking.webp')"></div>
       </div>
       <div class="case-body">
-        <p class="case-meta">Alfa-Bank B2B&nbsp;·&nbsp;2025</p>
-        <h3>Operations Feed: Multibanking</h3>
         <p class="case-desc">Multibanking enabling users to manage operations from external bank accounts without leaving Alfa Bank’s interface. This helps retain and attract clients by turning Alfa Bank into a unified workspace for cross-bank financial operations. Rolled out to 70% of users to date.</p>
         <div class="case-tags">
           <span>B2B</span><span>Web</span><span>Homepage</span><span>Metrics analysis</span><span>UX-Research</span><span class="nda">NDA</span>
@@ -362,12 +371,14 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
     </div>
 
     <div class="case-card rv">
+      <div class="case-head">
+        <p class="case-meta">Alfa-Bank B2B&nbsp;·&nbsp;2025</p>
+        <h3>Operations Feed: Holding Mode</h3>
+      </div>
       <div class="case-cover">
         <div class="case-cover-img" style="background-image:url('assets/cases/holding-mode.webp')"></div>
       </div>
       <div class="case-body">
-        <p class="case-meta">Alfa-Bank B2B&nbsp;·&nbsp;2025</p>
-        <h3>Operations Feed: Holding Mode</h3>
         <p class="case-desc">Designed Holding Mode for Alfa Bank B2B, enabling business clients to manage payments, transactions, bank messages and daily financial operations across up to 70+ legal entities within a single consistent workspace.</p>
         <div class="case-tags">
           <span>B2B</span><span>Web</span><span>Dashboard</span><span>UX-Research</span><span>Complex Workflows</span><span class="nda">NDA</span>
@@ -377,12 +388,14 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
     </div>
 
     <div class="case-card rv">
+      <div class="case-head">
+        <p class="case-meta">Alfa-Bank B2B&nbsp;·&nbsp;2024</p>
+        <h3>Operations Feed: Digital Currency</h3>
+      </div>
       <div class="case-cover">
         <div class="case-cover-img" style="background-image:url('assets/cases/digital-currency.webp')"></div>
       </div>
       <div class="case-body">
-        <p class="case-meta">Alfa-Bank B2B&nbsp;·&nbsp;2024</p>
-        <h3>Operations Feed: Digital Currency</h3>
         <p class="case-desc">Designed Alfa Bank’s Digital Russian Currency MVP from scratch, translating Bank of Russia regulatory requirements into clear mobile flows. Delivered 200+ screens and 25+ scenarios across iOS and Android in 3 months.</p>
         <div class="case-tags">
           <span>B2B</span><span>Homepage</span><span>Complex Workflows</span><span>iOS</span><span>Android</span><span>MVP</span><span class="nda">NDA</span>
@@ -392,13 +405,15 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
     </div>
 
     <a class="case-card live rv" href="https://www.behance.net/gallery/215357123/Services-for-PSB-bank" target="_blank" rel="noopener noreferrer">
+      <div class="case-head">
+        <p class="case-meta">PSB-Bank B2B&nbsp;·&nbsp;2022</p>
+        <h3>Credit Line &amp; Overdraft</h3>
+      </div>
       <div class="case-cover">
         <div class="case-cover-img" style="background-image:url('assets/cases/credit-line-overdraft.webp')"></div>
         <span class="case-badge">Open in Behance ↗</span>
       </div>
       <div class="case-body">
-        <p class="case-meta">PSB-Bank B2B&nbsp;·&nbsp;2022</p>
-        <h3>Credit Line &amp; Overdraft</h3>
         <p class="case-desc">Designed Alfa Bank B2B’s digital lending experience across web and mobile — from landing pages and applications to a full product for drawing funds, tracking debt, repayments, and credit line status. Reduced approval time from ~16 days to same-day and access to funds from ~29 days to 1 day.</p>
         <div class="case-tags">
           <span>B2B</span><span>iOS</span><span>Android</span><span>MVP</span><span>Complex Workflows</span>
@@ -586,11 +601,6 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
         </div>
       </div>
 
-    </div>
-
-    <div class="exp-foot rv" style="--d:.18s">
-      <span>Let’s talk — <a href="mailto:dashavasuti@gmail.com">dashavasuti@gmail.com</a></span>
-      <a href="https://docs.google.com/document/d/1B1mU5_iIXcYVdVTMILaF_BNzHZLlmFhtOhLFsUVPnJg/edit?usp=sharing" target="_blank" rel="noopener">Open CV</a>
     </div>
   </section>
 
