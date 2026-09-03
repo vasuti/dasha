@@ -891,11 +891,10 @@ html[data-theme="dark"] .cookie-consent__accept{
   if (reduced || typeof Lenis === 'undefined') return;
 
   const lenis = new Lenis({
-    duration: 1.05,
-    easing: t => 1 - Math.pow(1 - t, 3),
+    lerp: 0.1,
     smoothWheel: true,
     wheelMultiplier: 1,
-    touchMultiplier: 1.1,
+    touchMultiplier: 1.2,
   });
   function raf(time){
     lenis.raf(time);
