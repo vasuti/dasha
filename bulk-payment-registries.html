@@ -166,6 +166,56 @@ html[data-theme="dark"] .tag{background:transparent; border:1px solid rgba(228,2
 .fact .v{font-weight:400; font-size:16px; line-height:25px;}
 
 /* ============================================================
+   REDESIGN 2025 — hero + marquee (prg- namespace, kept separate
+   from the classes above so the not-yet-rebuilt sections below
+   keep working while this page is migrated section by section)
+   ============================================================ */
+.prg-hero{padding-top:88px; text-align:center; display:flex; flex-direction:column; align-items:center;}
+.prg-hero .back{align-self:flex-start; margin-bottom:40px;}
+.prg-hero-copy{max-width:640px; margin:24px auto 0;}
+.prg-eyebrow{font-weight:600; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--meta); margin-bottom:28px;}
+.prg-title{font-weight:800; font-size:clamp(52px,7.4vw,100px); line-height:.96; letter-spacing:-.03em; text-transform:lowercase; margin-bottom:28px;}
+.prg-lead{font-weight:400; font-size:18px; line-height:29px; color:var(--meta); max-width:520px; margin:0 auto 32px;}
+.prg-tags{display:flex; flex-wrap:wrap; justify-content:center; gap:10px;}
+.prg-tag{display:inline-flex; align-items:center; padding:8px 18px; border-radius:999px; font-size:14px; font-weight:500; border:1px solid var(--line); color:var(--ink); background:transparent;}
+.prg-tag--violet{border-color:#8B7FF0; color:#8B7FF0;}
+.prg-tag--teal{border-color:#3FB8A6; color:#2FA292;}
+.prg-tag--orange{border-color:#E8935B; color:#D97F42;}
+.prg-tag--coral{border-color:#D9634A; color:#C5533B;}
+html[data-theme="dark"] .prg-tag--violet{border-color:#a99bff; color:#a99bff;}
+html[data-theme="dark"] .prg-tag--teal{border-color:#5FD4C2; color:#5FD4C2;}
+html[data-theme="dark"] .prg-tag--orange{border-color:#F0A876; color:#F0A876;}
+html[data-theme="dark"] .prg-tag--coral{border-color:#E68873; color:#E68873;}
+
+.prg-marquee{margin-top:64px; overflow:hidden;}
+.prg-marquee-track{display:flex; gap:24px; width:max-content; padding:0 24px; animation:prg-scroll 60s linear infinite;}
+.prg-marquee-track:has(.prg-marquee-item:hover){animation-play-state:paused;}
+@keyframes prg-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.prg-marquee-item{height:300px; border-radius:20px; overflow:hidden; border:1px solid var(--line); background:var(--card-bg); flex:0 0 auto; cursor:pointer;}
+.prg-marquee-item img{height:100%; width:auto; display:block;}
+
+.prg-lightbox{
+  position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center;
+  padding:40px; background:rgba(10,10,12,.86); backdrop-filter:blur(6px);
+  opacity:0; transition:opacity .25s ease;
+}
+.prg-lightbox.open{display:flex;}
+.prg-lightbox.in{opacity:1;}
+.prg-lightbox img{max-width:100%; max-height:100%; border-radius:16px; box-shadow:0 30px 80px rgba(0,0,0,.5);}
+
+@media (prefers-reduced-motion: reduce){
+  .prg-marquee-track{animation:none;}
+}
+@media (max-width:860px){
+  .prg-hero{padding-top:40px;}
+  .prg-title{font-size:clamp(38px,13vw,60px);}
+  .prg-lead{font-size:16px; line-height:26px;}
+  .prg-marquee{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+  .prg-marquee-track{animation:none !important; width:max-content; padding:0 20px;}
+  .prg-marquee-item{height:220px;}
+}
+
+/* ============================================================
    БОЛЬШИЕ ЦИФРЫ
    ============================================================ */
 .stats{display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;}
@@ -598,27 +648,41 @@ html[data-theme="dark"] .cookie-consent__accept{
 </aside>
 
 <!-- ================= HERO ================= -->
-<div class="wrap hero">
+<div class="wrap prg-hero">
   <a class="back rv" href="./">
     <svg viewBox="0 0 34 14"><path d="M33 7H2M8 1L2 7l6 6"/></svg> back
   </a>
-  <div class="hero-top">
-    <div>
-      <h1 class="rv">Bulk Payment Registries</h1>
-      <div class="tags rv" style="--d:.08s">
-        <span class="tag">B2B</span><span class="tag">Web</span><span class="tag">Mobile Web</span><span class="tag">iOS</span><span class="tag">Android</span><span class="tag">UX-Research</span><span class="tag">0&nbsp;→&nbsp;1</span><span class="tag">A/B testing</span><span class="tag">Metrics analysis</span>
-      </div>
+  <div class="prg-hero-copy">
+    <p class="prg-eyebrow rv">Alfa-Bank · B2B Fintech · 2024–2025</p>
+    <h1 class="prg-title rv" style="--d:.05s">payment registries</h1>
+    <p class="prg-lead rv" style="--d:.1s">One of Alfa-Bank B2B's core payment products — helping businesses create, sign and manage up to 30,000 payments in a single workflow.</p>
+    <div class="prg-tags rv" style="--d:.15s">
+      <span class="prg-tag prg-tag--violet">B2B</span>
+      <span class="prg-tag">Web</span>
+      <span class="prg-tag prg-tag--teal">iOS &amp; Android</span>
+      <span class="prg-tag">End-to-End</span>
+      <span class="prg-tag prg-tag--orange">Metrics analysis</span>
+      <span class="prg-tag prg-tag--coral">UX-Research</span>
     </div>
-    <div class="year rv">2023 → 2025</div>
-  </div>
-  <p class="lead rv" style="--d:.15s">A service for working with groups of payments in Alfa-Bank B2B — sign, execute and edit <b>from 1 to 30,000 payments at once</b>, track the status of a registry and every payment inside it, with role-based access for teams. A functionality unique in the market.</p>
-  <div class="facts rv" style="--d:.25s">
-    <div class="fact"><div class="k">Role</div><div class="v">Senior Product Designer — from MVP to scale</div></div>
-    <div class="fact"><div class="k">Focus</div><div class="v">The 2023 stage that set the product’s direction</div></div>
-    <div class="fact"><div class="k">Platforms</div><div class="v">Desktop online bank, mobile apps, mobile web</div></div>
-    <div class="fact"><div class="k">Audience</div><div class="v">From sole entrepreneurs to multi-company enterprises</div></div>
   </div>
 </div>
+
+<div class="prg-marquee rv" style="--d:.2s" id="prgMarquee">
+  <div class="prg-marquee-track" id="prgMarqueeTrack">
+    <div class="prg-marquee-item"><img src="assets/cases/payment-registries/marquee-01.webp" alt="Payment Registries — main list" loading="lazy"></div>
+    <div class="prg-marquee-item"><img src="assets/cases/payment-registries/marquee-02.webp" alt="Import results" loading="lazy"></div>
+    <div class="prg-marquee-item"><img src="assets/cases/payment-registries/marquee-03.webp" alt="Import dialog" loading="lazy"></div>
+    <div class="prg-marquee-item"><img src="assets/cases/payment-registries/marquee-04.webp" alt="Mobile — ready to send" loading="lazy"></div>
+    <div class="prg-marquee-item"><img src="assets/cases/payment-registries/marquee-05.webp" alt="Registry filters" loading="lazy"></div>
+    <div class="prg-marquee-item"><img src="assets/cases/payment-registries/marquee-06.webp" alt="Registry uploading" loading="lazy"></div>
+    <div class="prg-marquee-item"><img src="assets/cases/payment-registries/marquee-07.webp" alt="Registry details" loading="lazy"></div>
+    <div class="prg-marquee-item"><img src="assets/cases/payment-registries/marquee-08.webp" alt="Mobile — import registry" loading="lazy"></div>
+    <div class="prg-marquee-item"><img src="assets/cases/payment-registries/marquee-09.webp" alt="Mobile — all filters" loading="lazy"></div>
+    <div class="prg-marquee-item"><img src="assets/cases/payment-registries/marquee-10.webp" alt="Mobile — payment details" loading="lazy"></div>
+  </div>
+</div>
+
+<div class="prg-lightbox" id="prgLightbox"><img id="prgLightboxImg" src="" alt=""></div>
 
 <div class="wrap">
 <!-- ================= БОЛЬШИЕ ЦИФРЫ ================= -->
@@ -914,9 +978,38 @@ document.querySelectorAll('.back, .brand').forEach(a => a.addEventListener('clic
 (function(){
   const SHORT = /(^|\s)(a|an|the|and|or|of|to|in|on|for|with|from|by|at|as|is|are|was|it|we|our|not|no|so|up|one)(\s)/gi;
   function fix(t){ let p; do { p = t; t = t.replace(SHORT, (m,a,w) => a + w + '\u00a0'); } while (t !== p); return t; }
-  document.querySelectorAll('.lead, .prose p, .quote, .sub, .problem p, .step p, .d p, .cmp p, .res .t, .buses .txt, .win .txt, .legend p, .reflect .big, .ba .note, .nda-card p').forEach(el => {
+  document.querySelectorAll('.lead, .prose p, .quote, .sub, .problem p, .step p, .d p, .cmp p, .res .t, .buses .txt, .win .txt, .legend p, .reflect .big, .ba .note, .nda-card p, .prg-lead, .prg-eyebrow').forEach(el => {
     el.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = fix(n.textContent); });
   });
+})();
+
+/* ================= HERO MARQUEE ================= */
+(function(){
+  const track = document.getElementById('prgMarqueeTrack');
+  if (!track) return;
+  if (window.innerWidth > 860) {
+    track.insertAdjacentHTML('beforeend', track.innerHTML);
+  }
+
+  const lightbox = document.getElementById('prgLightbox');
+  const lightboxImg = document.getElementById('prgLightboxImg');
+  function openLightbox(src, alt){
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.classList.add('open');
+    requestAnimationFrame(() => lightbox.classList.add('in'));
+    document.body.classList.add('dv-noscroll');
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('in');
+    document.body.classList.remove('dv-noscroll');
+    setTimeout(() => lightbox.classList.remove('open'), 250);
+  }
+  track.querySelectorAll('.prg-marquee-item img').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+  });
+  lightbox.addEventListener('click', closeLightbox);
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 })();
 </script>
 
