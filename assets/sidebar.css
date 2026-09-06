@@ -13,10 +13,6 @@
   --dv-bg: var(--bg, #f7f7f7);
   --dv-font-ui: var(--font-ui, var(--font, 'Montserrat', sans-serif));
 }
-html[data-theme="dark"]{
-  --dv-muted: rgba(236,237,242,.56);
-  --dv-line: rgba(244,244,255,.12);
-}
 
 body{padding-left:0;}
 body.dv-noscroll{overflow:hidden;}
@@ -83,21 +79,6 @@ body.dv-noscroll{overflow:hidden;}
 .dv-cta:hover{transform:translateY(-2px); opacity:.92;}
 .dv-cta svg{width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:1.8; flex:0 0 auto;}
 
-.dv-theme{
-  box-sizing:border-box;
-  position:relative; width:48px; height:48px; flex:0 0 48px;
-  padding:0; border-radius:999px;
-  background:var(--dv-bg); border:1px solid var(--dv-line);
-  display:flex; align-items:center; justify-content:center;
-  transition:background .4s ease, border-color .4s ease, transform .25s ease;
-}
-.dv-theme:hover{transform:translateY(-2px);}
-html[data-theme="dark"] .dv-theme{background:#1a1b21;}
-.dv-theme svg{width:19px; height:19px; stroke:var(--dv-ink); fill:none; stroke-width:1.6;}
-.dv-theme .moon{display:none;}
-html[data-theme="dark"] .dv-theme .sun{display:none;}
-html[data-theme="dark"] .dv-theme .moon{display:block;}
-
 .dv-mail{
   font-family:var(--font-body, 'Inter', sans-serif);
   font-size:14.5px; font-weight:500; color:var(--dv-ink);
@@ -125,7 +106,6 @@ html[data-theme="dark"] .dv-theme .moon{display:block;}
   border:1px solid var(--dv-line);
   box-shadow:0 10px 26px rgba(28,28,35,.12);
 }
-html[data-theme="dark"] .dv-burger{box-shadow:0 10px 26px rgba(0,0,0,.5);}
 .dv-burger .bar{
   position:relative; width:18px; height:2px; border-radius:2px;
   background:var(--dv-ink);

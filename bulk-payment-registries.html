@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
@@ -61,35 +61,10 @@
   --lilac:         #8b7ff0;
   --lilac-soft:    #b6b1f9;
 
-  --toggle-track:  #d9d9d9;
-  --toggle-knob:   #f7f7f7;
-
   --band:      #1c1c23;
   --band-ink:  #f3f3ff;
 
   --font: 'Montserrat', sans-serif;
-}
-html[data-theme="dark"]{
-  --bg:        #0b0c0f;
-  --ink:       #ecedf2;
-  --ink-2:     #f2f2f8;
-  --muted:     #63646f;
-  --meta:      rgba(240,240,252,.55);
-  --card-bg:   #15161c;
-  --line:      rgba(244,244,255,.10);
-  --toggle-track: #26272f;
-  --toggle-knob:  #0b0c0f;
-
-  /* Стеклянные вставки — холодный электрик-фиолет в духе awwwards */
-  --pastel-blue:   rgba(244,244,255,.05);
-  --pastel-pink:   rgba(244,244,255,.05);
-  --pastel-purple: rgba(244,244,255,.05);
-  --pastel-green:  rgba(244,244,255,.05);
-  --lilac:         #9a8cff;
-  --lilac-soft:    #b3aaff;
-
-  --band:      #101116;
-  --band-ink:  #f2f2f8;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -154,7 +129,6 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
   padding:8px 16px; border-radius:56px;
   background:rgba(230,230,232,.5); color:#1c1c23;
 }
-html[data-theme="dark"] .tag{background:transparent; border:1px solid rgba(228,228,247,.28); color:#fff;}
 .lead{font-weight:300; font-size:clamp(22px, 2.4vw, 30px); line-height:1.5; letter-spacing:-.03em; max-width:920px;}
 .lead b{font-weight:500;}
 
@@ -182,17 +156,19 @@ html[data-theme="dark"] .tag{background:transparent; border:1px solid rgba(228,2
 .prg-tag--teal{border-color:#3FB8A6; color:#2FA292;}
 .prg-tag--orange{border-color:#E8935B; color:#D97F42;}
 .prg-tag--coral{border-color:#D9634A; color:#C5533B;}
-html[data-theme="dark"] .prg-tag--violet{border-color:#a99bff; color:#a99bff;}
-html[data-theme="dark"] .prg-tag--teal{border-color:#5FD4C2; color:#5FD4C2;}
-html[data-theme="dark"] .prg-tag--orange{border-color:#F0A876; color:#F0A876;}
-html[data-theme="dark"] .prg-tag--coral{border-color:#E68873; color:#E68873;}
 
-.prg-marquee{margin-top:64px; overflow:hidden;}
-.prg-marquee-track{display:flex; gap:24px; width:max-content; padding:0 24px; animation:prg-scroll 60s linear infinite;}
-.prg-marquee-track:has(.prg-marquee-item:hover){animation-play-state:paused;}
-@keyframes prg-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.prg-marquee{
+  margin-top:64px;
+  overflow-x:auto; overflow-y:hidden;
+  scrollbar-width:none; -ms-overflow-style:none;
+  cursor:grab;
+}
+.prg-marquee::-webkit-scrollbar{display:none;}
+.prg-marquee.is-dragging{cursor:grabbing;}
+.prg-marquee-track{display:flex; gap:24px; width:max-content; padding:0 24px;}
 .prg-marquee-item{height:300px; border-radius:20px; overflow:hidden; border:1px solid var(--line); background:var(--card-bg); flex:0 0 auto; cursor:pointer;}
-.prg-marquee-item img{height:100%; width:auto; display:block;}
+.prg-marquee-item img{height:100%; width:auto; display:block; user-select:none; -webkit-user-drag:none;}
+.prg-marquee.is-dragging .prg-marquee-item{cursor:grabbing;}
 
 .prg-lightbox{
   position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center;
@@ -203,15 +179,12 @@ html[data-theme="dark"] .prg-tag--coral{border-color:#E68873; color:#E68873;}
 .prg-lightbox.in{opacity:1;}
 .prg-lightbox img{max-width:100%; max-height:100%; border-radius:16px; box-shadow:0 30px 80px rgba(0,0,0,.5);}
 
-@media (prefers-reduced-motion: reduce){
-  .prg-marquee-track{animation:none;}
-}
 @media (max-width:860px){
   .prg-hero{padding-top:40px;}
   .prg-title{font-size:clamp(38px,13vw,60px);}
   .prg-lead{font-size:16px; line-height:26px;}
-  .prg-marquee{overflow-x:auto; -webkit-overflow-scrolling:touch;}
-  .prg-marquee-track{animation:none !important; width:max-content; padding:0 20px;}
+  .prg-marquee{-webkit-overflow-scrolling:touch; cursor:auto;}
+  .prg-marquee-track{padding:0 20px;}
   .prg-marquee-item{height:220px;}
 }
 
@@ -250,7 +223,6 @@ html[data-theme="dark"] .prg-tag--coral{border-color:#E68873; color:#E68873;}
   width:48px; height:48px; border-radius:14px; background:var(--tag-bg, rgba(28,28,35,.05));
   display:flex; align-items:center; justify-content:center;
 }
-html[data-theme="dark"] .problem .icon{background:rgba(255,255,255,.10);}
 .problem .icon svg{width:22px; height:22px; stroke:var(--ink); stroke-width:1.7; fill:none;}
 .problem .n{font-weight:300; font-size:52px; line-height:1;}
 .problem h3{font-weight:500; font-size:18px; line-height:25px; margin-bottom:12px;}
@@ -262,8 +234,6 @@ html[data-theme="dark"] .problem .icon{background:rgba(255,255,255,.10);}
 .teardown{display:grid; grid-template-columns:1.1fr 1fr; gap:48px; align-items:center;}
 .mock-real{border-radius:24px; overflow:hidden; border:1px solid var(--line); background:var(--card-bg); box-shadow:0 20px 50px rgba(28,28,35,.10);}
 .mock-real img{width:100%; height:auto; display:block;}
-html[data-theme="dark"] .mock-real{box-shadow:0 20px 50px rgba(0,0,0,.5);}
-html[data-theme="dark"] .mock-real img{filter:brightness(.92);}
 
 .legend{display:flex; flex-direction:column; gap:22px;}
 .legend .li{display:flex; gap:16px;}
@@ -297,7 +267,6 @@ html[data-theme="dark"] .mock-real img{filter:brightness(.92);}
   background:var(--bg);
 }
 .ba .col.after .clip{background:rgba(255,255,255,.4);}
-html[data-theme="dark"] .ba .col.after .clip{background:rgba(255,255,255,.05);}
 .ba .note{font-weight:300; font-size:15px; line-height:25px; opacity:.85; margin-top:16px;}
 
 .win{
@@ -331,7 +300,6 @@ html[data-theme="dark"] .ba .col.after .clip{background:rgba(255,255,255,.05);}
 }
 .tl-lane .lane-label .dot{width:8px; height:8px; border-radius:50%; background:var(--lilac);}
 .tl-lane.urgent .lane-label .dot{background:#e39aa8;}
-html[data-theme="dark"] .tl-lane.urgent .lane-label .dot{background:#d89ae0;}
 .tl-bars{padding:14px 0; display:flex; flex-direction:column; gap:10px; justify-content:center;}
 .tl-bar{
   border-radius:40px; padding:14px 24px;
@@ -350,7 +318,6 @@ html[data-theme="dark"] .tl-lane.urgent .lane-label .dot{background:#d89ae0;}
 .disco{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-top:48px;}
 .disco .d{border-radius:24px; padding:32px; min-height:240px; display:flex; flex-direction:column; gap:14px; border:1px solid var(--line);}
 .disco .d .icon{width:48px; height:48px; border-radius:14px; background:rgba(255,255,255,.6); display:flex; align-items:center; justify-content:center;}
-html[data-theme="dark"] .disco .d .icon{background:rgba(255,255,255,.10);}
 .disco .d .icon svg{width:22px; height:22px; stroke:var(--ink); stroke-width:1.7; fill:none;}
 .disco .d h3{font-weight:500; font-size:18px;}
 .disco .d p{font-weight:400; font-size:14.5px; line-height:23px; opacity:.82;}
@@ -403,7 +370,6 @@ html[data-theme="dark"] .disco .d .icon{background:rgba(255,255,255,.10);}
   align-self:start;
 }
 .nda-card .lock{width:44px; height:44px; border-radius:12px; background:rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center; margin-bottom:20px;}
-html[data-theme="dark"] .nda-card .lock{background:rgba(255,255,255,.14);}
 .nda-card .lock svg{width:20px; height:20px; stroke:var(--ink); stroke-width:1.7; fill:none;}
 .nda-card h3{font-weight:500; font-size:18px; margin-bottom:12px;}
 .nda-card p{font-weight:300; font-size:16px; line-height:26px;}
@@ -553,16 +519,6 @@ html[data-theme="dark"] .nda-card .lock{background:rgba(255,255,255,.14);}
 .cookie-consent__accept:hover{transform:translateY(-1px);}
 .cookie-consent__accept:focus-visible,
 .cookie-consent__link:focus-visible{outline:2px solid currentColor; outline-offset:3px;}
-html[data-theme="dark"] .cookie-consent{
-  background:rgba(17,18,23,.68);
-  border-color:rgba(255,255,255,.10);
-  box-shadow:0 18px 50px rgba(0,0,0,.45);
-  color:var(--ink, #ecedf2);
-}
-html[data-theme="dark"] .cookie-consent__accept{
-  background:#fff;
-  color:#15161c;
-}
 @media (max-width:960px){
   .cookie-consent{left:24px;}
 }
@@ -633,10 +589,6 @@ html[data-theme="dark"] .cookie-consent__accept{
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
         Open CV
       </a>
-      <button class="dv-theme" id="themeToggle" aria-label="Toggle theme" type="button">
-        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
-        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
-      </button>
     </div>
     <a class="dv-mail" href="mailto:dashavasuti@gmail.com">dashavasuti@gmail.com</a>
     <div class="dv-socials" aria-label="Social links">
@@ -985,11 +937,72 @@ document.querySelectorAll('.back, .brand').forEach(a => a.addEventListener('clic
 
 /* ================= HERO MARQUEE ================= */
 (function(){
+  const viewport = document.getElementById('prgMarquee');
   const track = document.getElementById('prgMarqueeTrack');
-  if (!track) return;
-  if (window.innerWidth > 860) {
-    track.insertAdjacentHTML('beforeend', track.innerHTML);
+  if (!viewport || !track) return;
+
+  /* Дублируем ленту, чтобы прокрутка зацикливалась без стыка */
+  track.insertAdjacentHTML('beforeend', track.innerHTML);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const SPEED = 0.85;           // px за кадр ≈ полный проход за ~60 c
+  let paused = false;
+  let dragging = false;
+  let startX = 0, startScroll = 0, moved = 0;
+  /* дробную позицию держим сами: scrollLeft округляется и +0.45 за кадр теряется */
+  let pos = 0;
+
+  function halfWidth(){ return track.scrollWidth / 2; }
+  function normalise(){
+    const half = halfWidth();
+    if (!half) return;
+    if (pos >= half) pos -= half;
+    else if (pos < 0) pos += half;
   }
+  function tick(){
+    if (!paused && !dragging) {
+      pos += SPEED;
+      normalise();
+      viewport.scrollLeft = pos;
+    }
+    requestAnimationFrame(tick);
+  }
+  if (!reduced) requestAnimationFrame(tick);
+
+  /* Пауза при наведении на конкретную карточку */
+  track.addEventListener('mouseover', e => { if (e.target.closest('.prg-marquee-item')) paused = true; });
+  track.addEventListener('mouseout',  e => { if (e.target.closest('.prg-marquee-item')) paused = false; });
+
+  /* Перетаскивание мышью */
+  viewport.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'touch') return;   // на тач-устройствах работает нативный скролл
+    dragging = true;
+    moved = 0;
+    startX = e.clientX;
+    startScroll = viewport.scrollLeft;
+    viewport.classList.add('is-dragging');
+    viewport.setPointerCapture(e.pointerId);
+  });
+  viewport.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    moved = Math.max(moved, Math.abs(dx));
+    pos = startScroll - dx;
+    normalise();
+    viewport.scrollLeft = pos;
+  });
+  /* нативный скролл (тачпад, тач) тоже двигает позицию — подхватываем */
+  viewport.addEventListener('scroll', () => {
+    if (!dragging && (paused || reduced)) pos = viewport.scrollLeft;
+  }, {passive:true});
+  function endDrag(e){
+    if (!dragging) return;
+    dragging = false;
+    viewport.classList.remove('is-dragging');
+    try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
+  }
+  viewport.addEventListener('pointerup', endDrag);
+  viewport.addEventListener('pointercancel', endDrag);
 
   const lightbox = document.getElementById('prgLightbox');
   const lightboxImg = document.getElementById('prgLightboxImg');
@@ -1006,7 +1019,7 @@ document.querySelectorAll('.back, .brand').forEach(a => a.addEventListener('clic
     setTimeout(() => lightbox.classList.remove('open'), 250);
   }
   track.querySelectorAll('.prg-marquee-item img').forEach(img => {
-    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    img.addEventListener('click', () => { if (moved < 6) openLightbox(img.src, img.alt); });
   });
   lightbox.addEventListener('click', closeLightbox);
   window.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });

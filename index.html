@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
@@ -65,21 +65,6 @@
   --font-body: 'Inter', sans-serif;
   --font-head: 'Merriweather', serif;
 }
-html[data-theme="dark"]{
-  --bg:            #0b0c0f;
-  --ink:           #ecedf2;
-  --muted:         #7c7d88;
-
-  --card-bg:       #15161c;
-  --card-ink:      #f2f2f8;
-  --card-meta:     rgba(240,240,252,.5);
-  --tag-bg:        rgba(255,255,255,.08);
-  --tag-ink:       #ffffff;
-  --tag-nda:       #a99bff;
-  --overlay-bg:    rgba(12,10,24,.90);
-
-  --line:          rgba(244,244,255,.12);
-}
 
 *{margin:0;padding:0;box-sizing:border-box;}
 @media (prefers-reduced-motion: reduce){
@@ -126,7 +111,6 @@ button{font-family:inherit;background:none;border:none;cursor:pointer;color:inhe
   transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease;
 }
 a.case-card:hover{box-shadow:0 30px 60px rgba(28,28,35,.14);}
-html[data-theme="dark"] a.case-card:hover{box-shadow:0 30px 70px rgba(0,0,0,.55);}
 
 .cases-divider{
   width:100%;
@@ -146,7 +130,6 @@ html[data-theme="dark"] a.case-card:hover{box-shadow:0 30px 70px rgba(0,0,0,.55)
   background:#e8e8ea;
   overflow:hidden;
 }
-html[data-theme="dark"] .case-cover{background:#1b1c22;}
 .case-cover-img{
   position:absolute; inset:0;
   background-size:cover; background-position:center top; background-repeat:no-repeat;
@@ -277,10 +260,6 @@ a.case-card:hover .case-badge{opacity:1; transform:none;}
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
         Open CV
       </a>
-      <button class="dv-theme" id="themeToggle" aria-label="Toggle theme" type="button">
-        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
-        <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
-      </button>
     </div>
     <a class="dv-mail" href="mailto:dashavasuti@gmail.com">dashavasuti@gmail.com</a>
     <div class="dv-socials" aria-label="Social links">
@@ -696,8 +675,6 @@ document.querySelectorAll('.cases .case-card').forEach((c, i) => {
 .cookie-consent__link:hover{opacity:1;}
 .cookie-consent__accept{min-width:118px; height:38px; padding:0 24px; border-radius:999px; background:#1f1f22; color:#fff; font-family:var(--font-ui); font-size:13px; font-weight:500; box-shadow:0 10px 22px rgba(28,28,35,.16); transition:transform .2s ease, opacity .2s ease;}
 .cookie-consent__accept:hover{transform:translateY(-1px);}
-html[data-theme="dark"] .cookie-consent{background:rgba(17,18,23,.68); border-color:rgba(255,255,255,.10); box-shadow:0 18px 50px rgba(0,0,0,.45);}
-html[data-theme="dark"] .cookie-consent__accept{background:#fff; color:#15161c;}
 @media (max-width:760px){
   .cookie-consent{left:14px; right:14px; bottom:14px; min-height:0; padding:12px 14px; border-radius:18px; align-items:flex-start; gap:12px;}
   .cookie-consent__main{gap:10px;}
