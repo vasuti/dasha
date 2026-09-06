@@ -225,12 +225,57 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
   .prg-pressures{grid-template-columns:repeat(2,1fr);}
   .prg-pressure{min-height:212px;}
 }
+/* крупные цифры не переносятся, поэтому ставим карточки друг под друга
+   заранее — до того, как «10 → 30K+» упрётся в края карточки */
+@media (max-width:1150px){
+  .prg-metrics{grid-template-columns:minmax(0,1fr); max-width:520px; gap:16px;}
+  .prg-metric p{max-width:none;}
+}
+
+/* ---------- 02 · product approach ---------- */
+/* порядок в разметке — 01…06; на десктопе раскладываем по колонкам
+   (01–03 слева, 04–06 справа), на узких экранах — обычным потоком */
+.prg-steps{
+  display:grid; grid-template-columns:repeat(2, minmax(0,1fr));
+  grid-template-rows:repeat(3, auto); grid-auto-flow:column;
+  gap:40px 72px; margin-top:76px; max-width:1080px;
+}
+.prg-step h3{
+  display:flex; align-items:baseline; gap:14px;
+  font-weight:500; font-size:19px; letter-spacing:-.01em; margin-bottom:10px;
+}
+.prg-step h3 span{font-weight:400; color:var(--meta); font-variant-numeric:tabular-nums;}
+.prg-step p{font-size:16px; line-height:26px; color:var(--meta); max-width:420px;}
+
+/* ---------- тёмная полоса во всю ширину области контента ---------- */
+.prg-dark{background:#0d0e14; color:#fff; padding:120px 0;}
+.prg-dark .prg-kicker{background:#ddd6fe; border-color:transparent; color:#15131f; margin-bottom:40px;}
+.prg-dark .prg-h2{color:#fff;}
+.prg-dark-body{
+  font-size:18px; line-height:29px; color:rgba(255,255,255,.72);
+  max-width:560px; margin-top:36px;
+}
+.prg-dark-impact{
+  font-weight:400; font-size:clamp(30px,3.6vw,46px); line-height:1.15; letter-spacing:-.03em;
+  margin-top:52px;
+}
+
+@media (max-width:1150px){
+  .prg-steps{grid-template-columns:minmax(0,1fr); grid-template-rows:auto; grid-auto-flow:row; gap:32px; margin-top:48px;}
+  .prg-step p{max-width:none;}
+}
+@media (max-width:860px){
+  .prg-dark{padding:72px 0;}
+  .prg-dark .prg-kicker{margin-bottom:24px;}
+  .prg-dark-body{font-size:16px; line-height:26px; margin-top:28px;}
+  .prg-dark-impact{margin-top:36px;}
+}
 @media (max-width:860px){
   .prg-section{padding:72px 0;}
   .prg-statement{padding:64px 0 72px;}
   .prg-kicker{margin-bottom:28px;}
   .prg-metrics{gap:16px; margin-top:44px;}
-  .prg-metric{padding:26px 28px; max-width:100%; flex:1 1 100%;}
+  .prg-metric{padding:26px 24px;}
   .prg-metric p{max-width:100%;}
   .prg-pressures{grid-template-columns:1fr; gap:16px; margin-top:44px;}
   .prg-pressure{min-height:0; padding:26px;}
@@ -748,6 +793,52 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
   </div>
 </section>
 
+<!-- ================= 02 · PRODUCT APPROACH ================= -->
+<section class="prg-section">
+  <div class="wrap">
+    <div class="prg-kicker rv">02 · Product approach</div>
+    <h2 class="prg-h2 rv" style="--d:.06s">Move fast where it matters.<br>Research what comes next.</h2>
+    <div class="prg-steps">
+      <div class="prg-step rv" style="--d:.12s">
+        <h3><span>01</span> Analyse</h3>
+        <p>Consolidated metrics, support insights, user feedback and stakeholder input.</p>
+      </div>
+      <div class="prg-step rv" style="--d:.16s">
+        <h3><span>02</span> Stabilise</h3>
+        <p>Reduced upload cancellations through a frontend-only intervention.</p>
+      </div>
+      <div class="prg-step rv" style="--d:.2s">
+        <h3><span>03</span> Explore</h3>
+        <p>Built five concepts and two research prototype formats.</p>
+      </div>
+      <div class="prg-step rv" style="--d:.24s">
+        <h3><span>04</span> Research</h3>
+        <p>Interviewed sole proprietors, SMBs and enterprise clients.</p>
+      </div>
+      <div class="prg-step rv" style="--d:.28s">
+        <h3><span>05</span> Deliver</h3>
+        <p>Designed five end-to-end registry workflows.</p>
+      </div>
+      <div class="prg-step rv" style="--d:.32s">
+        <h3><span>06</span> Scale</h3>
+        <p>Extended the experience to mobile web, iOS and Android.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 · CRITICAL UPLOAD ISSUE ================= -->
+<section class="prg-dark">
+  <div class="wrap">
+    <div class="rv">
+      <div class="prg-kicker">03 · Critical upload issue</div>
+      <h2 class="prg-h2">The backend was slow.<br>The experience didn’t have<br>to feel broken.</h2>
+      <p class="prg-dark-body">I redesigned the waiting experience so progress was visible, the status stayed understandable and users no longer felt compelled to cancel and retry.</p>
+      <p class="prg-dark-impact">20% → 2% upload cancellations</p>
+    </div>
+  </div>
+</section>
+
 <div class="wrap">
 <!-- ================= БОЛЬШИЕ ЦИФРЫ ================= -->
   <section>
@@ -1042,7 +1133,7 @@ document.querySelectorAll('.back, .brand').forEach(a => a.addEventListener('clic
 (function(){
   const SHORT = /(^|\s)(a|an|the|and|or|of|to|in|on|for|with|from|by|at|as|is|are|was|it|we|our|not|no|so|up|one)(\s)/gi;
   function fix(t){ let p; do { p = t; t = t.replace(SHORT, (m,a,w) => a + w + '\u00a0'); } while (t !== p); return t; }
-  document.querySelectorAll('.lead, .prose p, .quote, .sub, .problem p, .step p, .d p, .cmp p, .res .t, .buses .txt, .win .txt, .legend p, .reflect .big, .ba .note, .nda-card p, .prg-lead, .prg-eyebrow, .prg-statement-text, .prg-metric p, .prg-pressure p').forEach(el => {
+  document.querySelectorAll('.lead, .prose p, .quote, .sub, .problem p, .step p, .d p, .cmp p, .res .t, .buses .txt, .win .txt, .legend p, .reflect .big, .ba .note, .nda-card p, .prg-lead, .prg-eyebrow, .prg-statement-text, .prg-metric p, .prg-pressure p, .prg-step p, .prg-dark-body').forEach(el => {
     el.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = fix(n.textContent); });
   });
 })();
@@ -1131,7 +1222,8 @@ document.querySelectorAll('.back, .brand').forEach(a => a.addEventListener('clic
     setTimeout(() => lightbox.classList.remove('open'), 250);
   }
   track.querySelectorAll('.prg-marquee-item img').forEach(img => {
-    img.addEventListener('click', () => { if (moved < 6) openLightbox(img.src, img.alt); });
+    /* открываем всегда, кроме случая, когда это было именно перетаскивание */
+    img.addEventListener('click', () => { if (moved < 24) openLightbox(img.src, img.alt); });
   });
   lightbox.addEventListener('click', closeLightbox);
   window.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
