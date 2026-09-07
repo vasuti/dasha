@@ -417,6 +417,27 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
   .prg-find-inner{transition:none;}
 }
 
+/* ---------- 07 · outcomes (светлые карточки на тёмном) ---------- */
+.prg-outcomes{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:16px; margin-top:56px;}
+.prg-outcome{
+  background:#f5f5f7; color:#111113; border-radius:28px; padding:26px;
+  min-height:300px; display:flex; flex-direction:column;
+}
+.prg-outcome-n{font-weight:400; font-size:clamp(19px,1.6vw,26px); line-height:1.2; letter-spacing:-.02em;}
+.prg-outcome-l{margin-top:64px; font-weight:400; font-size:clamp(19px,1.6vw,26px); line-height:1.2; letter-spacing:-.02em;}
+.prg-support{margin-top:46px; font-size:14px; line-height:22px; color:rgba(255,255,255,.72);}
+/* сайдбар съедает 372px — вчетвером карточки помещаются только очень широко */
+@media (max-width:1560px){
+  .prg-outcomes{grid-template-columns:repeat(2, minmax(0,1fr));}
+  .prg-outcome{min-height:230px;}
+}
+@media (max-width:640px){
+  .prg-outcomes{grid-template-columns:minmax(0,1fr); gap:12px; margin-top:36px;}
+  .prg-outcome{min-height:0; padding:24px; border-radius:22px;}
+  .prg-outcome-l{margin-top:36px;}
+  .prg-support{margin-top:32px;}
+}
+
 /* ============================================================
    БОЛЬШИЕ ЦИФРЫ
    ============================================================ */
@@ -1186,6 +1207,36 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
   </div>
 </section>
 
+
+<!-- ================= 07 · OUTCOMES ================= -->
+<section class="prg-dark">
+  <div class="wrap">
+    <div class="rv">
+      <div class="prg-kicker">06 · Outcomes</div>
+      <h2 class="prg-h2">Designed for migration.<br>Built for growth.</h2>
+    </div>
+    <div class="prg-outcomes rv" style="--d:.08s">
+      <div class="prg-outcome">
+        <p class="prg-outcome-n">€0.9B → €2.7B</p>
+        <p class="prg-outcome-l">Annual payment volume</p>
+      </div>
+      <div class="prg-outcome">
+        <p class="prg-outcome-n">40% → 2%</p>
+        <p class="prg-outcome-l">Legacy system usage</p>
+      </div>
+      <div class="prg-outcome">
+        <p class="prg-outcome-n">20% → 2%</p>
+        <p class="prg-outcome-l">Upload cancellations</p>
+      </div>
+      <div class="prg-outcome">
+        <p class="prg-outcome-n">5 flows</p>
+        <p class="prg-outcome-l">End-to-end delivery</p>
+      </div>
+    </div>
+    <p class="prg-support rv" style="--d:.12s">Support volume stayed at 3% while product complexity grew significantly.</p>
+  </div>
+</section>
+
 <div class="wrap">
 <!-- ================= БОЛЬШИЕ ЦИФРЫ ================= -->
   <section>
@@ -1480,7 +1531,7 @@ document.querySelectorAll('.back, .brand').forEach(a => a.addEventListener('clic
 (function(){
   const SHORT = /(^|\s)(a|an|the|and|or|of|to|in|on|for|with|from|by|at|as|is|are|was|it|we|our|not|no|so|up|one)(\s)/gi;
   function fix(t){ let p; do { p = t; t = t.replace(SHORT, (m,a,w) => a + w + '\u00a0'); } while (t !== p); return t; }
-  document.querySelectorAll('.lead, .prose p, .quote, .sub, .problem p, .step p, .d p, .cmp p, .res .t, .buses .txt, .win .txt, .legend p, .reflect .big, .ba .note, .nda-card p, .prg-lead, .prg-eyebrow, .prg-statement-text, .prg-metric p, .prg-pressure p, .prg-step p, .prg-dark-body, .prg-note p, .prg-intro, .prg-desc p, .prg-desc li, .prg-find-h, .prg-find-p').forEach(el => {
+  document.querySelectorAll('.lead, .prose p, .quote, .sub, .problem p, .step p, .d p, .cmp p, .res .t, .buses .txt, .win .txt, .legend p, .reflect .big, .ba .note, .nda-card p, .prg-lead, .prg-eyebrow, .prg-statement-text, .prg-metric p, .prg-pressure p, .prg-step p, .prg-dark-body, .prg-note p, .prg-intro, .prg-desc p, .prg-desc li, .prg-find-h, .prg-find-p, .prg-outcome-l, .prg-support').forEach(el => {
     el.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = fix(n.textContent); });
   });
 })();
