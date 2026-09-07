@@ -365,6 +365,63 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
   .prg-acc-head svg{width:26px; height:26px;}
 }
 
+/* ---------- 06 · research findings (карточки с переворотом) ---------- */
+.prg-section--white{background:#fff;}
+.prg-section--white .prg-kicker{background:#f5f5f7;}
+.prg-findings{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:14px; margin-top:56px;}
+.prg-find{
+  height:300px; padding:0; margin:0; border:0; background:none;
+  font-family:inherit; text-align:left; cursor:pointer;
+  perspective:1400px;
+}
+.prg-find-inner{
+  display:block; position:relative; width:100%; height:100%;
+  transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+}
+.prg-find.open .prg-find-inner{transform:rotateY(180deg);}
+.prg-find-face{
+  position:absolute; inset:0; overflow:hidden;
+  backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  background:#f5f5f7; border-radius:28px; padding:26px 24px;
+  display:flex; flex-direction:column;
+}
+.prg-find-back{transform:rotateY(180deg);}
+.prg-find-n{font-size:13px; font-weight:600; letter-spacing:.02em; color:#ff402f;}
+.prg-find-h{
+  display:block; margin-top:22px;
+  font-weight:400; font-size:clamp(19px,1.55vw,26px); line-height:1.2; letter-spacing:-.02em;
+}
+.prg-find-p{display:block; font-size:15px; line-height:1.32; color:#111113;}
+.prg-find-p + .prg-find-p{margin-top:12px;}
+.prg-find-t{font-weight:500;}
+.prg-find-hint{
+  display:block; margin-top:auto; padding-top:16px;
+  font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--meta);
+}
+@media (hover:hover){
+  .prg-find:hover .prg-find-hint{color:var(--ink);}
+}
+/* при 4 колонках карточки становятся уже 220px и текст оборота
+   перестаёт помещаться, поэтому заранее переходим на две колонки */
+@media (max-width:1500px){
+  .prg-findings{grid-template-columns:repeat(2, minmax(0,1fr));}
+  .prg-find{height:240px;}
+}
+/* 961–1200: сайдбар ещё занимает 372px, карточки узкие — даём высоту */
+@media (min-width:961px) and (max-width:1200px){
+  .prg-find{height:310px;}
+}
+@media (max-width:640px){
+  .prg-findings{grid-template-columns:minmax(0,1fr); gap:12px; margin-top:36px;}
+  .prg-find{height:250px;}
+  .prg-find-face{padding:22px 20px; border-radius:22px;}
+  .prg-find-h{margin-top:16px;}
+}
+@media (prefers-reduced-motion: reduce){
+  .prg-find-inner{transition:none;}
+}
+
 /* ============================================================
    БОЛЬШИЕ ЦИФРЫ
    ============================================================ */
@@ -1015,6 +1072,133 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
   </div>
 </section>
 
+
+<!-- ================= 06 · RESEARCH FINDINGS ================= -->
+<section class="prg-section prg-section--white">
+  <div class="wrap">
+    <div class="prg-kicker rv">05 · Research findings</div>
+    <h2 class="prg-h2 rv" style="--d:.06s">What customers made clear.</h2>
+    <div class="prg-findings rv" style="--d:.1s">
+      <button class="prg-find" type="button" aria-pressed="false">
+        <span class="prg-find-inner">
+          <span class="prg-find-face prg-find-front">
+            <span class="prg-find-n">01</span>
+            <span class="prg-find-h">Registry details<br>became the core</span>
+            <span class="prg-find-hint">Tap to open</span>
+          </span>
+          <span class="prg-find-face prg-find-back">
+            <span class="prg-find-n">01</span>
+            <span class="prg-find-p prg-find-t">Detailed registry page became the core experience</span>
+            <span class="prg-find-p">The redesigned registry page was immediately understood and highly appreciated across all user segments</span>
+          <span class="prg-find-p prg-find-arrow">→ The solution moved forward without major changes</span>
+          </span>
+        </span>
+      </button>
+      <button class="prg-find" type="button" aria-pressed="false">
+        <span class="prg-find-inner">
+          <span class="prg-find-face prg-find-front">
+            <span class="prg-find-n">02</span>
+            <span class="prg-find-h">Bulk actions<br>moved up</span>
+            <span class="prg-find-hint">Tap to open</span>
+          </span>
+          <span class="prg-find-face prg-find-back">
+            <span class="prg-find-n">02</span>
+            <span class="prg-find-p prg-find-t">Bulk actions became a higher priority</span>
+            <span class="prg-find-p">Participants expected to perform actions on multiple registries rather than one by one</span>
+          <span class="prg-find-p prg-find-arrow">→ Bulk operations were moved up in the roadmap</span>
+          </span>
+        </span>
+      </button>
+      <button class="prg-find" type="button" aria-pressed="false">
+        <span class="prg-find-inner">
+          <span class="prg-find-face prg-find-front">
+            <span class="prg-find-n">03</span>
+            <span class="prg-find-h">Practical filters<br>won</span>
+            <span class="prg-find-hint">Tap to open</span>
+          </span>
+          <span class="prg-find-face prg-find-back">
+            <span class="prg-find-n">03</span>
+            <span class="prg-find-p prg-find-t">Users wanted practical filtering, not maximum filtering</span>
+            <span class="prg-find-p">Research identified the minimum set of filters needed for daily work while eliminating low-value options</span>
+          <span class="prg-find-p prg-find-arrow">→ Filters such as payment count and execution date were removed</span>
+          </span>
+        </span>
+      </button>
+      <button class="prg-find" type="button" aria-pressed="false">
+        <span class="prg-find-inner">
+          <span class="prg-find-face prg-find-front">
+            <span class="prg-find-n">04</span>
+            <span class="prg-find-h">Error visibility<br>mattered most</span>
+            <span class="prg-find-hint">Tap to open</span>
+          </span>
+          <span class="prg-find-face prg-find-back">
+            <span class="prg-find-n">04</span>
+            <span class="prg-find-p prg-find-t">Error visibility mattered most</span>
+            <span class="prg-find-p">Users wanted to immediately understand whether a registry contained problematic payments</span>
+          <span class="prg-find-p prg-find-arrow">→ Error indicators were added to both the registry list and the detailed page</span>
+          </span>
+        </span>
+      </button>
+      <button class="prg-find" type="button" aria-pressed="false">
+        <span class="prg-find-inner">
+          <span class="prg-find-face prg-find-front">
+            <span class="prg-find-n">05</span>
+            <span class="prg-find-h">Registry number<br>was not needed</span>
+            <span class="prg-find-hint">Tap to open</span>
+          </span>
+          <span class="prg-find-face prg-find-back">
+            <span class="prg-find-n">05</span>
+            <span class="prg-find-p prg-find-t">Registry number wasn’t needed</span>
+            <span class="prg-find-p">Participants could identify registries using existing information and didn’t see value in introducing a separate registry ID</span>
+          </span>
+        </span>
+      </button>
+      <button class="prg-find" type="button" aria-pressed="false">
+        <span class="prg-find-inner">
+          <span class="prg-find-face prg-find-front">
+            <span class="prg-find-n">06</span>
+            <span class="prg-find-h">Favorites were<br>useful, not essential</span>
+            <span class="prg-find-hint">Tap to open</span>
+          </span>
+          <span class="prg-find-face prg-find-back">
+            <span class="prg-find-n">06</span>
+            <span class="prg-find-p prg-find-t">Favorites were valuable, but not essential</span>
+            <span class="prg-find-p">Users saw Favorites as a convenience feature rather than part of their primary workflow</span>
+          </span>
+        </span>
+      </button>
+      <button class="prg-find" type="button" aria-pressed="false">
+        <span class="prg-find-inner">
+          <span class="prg-find-face prg-find-front">
+            <span class="prg-find-n">07</span>
+            <span class="prg-find-h">Excel served<br>specific scenarios</span>
+            <span class="prg-find-hint">Tap to open</span>
+          </span>
+          <span class="prg-find-face prg-find-back">
+            <span class="prg-find-n">07</span>
+            <span class="prg-find-p prg-find-t">Excel export served specific scenarios</span>
+            <span class="prg-find-p">Export was expected for occasional reporting rather than everyday work</span>
+          </span>
+        </span>
+      </button>
+      <button class="prg-find" type="button" aria-pressed="false">
+        <span class="prg-find-inner">
+          <span class="prg-find-face prg-find-front">
+            <span class="prg-find-n">08</span>
+            <span class="prg-find-h">Onboarding was<br>unnecessary</span>
+            <span class="prg-find-hint">Tap to open</span>
+          </span>
+          <span class="prg-find-face prg-find-back">
+            <span class="prg-find-n">08</span>
+            <span class="prg-find-p prg-find-t">Onboarding wasn’t necessary</span>
+            <span class="prg-find-p">Participants naturally explored the interface and easily found optional features such as Favorites and onboarding</span>
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</section>
+
 <div class="wrap">
 <!-- ================= БОЛЬШИЕ ЦИФРЫ ================= -->
   <section>
@@ -1309,8 +1493,28 @@ document.querySelectorAll('.back, .brand').forEach(a => a.addEventListener('clic
 (function(){
   const SHORT = /(^|\s)(a|an|the|and|or|of|to|in|on|for|with|from|by|at|as|is|are|was|it|we|our|not|no|so|up|one)(\s)/gi;
   function fix(t){ let p; do { p = t; t = t.replace(SHORT, (m,a,w) => a + w + '\u00a0'); } while (t !== p); return t; }
-  document.querySelectorAll('.lead, .prose p, .quote, .sub, .problem p, .step p, .d p, .cmp p, .res .t, .buses .txt, .win .txt, .legend p, .reflect .big, .ba .note, .nda-card p, .prg-lead, .prg-eyebrow, .prg-statement-text, .prg-metric p, .prg-pressure p, .prg-step p, .prg-dark-body, .prg-note p, .prg-intro, .prg-desc p, .prg-desc li').forEach(el => {
+  document.querySelectorAll('.lead, .prose p, .quote, .sub, .problem p, .step p, .d p, .cmp p, .res .t, .buses .txt, .win .txt, .legend p, .reflect .big, .ba .note, .nda-card p, .prg-lead, .prg-eyebrow, .prg-statement-text, .prg-metric p, .prg-pressure p, .prg-step p, .prg-dark-body, .prg-note p, .prg-intro, .prg-desc p, .prg-desc li, .prg-find-h, .prg-find-p').forEach(el => {
     el.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = fix(n.textContent); });
+  });
+})();
+
+/* ================= КАРТОЧКИ ИССЛЕДОВАНИЯ (ПЕРЕВОРОТ) ================= */
+(function(){
+  var cards = document.querySelectorAll('.prg-find');
+  if (!cards.length) return;
+  cards.forEach(function(card){
+    card.addEventListener('click', function(){
+      var open = !card.classList.contains('open');
+      /* открыта всегда только одна карточка */
+      cards.forEach(function(c){
+        c.classList.remove('open');
+        c.setAttribute('aria-pressed', 'false');
+      });
+      if (open) {
+        card.classList.add('open');
+        card.setAttribute('aria-pressed', 'true');
+      }
+    });
   });
 })();
 
