@@ -299,6 +299,10 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
   gap:42px; align-items:stretch;
 }
 .prg-pair--proto{grid-template-columns:minmax(0,410fr) minmax(0,766fr); gap:24px;}
+/* скриншоты прототипов вертикальнее слота, поэтому ограничиваем высоту
+   и центрируем текст тёмной карточки, чтобы она не была пустой снизу */
+.prg-pair--proto .prg-note--dark{justify-content:center;}
+.prg-pair--proto .prg-shot{max-height:620px; width:auto; max-width:100%; margin:0 auto;}
 .prg-note{border-radius:20px; padding:30px; display:flex; flex-direction:column;}
 .prg-note--warm{background:#fcf1ee;}
 .prg-note--violet{background:#efecfd;}
