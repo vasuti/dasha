@@ -299,10 +299,8 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
   gap:42px; align-items:stretch;
 }
 .prg-pair--proto{grid-template-columns:minmax(0,410fr) minmax(0,766fr); gap:24px;}
-/* скриншоты прототипов вертикальнее слота, поэтому ограничиваем высоту
-   и центрируем текст тёмной карточки, чтобы она не была пустой снизу */
-.prg-pair--proto .prg-note--dark{justify-content:center;}
-.prg-pair--proto .prg-shot{max-height:620px; width:auto; max-width:100%; margin:0 auto;}
+/* скриншоты прототипов вертикальнее слота — ограничиваем высоту */
+.prg-pair--proto .prg-shot{max-height:min(620px, 64vh); width:auto; max-width:100%; margin:0 auto;}
 .prg-note{border-radius:20px; padding:30px; display:flex; flex-direction:column;}
 .prg-note--warm{background:#fcf1ee;}
 .prg-note--violet{background:#efecfd;}
@@ -324,7 +322,7 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
 /* ---------- раскрывающиеся блоки (шеврон) ---------- */
 .prg-acc-head{
   width:100%; display:flex; align-items:center; justify-content:space-between; gap:24px;
-  margin:0; padding:14px 2px; background:none; border:0; cursor:pointer; text-align:left;
+  margin:0; padding:14px 2px 0; background:none; border:0; cursor:pointer; text-align:left;
   font-family:inherit; color:var(--meta);
   font-weight:400; font-size:clamp(20px,1.9vw,26px); letter-spacing:-.02em; line-height:1.3;
 }
@@ -350,9 +348,13 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
 .prg-desc li::before{content:"·"; position:absolute; left:5px; top:-1px;}
 .prg-desc p + p{margin-top:22px;}
 
-@media (max-width:1150px){
-  .prg-pair,
+@media (max-width:1400px){
   .prg-pair--proto{grid-template-columns:minmax(0,1fr); gap:24px;}
+}
+@media (max-width:1560px){
+  .prg-pair{grid-template-columns:minmax(0,1fr); gap:24px;}
+  /* в одну колонку скриншот занял бы больше экрана, чем весь блок */
+  .prg-pair .prg-shot{max-height:min(620px, 64vh); width:auto; max-width:100%; margin:0 auto;}
 }
 @media (max-width:860px){
   .prg-panel{padding:16px; border-radius:22px; margin-top:20px;}
@@ -395,13 +397,6 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
 .prg-find-p{display:block; font-size:15px; line-height:1.32; color:#111113;}
 .prg-find-p + .prg-find-p{margin-top:12px;}
 .prg-find-t{font-weight:500;}
-.prg-find-hint{
-  display:block; margin-top:auto; padding-top:16px;
-  font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--meta);
-}
-@media (hover:hover){
-  .prg-find:hover .prg-find-hint{color:var(--ink);}
-}
 /* при 4 колонках карточки становятся уже 220px и текст оборота
    перестаёт помещаться, поэтому заранее переходим на две колонки */
 @media (max-width:1500px){
@@ -1084,7 +1079,6 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
           <span class="prg-find-face prg-find-front">
             <span class="prg-find-n">01</span>
             <span class="prg-find-h">Registry details<br>became the core</span>
-            <span class="prg-find-hint">Tap to open</span>
           </span>
           <span class="prg-find-face prg-find-back">
             <span class="prg-find-n">01</span>
@@ -1099,7 +1093,6 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
           <span class="prg-find-face prg-find-front">
             <span class="prg-find-n">02</span>
             <span class="prg-find-h">Bulk actions<br>moved up</span>
-            <span class="prg-find-hint">Tap to open</span>
           </span>
           <span class="prg-find-face prg-find-back">
             <span class="prg-find-n">02</span>
@@ -1114,7 +1107,6 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
           <span class="prg-find-face prg-find-front">
             <span class="prg-find-n">03</span>
             <span class="prg-find-h">Practical filters<br>won</span>
-            <span class="prg-find-hint">Tap to open</span>
           </span>
           <span class="prg-find-face prg-find-back">
             <span class="prg-find-n">03</span>
@@ -1129,7 +1121,6 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
           <span class="prg-find-face prg-find-front">
             <span class="prg-find-n">04</span>
             <span class="prg-find-h">Error visibility<br>mattered most</span>
-            <span class="prg-find-hint">Tap to open</span>
           </span>
           <span class="prg-find-face prg-find-back">
             <span class="prg-find-n">04</span>
@@ -1144,7 +1135,6 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
           <span class="prg-find-face prg-find-front">
             <span class="prg-find-n">05</span>
             <span class="prg-find-h">Registry number<br>was not needed</span>
-            <span class="prg-find-hint">Tap to open</span>
           </span>
           <span class="prg-find-face prg-find-back">
             <span class="prg-find-n">05</span>
@@ -1158,7 +1148,6 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
           <span class="prg-find-face prg-find-front">
             <span class="prg-find-n">06</span>
             <span class="prg-find-h">Favorites were<br>useful, not essential</span>
-            <span class="prg-find-hint">Tap to open</span>
           </span>
           <span class="prg-find-face prg-find-back">
             <span class="prg-find-n">06</span>
@@ -1172,7 +1161,6 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
           <span class="prg-find-face prg-find-front">
             <span class="prg-find-n">07</span>
             <span class="prg-find-h">Excel served<br>specific scenarios</span>
-            <span class="prg-find-hint">Tap to open</span>
           </span>
           <span class="prg-find-face prg-find-back">
             <span class="prg-find-n">07</span>
@@ -1186,7 +1174,6 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
           <span class="prg-find-face prg-find-front">
             <span class="prg-find-n">08</span>
             <span class="prg-find-h">Onboarding was<br>unnecessary</span>
-            <span class="prg-find-hint">Tap to open</span>
           </span>
           <span class="prg-find-face prg-find-back">
             <span class="prg-find-n">08</span>
