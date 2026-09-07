@@ -291,6 +291,76 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
   .prg-marquee-item{height:220px;}
 }
 
+/* ---------- 04 · панели «до/после» и прототипов ---------- */
+.prg-panel{background:#fff; border-radius:28px; padding:30px; margin-top:28px;}
+.prg-panel--tight{padding:24px;}
+.prg-pair{
+  display:grid; grid-template-columns:minmax(0,474fr) minmax(0,736fr);
+  gap:42px; align-items:stretch;
+}
+.prg-pair--proto{grid-template-columns:minmax(0,410fr) minmax(0,766fr); gap:24px;}
+.prg-note{border-radius:20px; padding:30px; display:flex; flex-direction:column;}
+.prg-note--warm{background:#fcf1ee;}
+.prg-note--violet{background:#efecfd;}
+.prg-note--plain{background:#f2f2f4;}
+.prg-note--dark{background:#0d0e14; color:#fff;}
+.prg-note h3{
+  font-weight:400; font-size:clamp(22px,1.9vw,26px); line-height:1.3;
+  letter-spacing:-.02em; margin:0 0 26px;
+}
+.prg-note p{font-size:17px; line-height:27px; color:var(--ink);}
+.prg-note p + p{margin-top:22px;}
+.prg-note--dark p{color:#fff; font-size:clamp(20px,1.85vw,25px); line-height:1.32; letter-spacing:-.02em;}
+.prg-note--dark p + p{margin-top:26px;}
+.prg-shot{
+  width:100%; height:auto; display:block; align-self:start;
+  border-radius:16px; border:1px solid var(--line); background:#fff; cursor:zoom-in;
+}
+
+/* ---------- раскрывающиеся блоки (шеврон) ---------- */
+.prg-acc-head{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:24px;
+  margin:0; padding:14px 2px; background:none; border:0; cursor:pointer; text-align:left;
+  font-family:inherit; color:var(--meta);
+  font-weight:400; font-size:clamp(20px,1.9vw,26px); letter-spacing:-.02em; line-height:1.3;
+}
+.prg-acc-head svg{
+  width:30px; height:30px; flex:0 0 auto;
+  stroke:currentColor; fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;
+  transition:transform .45s cubic-bezier(.22,1,.36,1);
+}
+.prg-acc.open .prg-acc-head svg{transform:rotate(180deg);}
+.prg-acc-body{
+  display:grid; grid-template-rows:0fr; opacity:0;
+  transition:grid-template-rows .55s cubic-bezier(.22,1,.36,1), opacity .4s ease;
+}
+.prg-acc.open .prg-acc-body{grid-template-rows:1fr; opacity:1;}
+.prg-acc-body > div{overflow:hidden; min-height:0;}
+.prg-acc-inner{padding-top:22px;}
+
+/* ---------- 05 · discovery ---------- */
+.prg-intro{font-size:18px; line-height:29px; color:var(--meta); max-width:700px; margin-top:34px;}
+.prg-desc p{font-size:17px; line-height:27px; color:var(--ink);}
+.prg-desc ul{list-style:none; margin:20px 0; padding:0;}
+.prg-desc li{position:relative; padding-left:20px; font-size:17px; line-height:29px; color:var(--ink);}
+.prg-desc li::before{content:"·"; position:absolute; left:5px; top:-1px;}
+.prg-desc p + p{margin-top:22px;}
+
+@media (max-width:1150px){
+  .prg-pair,
+  .prg-pair--proto{grid-template-columns:minmax(0,1fr); gap:24px;}
+}
+@media (max-width:860px){
+  .prg-panel{padding:16px; border-radius:22px; margin-top:20px;}
+  .prg-panel--tight{padding:16px;}
+  .prg-note{padding:24px;}
+  .prg-note p,
+  .prg-desc p,
+  .prg-desc li{font-size:16px; line-height:26px;}
+  .prg-intro{font-size:16px; line-height:26px; margin-top:24px;}
+  .prg-acc-head svg{width:26px; height:26px;}
+}
+
 /* ============================================================
    БОЛЬШИЕ ЦИФРЫ
    ============================================================ */
@@ -839,6 +909,108 @@ h1{font-weight:300; font-size:clamp(40px, 5vw, 64px); line-height:1.1; letter-sp
   </div>
 </section>
 
+<!-- ================= 04 · BEFORE AND AFTER ================= -->
+<section class="prg-section">
+  <div class="wrap">
+    <div class="prg-kicker rv">Released in one sprint</div>
+    <h2 class="prg-h2 rv" style="--d:.06s">A small interface change.<br>Immediate business impact.</h2>
+
+    <div class="prg-panel rv" style="--d:.1s">
+      <div class="prg-pair">
+        <div class="prg-note prg-note--warm">
+          <h3>Before · 20% cancel<br>the upload</h3>
+          <p>A registry could sit here up to 10 minutes.<br>On average people canceled after 4 — a static “Uploading” card and a lonely spinner told them nothing</p>
+        </div>
+        <img class="prg-shot" src="assets/cases/payment-registries/before.webp" alt="Registry list before the redesign: a static “Uploading” card with a spinner" loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <div class="prg-panel rv" style="--d:.1s">
+      <div class="prg-pair">
+        <div class="prg-note prg-note--violet">
+          <h3>After · 2% cancel<br>the upload</h3>
+          <p>I moved the spinner into the inactive checkbox on the closed card, added clear payment-by-payment progress, and renamed the status — so people could see it working and waited it out.</p>
+          <p>Also added upload start and completion notifications, with a foundation for future upload reports showing payment errors</p>
+        </div>
+        <img class="prg-shot" src="assets/cases/payment-registries/after.webp" alt="Registry list after the redesign: payment-by-payment progress and an upload notification" loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <div class="prg-panel prg-acc rv" style="--d:.1s">
+      <button class="prg-acc-head" type="button" aria-expanded="false">
+        <span>additional</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9.5 12 15.5 18 9.5"></polyline></svg>
+      </button>
+      <div class="prg-acc-body"><div><div class="prg-acc-inner">
+        <div class="prg-pair">
+          <div class="prg-note prg-note--plain">
+            <p>I explored moving the block with payment registries being uploaded outside the table. However, this approach would have required significant development effort, and at that point, we weren’t confident it was the best solution.</p>
+            <p>Later, I tested this concept in UX research and confirmed that the quick improvement we had already implemented was clearer and preferred by users.</p>
+          </div>
+          <img class="prg-shot" src="assets/cases/payment-registries/additional.webp" alt="Explored concept: the uploading registries block moved above the table" loading="lazy" decoding="async">
+        </div>
+      </div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 · DISCOVERY ================= -->
+<section class="prg-section">
+  <div class="wrap">
+    <div class="prg-kicker rv">04 · Discovery</div>
+    <h2 class="prg-h2 rv" style="--d:.06s">2 prototypes. 12 interviews.<br>3 segments.</h2>
+    <p class="prg-intro rv" style="--d:.1s">Sole proprietors, SMBs and enterprise clients helped us separate must-have workflows from tempting but low-value functionality.</p>
+
+    <div class="prg-panel prg-panel--tight prg-acc rv" style="--d:.1s">
+      <div class="prg-pair prg-pair--proto">
+        <div class="prg-note prg-note--dark">
+          <p>Prototype 01<br>Expose everything</p>
+          <p>A maximum set of filters, rich registry metadata and sorting options to learn what people actually needed</p>
+        </div>
+        <img class="prg-shot" src="assets/cases/payment-registries/proto-01.webp" alt="Prototype 01: registry list with the maximum set of filters and sorting options" loading="lazy" decoding="async">
+      </div>
+      <button class="prg-acc-head" type="button" aria-expanded="false">
+        <span>description</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9.5 12 15.5 18 9.5"></polyline></svg>
+      </button>
+      <div class="prg-acc-body"><div><div class="prg-acc-inner prg-desc">
+        <p>Purpose: Maximize feature exposure to understand what users actually need and use</p>
+        <ul>
+          <li>Maximum set of filters and search</li>
+          <li>Rich registry card with registry ID, sender company, priority, creation time, and other key details</li>
+          <li>Registry count and sorting options</li>
+        </ul>
+        <p>This wasn’t intended to be a final solution. The concept intentionally exposed as much functionality as possible to validate user needs, priorities, and usage patterns during UX research.</p>
+      </div></div></div>
+    </div>
+
+    <div class="prg-panel prg-panel--tight prg-acc rv" style="--d:.1s">
+      <div class="prg-pair prg-pair--proto">
+        <div class="prg-note prg-note--dark">
+          <p>Prototype 02<br>Test the future system</p>
+          <p>A scalable details model with advanced filtering, new management tools and Alfa-Bank’s future visual language.</p>
+        </div>
+        <img class="prg-shot" src="assets/cases/payment-registries/proto-02.webp" alt="Prototype 02: registry list in the bank’s future visual language with an expanded registry row" loading="lazy" decoding="async">
+      </div>
+      <button class="prg-acc-head" type="button" aria-expanded="false">
+        <span>description</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9.5 12 15.5 18 9.5"></polyline></svg>
+      </button>
+      <div class="prg-acc-body"><div><div class="prg-acc-inner prg-desc">
+        <p>Purpose: Validate new product capabilities and assess user readiness for the bank-wide redesign</p>
+        <ul>
+          <li>Create registries from existing payments, without file import</li>
+          <li>Add registries to Favorites</li>
+          <li>“How to use” onboarding</li>
+          <li>Export registries to Excel</li>
+          <li>Test user response to the new visual language</li>
+        </ul>
+        <p>Alongside feature validation, the prototype tested how users would respond to the bank’s upcoming visual redesign. This was critical because users had only recently migrated from the legacy platform, and another major interface change could create additional friction</p>
+      </div></div></div>
+    </div>
+  </div>
+</section>
+
 <div class="wrap">
 <!-- ================= БОЛЬШИЕ ЦИФРЫ ================= -->
   <section>
@@ -1133,9 +1305,45 @@ document.querySelectorAll('.back, .brand').forEach(a => a.addEventListener('clic
 (function(){
   const SHORT = /(^|\s)(a|an|the|and|or|of|to|in|on|for|with|from|by|at|as|is|are|was|it|we|our|not|no|so|up|one)(\s)/gi;
   function fix(t){ let p; do { p = t; t = t.replace(SHORT, (m,a,w) => a + w + '\u00a0'); } while (t !== p); return t; }
-  document.querySelectorAll('.lead, .prose p, .quote, .sub, .problem p, .step p, .d p, .cmp p, .res .t, .buses .txt, .win .txt, .legend p, .reflect .big, .ba .note, .nda-card p, .prg-lead, .prg-eyebrow, .prg-statement-text, .prg-metric p, .prg-pressure p, .prg-step p, .prg-dark-body').forEach(el => {
+  document.querySelectorAll('.lead, .prose p, .quote, .sub, .problem p, .step p, .d p, .cmp p, .res .t, .buses .txt, .win .txt, .legend p, .reflect .big, .ba .note, .nda-card p, .prg-lead, .prg-eyebrow, .prg-statement-text, .prg-metric p, .prg-pressure p, .prg-step p, .prg-dark-body, .prg-note p, .prg-intro, .prg-desc p, .prg-desc li').forEach(el => {
     el.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = fix(n.textContent); });
   });
+})();
+
+/* ================= РАСКРЫВАЮЩИЕСЯ БЛОКИ (ШЕВРОН) ================= */
+(function(){
+  document.querySelectorAll('.prg-acc-head').forEach(function(btn){
+    var acc = btn.closest('.prg-acc');
+    if (!acc) return;
+    btn.addEventListener('click', function(){
+      var open = acc.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+})();
+
+/* ================= ЛАЙТБОКС ДЛЯ СКРИНШОТОВ В КЕЙСЕ ================= */
+(function(){
+  var shots = document.querySelectorAll('.prg-shot');
+  var lightbox = document.getElementById('prgLightbox');
+  var lightboxImg = document.getElementById('prgLightboxImg');
+  if (!shots.length || !lightbox || !lightboxImg) return;
+  function close(){
+    lightbox.classList.remove('in');
+    document.body.classList.remove('dv-noscroll');
+    setTimeout(function(){ lightbox.classList.remove('open'); }, 250);
+  }
+  shots.forEach(function(img){
+    img.addEventListener('click', function(){
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+      requestAnimationFrame(function(){ lightbox.classList.add('in'); });
+      document.body.classList.add('dv-noscroll');
+    });
+  });
+  lightbox.addEventListener('click', close);
+  window.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
 })();
 
 /* ================= HERO MARQUEE ================= */
