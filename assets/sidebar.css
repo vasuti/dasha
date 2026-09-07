@@ -5,10 +5,10 @@
    чтобы не конфликтовать со стилями конкретной страницы.
    ============================================================ */
 :root{
-  --dv-sbw: 372px;
+  --dv-sbw: 380px;
   --dv-gap: 64px;
-  --dv-ink: var(--ink, #232323);
-  --dv-muted: rgba(35,35,35,.56);
+  --dv-ink: rgba(3,3,6,.88);
+  --dv-muted: #71717a;
   --dv-line: rgba(28,28,35,.12);
   --dv-bg: var(--bg, #f7f7f7);
   --dv-font-ui: var(--font-ui, var(--font, 'Montserrat', sans-serif));
@@ -30,7 +30,7 @@ body.dv-noscroll{overflow:hidden;}
     position:fixed; inset:0 auto 0 0; z-index:200;
     width:var(--dv-sbw);
     height:100vh; height:100svh;
-    padding:44px 40px 36px;
+    padding:56px 32px 40px;
     display:flex; flex-direction:column;
     border-right:1px solid var(--dv-line);
     background:var(--dv-bg);
@@ -38,42 +38,43 @@ body.dv-noscroll{overflow:hidden;}
   }
 }
 
-.dv-top{display:block;}
+.dv-top{display:block; max-width:276px;}
 .dv-brand{
   display:block;
-  font-weight:600; font-size:21px; line-height:1.2; letter-spacing:.02em;
+  font-family:var(--font-body, 'Inter', sans-serif);
+  font-weight:600; font-size:28px; line-height:1.2; letter-spacing:0;
   text-transform:uppercase; color:var(--dv-ink);
 }
 .dv-role{
-  margin-top:6px;
+  margin-top:8px; max-width:276px;
   font-family:var(--font-body, 'Inter', sans-serif);
-  font-size:14px; line-height:1.4; color:var(--dv-muted);
+  font-weight:500; font-size:16px; line-height:1.2; color:var(--dv-muted);
 }
 
 .dv-bio{
-  margin-top:28px;
+  margin-top:24px; padding-top:24px;
+  border-top:1px solid var(--dv-line);
   font-family:var(--font-body, 'Inter', sans-serif);
-  font-size:15.5px; line-height:1.6; color:var(--dv-ink);
-  max-width:280px;
+  font-weight:500; font-size:16px; line-height:1.5; color:var(--dv-ink);
+  max-width:276px;
 }
-.dv-bio p + p{margin-top:14px;}
+.dv-bio p + p{margin-top:20px;}
 .dv-bio a{text-decoration:underline; text-underline-offset:3px; color:var(--dv-ink);}
 
 .dv-spacer{flex:1 1 auto; min-height:24px;}
 
-/* ================= CONTACT BLOCK (CV + theme, mail + socials) ================= */
+/* ================= CONTACT BLOCK (CV, почта, соцсети) ================= */
 .dv-contact{
-  padding-top:24px; border-top:1px solid var(--dv-line);
-  display:flex; flex-direction:column; align-items:center; gap:16px;
+  display:flex; flex-direction:column; align-items:center; gap:24px;
   text-align:center;
 }
-.dv-cta-row{width:100%; display:flex; align-items:stretch; gap:10px;}
+.dv-cta-row{width:100%; display:flex; align-items:stretch;}
 .dv-cta{
   flex:1 1 auto;
   display:inline-flex; align-items:center; justify-content:center; gap:9px;
-  height:48px; padding:0 20px;
-  border-radius:999px; background:var(--dv-ink); color:var(--dv-bg);
-  font-family:var(--dv-font-ui); font-weight:600; font-size:14.5px; letter-spacing:.01em;
+  height:52px; padding:0 20px;
+  border-radius:30px; background:#1c1c1e; color:#fff;
+  font-family:var(--font-body, 'Inter', sans-serif); font-weight:600; font-size:15px; letter-spacing:0;
   transition:transform .25s ease, opacity .25s ease;
 }
 .dv-cta:hover{transform:translateY(-2px); opacity:.92;}
@@ -81,14 +82,14 @@ body.dv-noscroll{overflow:hidden;}
 
 .dv-mail{
   font-family:var(--font-body, 'Inter', sans-serif);
-  font-size:14.5px; font-weight:500; color:var(--dv-ink);
+  font-size:15px; font-weight:600; color:var(--dv-ink);
   word-break:break-all;
   transition:opacity .25s ease;
 }
 .dv-mail:hover{opacity:.62;}
-.dv-socials{display:flex; align-items:center; justify-content:center; gap:10px;}
+.dv-socials{display:flex; align-items:center; justify-content:center; gap:12px;}
 .dv-social{
-  width:34px; height:34px; border-radius:9px;
+  width:32px; height:32px; border-radius:10px;
   display:inline-flex; align-items:center; justify-content:center;
   overflow:hidden; flex:0 0 auto;
   transition:transform .28s ease, opacity .25s ease;
@@ -153,8 +154,9 @@ body.dv-noscroll{overflow:hidden;}
     overflow-y:auto;
   }
   .dv-sidebar.open{transform:translateX(0);}
-  .dv-brand{font-size:18px;}
-  .dv-bio{max-width:100%; font-size:15px;}
+  .dv-brand{font-size:24px;}
+  .dv-top, .dv-role, .dv-bio{max-width:100%;}
+  .dv-bio{font-size:15px;}
   .dv-spacer{display:block;}
 }
 @media (max-width:520px){
