@@ -1,0 +1,171 @@
+/* ============================================================
+   DV SIDEBAR — общий несворачиваемый сайдбар (контакты, CV)
+   Подключается на всех страницах сайта поверх их собственных
+   токенов. Все классы и переменные с префиксом dv- / --dv-,
+   чтобы не конфликтовать со стилями конкретной страницы.
+   ============================================================ */
+:root{
+  --dv-sbw: 380px;
+  --dv-gap: 64px;
+  --dv-ink: rgba(3,3,6,.88);
+  --dv-muted: #71717a;
+  --dv-line: rgba(28,28,35,.12);
+  --dv-bg: var(--bg, #f7f7f7);
+  --dv-font-ui: var(--font-ui, var(--font, 'Montserrat', sans-serif));
+}
+
+body{padding-left:0;}
+body.dv-noscroll{overflow:hidden;}
+@media (min-width:961px){
+  body.has-dv-sidebar{padding-left:var(--dv-sbw);}
+}
+
+.dv-sidebar{
+  box-sizing:border-box;
+  font-family:var(--dv-font-ui);
+  color:var(--dv-ink);
+}
+@media (min-width:961px){
+  .dv-sidebar{
+    position:fixed; inset:0 auto 0 0; z-index:200;
+    width:var(--dv-sbw);
+    height:100vh; height:100svh;
+    padding:56px 32px 40px;
+    display:flex; flex-direction:column;
+    border-right:1px solid var(--dv-line);
+    background:var(--dv-bg);
+    transition:background .4s ease, border-color .4s ease;
+  }
+}
+
+.dv-top{display:block; max-width:276px;}
+.dv-brand{
+  display:block;
+  font-family:var(--font-body, 'Inter', sans-serif);
+  font-weight:600; font-size:28px; line-height:1.2; letter-spacing:0;
+  text-transform:uppercase; color:var(--dv-ink);
+}
+.dv-role{
+  margin-top:8px; max-width:276px;
+  font-family:var(--font-body, 'Inter', sans-serif);
+  font-weight:500; font-size:16px; line-height:1.2; color:var(--dv-muted);
+}
+
+.dv-bio{
+  margin-top:24px; padding-top:24px;
+  border-top:1px solid var(--dv-line);
+  font-family:var(--font-body, 'Inter', sans-serif);
+  font-weight:500; font-size:16px; line-height:1.5; color:var(--dv-ink);
+  max-width:276px;
+}
+.dv-bio p + p{margin-top:20px;}
+.dv-bio a{text-decoration:underline; text-underline-offset:3px; color:var(--dv-ink);}
+
+.dv-spacer{flex:1 1 auto; min-height:24px;}
+
+/* ================= CONTACT BLOCK (CV, почта, соцсети) ================= */
+.dv-contact{
+  display:flex; flex-direction:column; align-items:center; gap:24px;
+  text-align:center;
+}
+.dv-cta-row{width:100%; display:flex; align-items:stretch;}
+.dv-cta{
+  flex:1 1 auto;
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  height:52px; padding:0 20px;
+  border-radius:30px; background:#1c1c1e; color:#fff;
+  font-family:var(--font-body, 'Inter', sans-serif); font-weight:600; font-size:15px; letter-spacing:0;
+  transition:transform .25s ease, opacity .25s ease;
+}
+.dv-cta:hover{transform:translateY(-2px); opacity:.92;}
+.dv-cta svg{width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:1.8; flex:0 0 auto;}
+
+.dv-mail{
+  font-family:var(--font-body, 'Inter', sans-serif);
+  font-size:15px; font-weight:600; color:var(--dv-ink);
+  word-break:break-all;
+  transition:opacity .25s ease;
+}
+.dv-mail:hover{opacity:.62;}
+.dv-socials{display:flex; align-items:center; justify-content:center; gap:12px;}
+.dv-social{
+  width:32px; height:32px; border-radius:10px;
+  display:inline-flex; align-items:center; justify-content:center;
+  overflow:hidden; flex:0 0 auto;
+  transition:transform .28s ease, opacity .25s ease;
+}
+.dv-social img{width:100%; height:100%; object-fit:cover; display:block;}
+.dv-social:hover{opacity:.8; transform:translateY(-2px);}
+
+/* ================= BURGER (mobile only) ================= */
+.dv-burger{
+  display:none;
+  position:fixed; top:18px; left:18px; z-index:300;
+  width:46px; height:46px; flex:0 0 auto;
+  align-items:center; justify-content:center;
+  border-radius:13px; background:var(--dv-bg);
+  border:1px solid var(--dv-line);
+  box-shadow:0 10px 26px rgba(28,28,35,.12);
+}
+.dv-burger .bar{
+  position:relative; width:18px; height:2px; border-radius:2px;
+  background:var(--dv-ink);
+  transition:background .25s ease;
+}
+.dv-burger .bar::before,
+.dv-burger .bar::after{
+  content:""; position:absolute; left:0; width:18px; height:2px; border-radius:2px;
+  background:var(--dv-ink);
+  transition:transform .3s cubic-bezier(.22,1,.36,1);
+}
+.dv-burger .bar::before{top:-6px;}
+.dv-burger .bar::after{top:6px;}
+.dv-burger.open .bar{background:transparent;}
+.dv-burger.open .bar::before{transform:translateY(6px) rotate(45deg);}
+.dv-burger.open .bar::after{transform:translateY(-6px) rotate(-45deg);}
+
+.dv-backdrop{
+  display:none;
+  position:fixed; inset:0; z-index:220;
+  background:rgba(15,15,18,.4);
+  opacity:0; pointer-events:none;
+  transition:opacity .35s ease;
+}
+
+/* ================= MOBILE / TABLET ================= */
+@media (max-width:960px){
+  .dv-burger{display:flex;}
+  .dv-backdrop{display:block;}
+  .dv-backdrop.open{opacity:1; pointer-events:auto;}
+
+  body.has-dv-sidebar{padding-left:0;}
+  .dv-sidebar{
+    position:fixed; inset:0 auto 0 0; z-index:260;
+    width:min(86vw, 360px);
+    height:100vh; height:100dvh;
+    padding:96px 28px 28px;
+    display:flex; flex-direction:column;
+    border-right:1px solid var(--dv-line);
+    border-bottom:0;
+    background:var(--dv-bg);
+    box-shadow:26px 0 60px rgba(15,15,18,.16);
+    transform:translateX(-100%);
+    transition:transform .45s cubic-bezier(.22,1,.36,1), background .4s ease;
+    overflow-y:auto;
+  }
+  .dv-sidebar.open{transform:translateX(0);}
+  .dv-brand{font-size:24px;}
+  .dv-top, .dv-role, .dv-bio{max-width:100%;}
+  .dv-bio{font-size:15px;}
+  .dv-spacer{display:block;}
+}
+@media (max-width:520px){
+  .dv-sidebar{width:min(88vw, 320px); padding:88px 24px 24px;}
+}
+
+/* Плавное появление всего сайдбара при загрузке */
+.dv-sidebar{opacity:0; animation:dvFadeIn .8s cubic-bezier(.22,1,.36,1) .1s forwards;}
+@keyframes dvFadeIn{to{opacity:1;}}
+@media (prefers-reduced-motion: reduce){
+  .dv-sidebar{opacity:1; animation:none;}
+}
