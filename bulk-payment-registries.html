@@ -472,6 +472,49 @@ h2{font-weight:300; font-size:44px; line-height:1.15; letter-spacing:-.03em; mar
 .foot{padding-top:60px; padding-bottom:110px;}
 .foot .back{margin:0;}
 
+/* ---------- 05 · discovery concepts (карусель) ---------- */
+.prg-carousel{--h:clamp(240px, 52vh, 670px); margin-top:40px;}
+.prg-car-nav{display:flex; gap:12px; margin-bottom:28px;}
+.prg-car-btn{
+  width:40px; height:40px; border-radius:50%; flex:0 0 auto;
+  border:1px solid var(--line); background:#fff; color:var(--ink); cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .25s ease, color .25s ease, transform .25s ease;
+}
+.prg-car-btn:hover{background:var(--ink); color:#fff;}
+.prg-car-btn:active{transform:scale(.94);}
+.prg-car-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;}
+.prg-car-view{overflow:hidden; touch-action:pan-y; cursor:grab;}
+.prg-car-view.is-dragging{cursor:grabbing;}
+.prg-car-track{display:flex; will-change:transform;}
+.prg-car-track.anim{transition:transform .55s cubic-bezier(.22,1,.36,1);}
+.prg-car-slide{flex:0 0 100%; min-width:0; padding-right:24px; box-sizing:border-box;}
+.prg-car-panel{
+  background:#fff; border-radius:24px; padding:30px;
+  display:flex; flex-direction:column; align-items:center; gap:24px;
+}
+.prg-car-cap{
+  align-self:flex-start; padding-left:4px;
+  font-weight:400; font-size:clamp(19px,2.2vw,32px); line-height:1.35;
+  letter-spacing:-.01em; color:#6f7079;
+}
+/* картинка масштабируется целиком и никогда не обрезается */
+.prg-car-img{
+  display:block; width:auto; height:auto;
+  max-width:100%; max-height:var(--h);
+  border:1px solid #e5e7eb; border-radius:16px;
+  user-select:none; -webkit-user-drag:none; pointer-events:none;
+}
+@media (max-width:860px){
+  .prg-carousel{--h:clamp(200px, 44vh, 420px); margin-top:28px;}
+  .prg-car-nav{margin-bottom:20px;}
+  .prg-car-slide{padding-right:14px;}
+  .prg-car-panel{padding:16px; border-radius:20px; gap:16px;}
+}
+@media (prefers-reduced-motion: reduce){
+  .prg-car-track.anim{transition:none;}
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -881,10 +924,80 @@ h2{font-weight:300; font-size:44px; line-height:1.15; letter-spacing:-.03em; mar
 </section>
 
 
+
+<!-- ================= 05a · DISCOVERY CONCEPTS ================= -->
+<section class="prg-section">
+  <div class="wrap">
+    <div class="prg-kicker rv">05 · Discovery concepts</div>
+    <div class="prg-carousel rv" style="--d:.06s" id="prgCarousel">
+      <div class="prg-car-nav">
+        <button class="prg-car-btn" type="button" data-dir="-1" aria-label="Previous screen">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="14.5 6 8.5 12 14.5 18"></polyline></svg>
+        </button>
+        <button class="prg-car-btn" type="button" data-dir="1" aria-label="Next screen">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"></polyline></svg>
+        </button>
+      </div>
+      <div class="prg-car-view">
+        <div class="prg-car-track">
+        <div class="prg-car-slide">
+          <figure class="prg-car-panel">
+            <figcaption class="prg-car-cap">Register page</figcaption>
+            <img class="prg-car-img" src="assets/cases/payment-registries/disc-01.webp" alt="Register page" width="1600" height="1311" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="prg-car-slide">
+          <figure class="prg-car-panel">
+            <figcaption class="prg-car-cap">Import Payments, Registers and Invoices</figcaption>
+            <img class="prg-car-img" src="assets/cases/payment-registries/disc-02.webp" alt="Import Payments, Registers and Invoices" width="1600" height="1000" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="prg-car-slide">
+          <figure class="prg-car-panel">
+            <figcaption class="prg-car-cap">Import Result modal (few companies)</figcaption>
+            <img class="prg-car-img" src="assets/cases/payment-registries/disc-03.webp" alt="Import Result modal (few companies)" width="1600" height="1457" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="prg-car-slide">
+          <figure class="prg-car-panel">
+            <figcaption class="prg-car-cap">Payment registries loading</figcaption>
+            <img class="prg-car-img" src="assets/cases/payment-registries/disc-04.webp" alt="Payment registries loading" width="1600" height="1084" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="prg-car-slide">
+          <figure class="prg-car-panel">
+            <figcaption class="prg-car-cap">Actions with register</figcaption>
+            <img class="prg-car-img" src="assets/cases/payment-registries/disc-05.webp" alt="Actions with register" width="1600" height="1608" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="prg-car-slide">
+          <figure class="prg-car-panel">
+            <figcaption class="prg-car-cap">Second type of table (horisontal scroll)</figcaption>
+            <img class="prg-car-img" src="assets/cases/payment-registries/disc-06.webp" alt="Second type of table (horisontal scroll)" width="1600" height="1129" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="prg-car-slide">
+          <figure class="prg-car-panel">
+            <figcaption class="prg-car-cap">Second type of table (horisontal scroll)</figcaption>
+            <img class="prg-car-img" src="assets/cases/payment-registries/disc-07.webp" alt="Second type of table (horisontal scroll)" width="1600" height="956" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="prg-car-slide">
+          <figure class="prg-car-panel">
+            <figcaption class="prg-car-cap">Register creation from compleated payments</figcaption>
+            <img class="prg-car-img" src="assets/cases/payment-registries/disc-08.webp" alt="Register creation from compleated payments" width="1600" height="1117" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= 06 · RESEARCH FINDINGS ================= -->
 <section class="prg-section prg-section--white">
   <div class="wrap">
-    <div class="prg-kicker rv">05 · Research findings</div>
+    <div class="prg-kicker rv">06 · Research findings</div>
     <h2 class="prg-h2 rv" style="--d:.06s">What customers made clear.</h2>
     <div class="prg-findings rv" style="--d:.1s">
       <button class="prg-find" type="button" aria-pressed="false">
@@ -1004,7 +1117,7 @@ h2{font-weight:300; font-size:44px; line-height:1.15; letter-spacing:-.03em; mar
 <section class="prg-dark">
   <div class="wrap">
     <div class="rv">
-      <div class="prg-kicker">06 · Outcomes</div>
+      <div class="prg-kicker">07 · Outcomes</div>
       <h2 class="prg-h2">Designed for migration.<br>Built for growth.</h2>
     </div>
     <div class="prg-outcomes rv" style="--d:.08s">
@@ -1033,7 +1146,7 @@ h2{font-weight:300; font-size:44px; line-height:1.15; letter-spacing:-.03em; mar
 <!-- ================= 08 · MOBILE ================= -->
 <section class="prg-section">
   <div class="wrap">
-    <div class="prg-kicker rv">07 · Mobile</div>
+    <div class="prg-kicker rv">08 · Mobile</div>
     <h2 class="prg-h2 rv" style="--d:.06s">From web-first MVP<br>to native workflows.</h2>
     <div class="prg-phones rv">
       <img class="prg-phone prg-shot" src="assets/cases/payment-registries/mob-01.webp" alt="Ready to Send: registry list with totals and a Send All action" width="700" height="1516" loading="lazy" decoding="async">
@@ -1053,7 +1166,7 @@ h2{font-weight:300; font-size:44px; line-height:1.15; letter-spacing:-.03em; mar
 <!-- ================= 09 · WHAT I'D DO DIFFERENTLY ================= -->
 <section class="prg-section">
   <div class="wrap">
-    <div class="prg-kicker rv">08 · What I’d do differently</div>
+    <div class="prg-kicker rv">09 · What I’d do differently</div>
     <h2 class="prg-h2 rv" style="--d:.06s">Research captures today.<br>B2B design must also anticipate tomorrow.</h2>
     <div class="prg-notes rv" style="--d:.1s">
       <p>Research participants consistently said registry IDs were unnecessary, so we removed them to keep the interface simple. Less than a year later, scale and enterprise support made them essential.</p>
@@ -1135,7 +1248,7 @@ document.querySelectorAll('.back, .brand').forEach(a => a.addEventListener('clic
 (function(){
   const SHORT = /(^|\s)(a|an|the|and|or|of|to|in|on|for|with|from|by|at|as|is|are|was|it|we|our|not|no|so|up|one)(\s)/gi;
   function fix(t){ let p; do { p = t; t = t.replace(SHORT, (m,a,w) => a + w + '\u00a0'); } while (t !== p); return t; }
-  document.querySelectorAll('.lead, .prose p, .quote, .sub, .problem p, .step p, .d p, .cmp p, .res .t, .buses .txt, .win .txt, .legend p, .reflect .big, .ba .note, .nda-card p, .prg-lead, .prg-eyebrow, .prg-statement-text, .prg-metric p, .prg-pressure p, .prg-step p, .prg-dark-body, .prg-note p, .prg-intro, .prg-desc p, .prg-desc li, .prg-find-h, .prg-find-p, .prg-outcome-l, .prg-support, .prg-notes p, .prg-nda p, .prg-cta-lead').forEach(el => {
+  document.querySelectorAll('.lead, .prose p, .quote, .sub, .problem p, .step p, .d p, .cmp p, .res .t, .buses .txt, .win .txt, .legend p, .reflect .big, .ba .note, .nda-card p, .prg-lead, .prg-eyebrow, .prg-statement-text, .prg-metric p, .prg-pressure p, .prg-step p, .prg-dark-body, .prg-note p, .prg-intro, .prg-desc p, .prg-desc li, .prg-find-h, .prg-find-p, .prg-outcome-l, .prg-support, .prg-notes p, .prg-nda p, .prg-cta-lead, .prg-car-cap').forEach(el => {
     el.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = fix(n.textContent); });
   });
 })();
@@ -1156,6 +1269,73 @@ document.querySelectorAll('.back, .brand').forEach(a => a.addEventListener('clic
     if (window.__prgLenis) window.__prgLenis.scrollTo(0);
     else window.scrollTo({top:0, behavior:'smooth'});
   });
+})();
+
+/* ================= КАРУСЕЛЬ КОНЦЕПТОВ (бесконечная) ================= */
+(function(){
+  var root = document.getElementById('prgCarousel');
+  if (!root) return;
+  var view  = root.querySelector('.prg-car-view');
+  var track = root.querySelector('.prg-car-track');
+  var slides = [].slice.call(track.children);
+  var n = slides.length;
+  if (n < 2) return;
+
+  /* клоны по краям делают перемотку бесконечной */
+  var first = slides[0].cloneNode(true), last = slides[n - 1].cloneNode(true);
+  first.setAttribute('aria-hidden', 'true');
+  last.setAttribute('aria-hidden', 'true');
+  track.appendChild(first);
+  track.insertBefore(last, slides[0]);
+
+  var i = 1;                       /* 0 — клон последнего, n+1 — клон первого */
+  var w = 0, dragging = false, startX = 0, dx = 0, moved = 0;
+
+  function width(){ return view.clientWidth; }
+  function place(animate){
+    track.classList.toggle('anim', !!animate);
+    track.style.transform = 'translate3d(' + (-i * width() + dx) + 'px,0,0)';
+  }
+  function go(dir){ i += dir; dx = 0; place(true); }
+
+  track.addEventListener('transitionend', function(e){
+    if (e.propertyName !== 'transform') return;
+    if (i === 0) { i = n; place(false); }
+    else if (i === n + 1) { i = 1; place(false); }
+  });
+
+  root.querySelectorAll('.prg-car-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ go(+btn.dataset.dir); });
+  });
+
+  view.addEventListener('pointerdown', function(e){
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    dragging = true; moved = 0; startX = e.clientX; dx = 0;
+    view.classList.add('is-dragging');
+    view.setPointerCapture(e.pointerId);
+    track.classList.remove('anim');
+  });
+  view.addEventListener('pointermove', function(e){
+    if (!dragging) return;
+    dx = e.clientX - startX;
+    moved = Math.max(moved, Math.abs(dx));
+    place(false);
+  });
+  function endDrag(e){
+    if (!dragging) return;
+    dragging = false;
+    view.classList.remove('is-dragging');
+    try { view.releasePointerCapture(e.pointerId); } catch (err) {}
+    var threshold = Math.min(120, width() * 0.15);
+    if (dx <= -threshold) { dx = 0; go(1); }
+    else if (dx >= threshold) { dx = 0; go(-1); }
+    else { dx = 0; place(true); }
+  }
+  view.addEventListener('pointerup', endDrag);
+  view.addEventListener('pointercancel', endDrag);
+
+  window.addEventListener('resize', function(){ dx = 0; place(false); });
+  place(false);
 })();
 
 /* ================= КАРТОЧКИ ИССЛЕДОВАНИЯ (ПЕРЕВОРОТ) ================= */
