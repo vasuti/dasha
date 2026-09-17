@@ -87,7 +87,7 @@
     '}',
     '.gate-note{',
     '  font-size:14px; line-height:1.55; font-weight:300; color:var(--gate-muted);',
-    '  max-width:270px; margin-bottom:30px;',
+    '  max-width:none; margin-bottom:30px; text-wrap:balance;',
     '}',
 
     '.gate-fields{display:flex; align-items:center; justify-content:center; gap:10px}',
@@ -168,7 +168,7 @@
     gate.innerHTML =
       '<div class="gate-card">' +
         '<div class="gate-brand">Dasha Vasuti</div>' +
-        '<p class="gate-note">This portfolio is private. Enter the 5-digit access code to continue.</p>' +
+        '<p class="gate-note">This portfolio is private.<br>Enter code to continue.</p>' +
         '<div class="gate-fields">' + inputs + '</div>' +
         '<div class="gate-msg" role="alert">Wrong code — please try again</div>' +
       '</div>' +
